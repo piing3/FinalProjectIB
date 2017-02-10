@@ -5,6 +5,7 @@
  */
 package finalProject;
 
+import Main.FinalProject;
 import java.awt.Point;
 import java.util.ArrayList;
 import javax.swing.Icon;
@@ -18,7 +19,7 @@ import javax.swing.JOptionPane;
  *
  * @author Davin
  */
-class City extends JLabel{
+public class City extends JLabel{
     
     public int x;//location
     public int y;

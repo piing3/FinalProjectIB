@@ -5,6 +5,7 @@
  */
 package finalProject;
 
+import Main.FinalProject;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -13,7 +14,7 @@ import java.util.Random;
  * 
  * @author Ben
  */
-class Person {
+public class Person {
     String name;//the entered name
     public int PlayerNumber;//the players index
     public boolean isTurn;// stores if it's their turn

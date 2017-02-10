@@ -5,6 +5,7 @@
  */
 package finalProject;
 
+import Main.FinalProject;
 import java.util.Random;
 
 /**

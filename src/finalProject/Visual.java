@@ -4,6 +4,7 @@
  */
 package finalProject;
 
+import Main.FinalProject;
 import java.awt.Container;
 import java.awt.Dialog;
 import java.awt.Point;
@@ -24,7 +25,7 @@ import javax.swing.JOptionPane;
  * 
  * @author Davin
  */
-abstract class Visual extends JFrame implements KeyListener, MouseListener  {
+public class Visual extends JFrame implements KeyListener, MouseListener  {
     static Container tiles;//containers
     static Container Units;
     static Container UI;
@@ -251,6 +252,36 @@ abstract class Visual extends JFrame implements KeyListener, MouseListener  {
         }
         return result;
     } 
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
    
     
 }

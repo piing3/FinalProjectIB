@@ -1,5 +1,10 @@
-package finalProject;
+package Main;
 
+import finalProject.City;
+import finalProject.Person;
+import finalProject.TurnOrder;
+import finalProject.Unit;
+import finalProject.Visual;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;

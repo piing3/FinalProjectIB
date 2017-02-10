@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package finalProject;
+package World;
 
 import java.util.Random;
 import javax.swing.Icon;
