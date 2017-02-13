@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package finalProject;
+package Logic;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
  * 
  * @author Davin
  */
-class Prodution {
+public class Prodution {
     int productionCost;//the amount of production needed to make it
     String name;//the object's name
     String discription;//a discription of the object
@@ -24,7 +24,7 @@ class Prodution {
     Boolean rebuildable = true;//can the object be built multiple times in a simgle city
     Boolean isUnit = false;//does the object make a unit 
     Icon icon;
-    Prodution(int object){
+    public Prodution(int object){
         number = object;//store the object number
         if (object == 0){//makes a warrior production element
             name = "Warrior";
@@ -101,4 +101,36 @@ class Prodution {
         }
         //End of Buildings, add more above if you want to add more buildings.
     }
+
+    public Boolean isRebuildable() {
+        return rebuildable;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public Boolean isUnit() {
+        return isUnit;
+    }
+
+    public int getUnitType() {
+        return unitType;
+    }
+
+    public int getGoldChange() {
+        return goldChange;
+    }
+
+    public int getProductionChange() {
+        return productionChange;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 }

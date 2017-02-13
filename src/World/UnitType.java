@@ -3,9 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package finalProject;
+package World;
 
+import World.Tile;
+import World.Map;
 import Main.FinalProject;
+import Main.Globals;
+import Logic.TurnOrder;
+import Logic.Unit;
+import UI.Visual;
 import java.awt.Container;
 
 

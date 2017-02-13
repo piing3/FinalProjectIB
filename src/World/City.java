@@ -3,9 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package finalProject;
+package World;
 
 import Main.FinalProject;
+import Logic.Person;
+import Logic.Prodution;
+import Logic.TurnOrder;
+import UI.Visual;
 import java.awt.Point;
 import java.util.ArrayList;
 import javax.swing.Icon;
@@ -158,15 +162,15 @@ public class City extends JLabel{
                 
                 if (city.productionLeft <= 0) {//if the production is finished
                     
-                    if (!city.productionItem.rebuildable) {//if it's not rebuildable
+                    if (!city.productionItem.isRebuildable()) {//if it's not rebuildable
                         
                         for (int j = 0; j < city.cityBuildObjects.size(); j++) {//find the index of the finished object and remove it from the list 
-                            if (city.cityBuildObjects.get(j) == city.productionItem.number)  city.cityBuildObjects.remove(j);
+                            if (city.cityBuildObjects.get(j) == city.productionItem.getNumber())  city.cityBuildObjects.remove(j);
                         }
                     }
                     
-                    if (city.productionItem.isUnit) UnitType.CreateUnit(city.x, city.y, city.productionItem.unitType, Visual.Units);//if it's a unit, make it
-                    city.BuiltObjects.add(city.productionItem.number);//add the object to the finished builds list
+                    if (city.productionItem.isUnit()) UnitType.CreateUnit(city.x, city.y, city.productionItem.getUnitType(), Visual.getUnits());//if it's a unit, make it
+                    city.BuiltObjects.add(city.productionItem.getNumber());//add the object to the finished builds list
                     city.productionItem = new Prodution(-1);//clear the city's productionItem
                 }
                 
@@ -181,8 +185,8 @@ public class City extends JLabel{
                 city.food = 0;
                 
                 for (int j = 0; j < city.BuiltObjects.size(); j++) {//add the gold and production from all finished builds
-                    city.gold += new Prodution(city.BuiltObjects.get(j)).goldChange;
-                    city.production += new Prodution(city.BuiltObjects.get(j)).productionChange;
+                    city.gold += new Prodution(city.BuiltObjects.get(j)).getGoldChange();
+                    city.production += new Prodution(city.BuiltObjects.get(j)).getProductionChange();
                 }
                 
                 for (int j = -2; j < 3; j++) {//add the food and production from surounding tiles

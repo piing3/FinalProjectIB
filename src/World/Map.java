@@ -1,6 +1,10 @@
-package finalProject;
+package World;
+
+
 
 import World.Border;
+import UI.Visual;
+import java.awt.Container;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -44,15 +48,15 @@ class Map {
 //        }
 //        s.close(); 
         
-        for (int i = Visual.rightOff; i < WIDTH-1; i++){
-            for (int j = Visual.downOff; j < HEIGHT-1; j++){
+        for (int i = Visual.getRightOff(); i < WIDTH-1; i++){
+            for (int j = Visual.getDownOff(); j < HEIGHT-1; j++){
                 grid[i][j] = new Tile(i, j);//creates all the tiles
                 grid[i][j].setTile(tileType[i][j]);//sets the type of all tiles
-                Visual.tiles.add(grid[i][j]);//adds the tiles to the tile container
+                Visual.setTiles((Container) Visual.getTiles().add(grid[i][j]));//adds the tiles to the tile container
                 
                 borderGrid[i][j] = new Border(i, j);//creates all the borders
                 borderGrid[i][j].setBorder(borderType[i][j]);//sets the type of all borders
-                Visual.tiles.add(borderGrid[i][j],0);//adds the borders to the tile container
+                Visual.setTiles((Container) Visual.getTiles().add(borderGrid[i][j],0));//adds the borders to the tile container
                 
             }
         }

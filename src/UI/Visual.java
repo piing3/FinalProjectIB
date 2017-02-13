@@ -2,9 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package finalProject;
+package UI;
 
+import Main.Globals;
+import World.UnitType;
+import World.Map;
+import World.City;
 import Main.FinalProject;
+import Logic.TurnOrder;
+import Logic.Unit;
 import java.awt.Container;
 import java.awt.Dialog;
 import java.awt.Point;
@@ -33,8 +39,8 @@ public class Visual extends JFrame implements KeyListener, MouseListener  {
     static Container ProdutionUI;
     static Container UnitUI;
     
-    static int width;// width and height of the form
-    static int hight;
+    static public int width;// width and height of the form
+    static public int hight;
     
     static boolean moveEnabled = true;//mouse click condions
     static boolean movingUnit = false;
@@ -282,6 +288,31 @@ public class Visual extends JFrame implements KeyListener, MouseListener  {
     public void mouseExited(MouseEvent e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public static Container getUnits() {
+        return Units;
+    }
+
+    public static int getRightOff() {
+        return rightOff;
+    }
+
+    public static int getDownOff() {
+        return downOff;
+    }
+
+    public static Container getTiles() {
+        return tiles;
+    }
+
+    public static void setTiles(Container tiles) {
+        Visual.tiles = tiles;
+    }
+
+    
+    
+    
+    
    
     
 }

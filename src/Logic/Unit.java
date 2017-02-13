@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package finalProject;
+package Logic;
 
+import UI.UserInt;
+import UI.Visual;
 import java.awt.Container;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;

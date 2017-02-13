@@ -1,10 +1,10 @@
 package Main;
 
-import finalProject.City;
-import finalProject.Person;
-import finalProject.TurnOrder;
-import finalProject.Unit;
-import finalProject.Visual;
+import World.City;
+import Logic.Person;
+import Logic.TurnOrder;
+import Logic.Unit;
+import UI.Visual;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;

@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package finalProject;
+package Logic;
 
+import UI.Visual;
+import World.UnitType;
+import World.Map;
+import World.City;
 import Main.FinalProject;
 import java.util.Random;
 
