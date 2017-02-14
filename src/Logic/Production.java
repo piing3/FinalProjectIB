@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
  * 
  * @author Davin
  */
-public class Prodution {
+public class Production {
     int productionCost;//the amount of production needed to make it
     String name;//the object's name
     String discription;//a discription of the object
@@ -24,7 +24,7 @@ public class Prodution {
     Boolean rebuildable = true;//can the object be built multiple times in a simgle city
     Boolean isUnit = false;//does the object make a unit 
     Icon icon;
-    public Prodution(int object){
+    public Production(int object){
         number = object;//store the object number
         if (object == 0){//makes a warrior production element
             name = "Warrior";

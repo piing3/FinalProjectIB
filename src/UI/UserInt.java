@@ -9,7 +9,7 @@ import UI.Visual;
 import World.UnitType;
 import World.City;
 import Main.FinalProject;
-import Logic.Prodution;
+import Logic.Production;
 import Logic.TurnOrder;
 import Logic.Unit;
 import java.awt.Color;
@@ -55,7 +55,7 @@ class UserInt {
         static public JPanel productionBackrounds = new JPanel();
         static public JScrollPane jsp = new JScrollPane();
         static public JPanel SelectedProduction = new JPanel(null);
-        static public Prodution selectedProductionItem = new Prodution(-1);
+        static publicProductionn selectedProductionItem = neProductionon(-1);
         static public JLabel selectedIcon;
         static public JLabel selectedTitle;
         static public JLabel selectedCost;
@@ -468,7 +468,7 @@ class UserInt {
             backround.setLocation(0, 0);
             productionInfo.add(backround, 0);
             
-            Prodution thing = new Prodution(city.cityBuildObjects.get(i));
+         Productionion thing = Productiontion(city.cityBuildObjects.get(i));
             JLabel title = new JLabel(thing.name);
             title.setSize(200, 30);
             title.setLocation(220, 10);
@@ -506,8 +506,8 @@ class UserInt {
                         Component[] test = productionPanelList.get(i).getComponents();
                         for (int j = 0; j < test.length; j++) {
                             if (test[j] == trigger){
-                                if (selectedProductionItem.number != new Prodution(city.cityBuildObjects.get(i)).number){
-                                    selectedProductionItem = new Prodution(city.cityBuildObjects.get(i));
+                                if (selectedProductionItem.number !=Productionution(city.cityBuildObjects.get(i)).number){
+                                    selectedProductionItem Productiondution(city.cityBuildObjects.get(i));
                                     city.productionItem = selectedProductionItem;
                                     city.productionLeft = selectedProductionItem.productionCost;
                                     updateSelectedProduction();

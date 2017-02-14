@@ -1,7 +1,7 @@
 package Main;
 
 import World.City;
-import Logic.Person;
+import Logic.Player;
 import Logic.TurnOrder;
 import Logic.Unit;
 import UI.Visual;
@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 public class FinalProject {
 public static ArrayList<Unit> units = new ArrayList<Unit>();//list of all units
 public static ArrayList<City> cities = new ArrayList<City>();//list of all cities
-public static ArrayList<Person> Players = new ArrayList<Person>();//list of players
+public static ArrayList<Player> Players = new ArrayList<Player>();//list of players
 public static int play;
 
 public static int turnNumber = 0;//current turn number
@@ -37,10 +37,10 @@ public static int turnNumber = 0;//current turn number
         else {
         for (int i = 0; i < play; i++) {//makes players
             String name = JOptionPane.showInputDialog("What is your name?");
-                 if(i == 0) FinalProject.Players.add(new Person(name, i+1));
-            else if(i == 1) FinalProject.Players.add(new Person(name, i+1));
-            else if(i == 2) FinalProject.Players.add(new Person(name, i+1));
-            else if(i == 3) FinalProject.Players.add(new Person(name, i+1));
+                 if(i == 0) FinalProject.Players.add(new Player(name, i+1));
+            else if(i == 1) FinalProject.Players.add(new Player(name, i+1));
+            else if(i == 2) FinalProject.Players.add(new Player(name, i+1));
+            else if(i == 3) FinalProject.Players.add(new Player(name, i+1));
         }
         FinalProject.Players.get(0).isTurn = true;//begin turns
        Visual visual = new Visual() {

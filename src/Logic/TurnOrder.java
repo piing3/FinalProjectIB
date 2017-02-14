@@ -38,8 +38,8 @@ public class TurnOrder{
         FinalProject.turnNumber++;//increment counter
         
         if(FinalProject.play == 2){//if two players...(currently locked on this)
-             Person player1 =       FinalProject.Players.get(0);//store player 1
-             Person player2 =       FinalProject.Players.get(1);//store player 2
+             Player player1 =       FinalProject.Players.get(0);//store player 1
+             Player player2 =       FinalProject.Players.get(1);//store player 2
                  if(player1.isTurn){//if player 1's turn, change to player 2's 
                      FinalProject.Players.get(0).isTurn = false;
                      FinalProject.Players.get(1).isTurn = true;
@@ -57,9 +57,9 @@ public class TurnOrder{
             }
         }
         if(FinalProject.play == 3){//same as above
-             Person player1 =       FinalProject.Players.get(0);
-             Person player2 =       FinalProject.Players.get(1);
-             Person player3 =       FinalProject.Players.get(2);
+             Player player1 =       FinalProject.Players.get(0);
+             Player player2 =       FinalProject.Players.get(1);
+             Player player3 =       FinalProject.Players.get(2);
                  if(player1.isTurn){
                      FinalProject.Players.get(0).isTurn = false;
                      FinalProject.Players.get(1).isTurn = true;
@@ -80,10 +80,10 @@ public class TurnOrder{
             }
         }
         if(FinalProject.play == 4){//same as above
-             Person player1 =       FinalProject.Players.get(0);
-             Person player2 =       FinalProject.Players.get(1);
-             Person player3 =       FinalProject.Players.get(2);
-             Person player4 =       FinalProject.Players.get(3);
+             Player player1 =       FinalProject.Players.get(0);
+             Player player2 =       FinalProject.Players.get(1);
+             Player player3 =       FinalProject.Players.get(2);
+             Player player4 =       FinalProject.Players.get(3);
                  if(player1.isTurn){
                      FinalProject.Players.get(0).isTurn = false;
                      FinalProject.Players.get(1).isTurn = true;

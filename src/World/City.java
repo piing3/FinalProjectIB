@@ -6,8 +6,8 @@
 package World;
 
 import Main.FinalProject;
-import Logic.Person;
-import Logic.Prodution;
+import Logic.Player;
+import Logic.Production;
 import Logic.TurnOrder;
 import UI.Visual;
 import java.awt.Point;
@@ -35,13 +35,13 @@ public class City extends JLabel{
     
     public int growthLeft;//used for adding population
     public int productionLeft;//used for building things
-    public Prodution productionItem = new Prodution(-1);//the item being built
+    public Production productionItem = new Production(-1);//the item being built
     
     public int Health = 100;//city combat numbers, unused
     public int Damage = 20;
     
     public String name = "";//city name
-    public Person owner;//city owner
+    public Player owner;//city owner
     
     public ArrayList<Integer> cityBuildObjects = new ArrayList<Integer>();//can be built objects 
     public ArrayList<Integer> BuiltObjects = new ArrayList<Integer>();//built objects 
@@ -154,7 +154,7 @@ public class City extends JLabel{
      * 
      * @param owner: the player
      */
-    public static void updateCity(Person owner){
+    public static void updateCity(Player owner){
         for (int i = 0; i < FinalProject.cities.size(); i++) {//for each city...
             City city = FinalProject.cities.get(i);
             if (city.owner == owner){//...if the owner is the given owner 
@@ -171,7 +171,7 @@ public class City extends JLabel{
                     
                     if (city.productionItem.isUnit()) UnitType.CreateUnit(city.x, city.y, city.productionItem.getUnitType(), Visual.getUnits());//if it's a unit, make it
                     city.BuiltObjects.add(city.productionItem.getNumber());//add the object to the finished builds list
-                    city.productionItem = new Prodution(-1);//clear the city's productionItem
+                    city.productionItem = new Production(-1);//clear the city's productionItem
                 }
                 
                 city.growthLeft -= city.food;//lower the city's growthLeft by the city's food 
@@ -185,8 +185,8 @@ public class City extends JLabel{
                 city.food = 0;
                 
                 for (int j = 0; j < city.BuiltObjects.size(); j++) {//add the gold and production from all finished builds
-                    city.gold += new Prodution(city.BuiltObjects.get(j)).getGoldChange();
-                    city.production += new Prodution(city.BuiltObjects.get(j)).getProductionChange();
+                    city.gold += new Production(city.BuiltObjects.get(j)).getGoldChange();
+                    city.production += new Production(city.BuiltObjects.get(j)).getProductionChange();
                 }
                 
                 for (int j = -2; j < 3; j++) {//add the food and production from surounding tiles
