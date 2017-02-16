@@ -11,7 +11,7 @@ import World.City;
 import Main.FinalProject;
 import Logic.Production;
 import Logic.TurnOrder;
-import Logic.Unit;
+import World.Unit;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;

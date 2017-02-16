@@ -4,7 +4,7 @@ package Logic;
  *
  * @author d.holmberg
  */
-public class Unit extends Production{
+public class Building extends Production{
 
 
 

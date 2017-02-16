@@ -3,7 +3,7 @@ package Main;
 import World.City;
 import Logic.Player;
 import Logic.TurnOrder;
-import Logic.Unit;
+import World.Unit;
 import UI.Visual;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;

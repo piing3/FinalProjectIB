@@ -10,7 +10,7 @@ import World.Map;
 import World.City;
 import Main.FinalProject;
 import Logic.TurnOrder;
-import Logic.Unit;
+import World.Unit;
 import java.awt.Container;
 import java.awt.Dialog;
 import java.awt.Point;

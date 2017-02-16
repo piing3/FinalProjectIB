@@ -41,15 +41,15 @@ public class Player {
      */
     private void startBuildList() {
         
-        buildList.add(0);
-        buildList.add(1);
-        buildList.add(3);
-        buildList.add(2);
-        buildList.add(4);
-        buildList.add(25);
-        buildList.add(24);
-        buildList.add(23);
-        buildList.add(22);
+//        buildList.add(0);
+//        buildList.add(1);
+//        buildList.add(3);
+//        buildList.add(2);
+//        buildList.add(4);
+//        buildList.add(25);
+//        buildList.add(24);
+//        buildList.add(23);
+//        buildList.add(22);
     }
     
     
