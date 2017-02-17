@@ -5,8 +5,10 @@
         <group>
             <file>file:/C:/Users/d.holmberg/Desktop/GitHub/FinalProjectIB/src/Logic/Player.java</file>
             <file>file:/C:/Users/d.holmberg/Desktop/GitHub/FinalProjectIB/src/temp.java</file>
+            <file>file:/C:/Users/d.holmberg/Desktop/GitHub/FinalProjectIB/src/Logic/Building.java</file>
             <file>file:/C:/Users/d.holmberg/Desktop/GitHub/FinalProjectIB/src/Logic/ProductionIndex.java</file>
-            <file>file:/C:/Users/d.holmberg/Desktop/GitHub/FinalProjectIB/src/UI/Visual.java</file>
+            <file>file:/C:/Users/d.holmberg/Desktop/GitHub/FinalProjectIB/src/Logic/Unit.java</file>
+            <file>file:/C:/Users/d.holmberg/Desktop/GitHub/FinalProjectIB/src/Logic/Production.java</file>
         </group>
     </open-files>
 </project-private>
