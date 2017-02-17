@@ -32,7 +32,7 @@ public class Unit extends Production{
     //----Object-Methods-------
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
+    public Unit clone() throws CloneNotSupportedException {
         Unit u = new Unit(name, discription, buildCost, goldCost, icon, unitType);
         u.setBuilt(built);
         return u;

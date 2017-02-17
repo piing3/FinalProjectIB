@@ -55,7 +55,7 @@ public class Building extends Production{
     //----Object-Methods-------
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
+    public Building clone() throws CloneNotSupportedException {
         Building b = new Building(name, discription, buildCost, goldCost, icon, productionChange, goldChange);
         b.setBuilt(built);
         return b;

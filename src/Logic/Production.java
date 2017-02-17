@@ -111,10 +111,11 @@ public class Production {
     public boolean equals(Object obj) {
         Production p = (Production) obj;
         if (this.name != p.name) return false;
-        if (this.discription != p.discription);
-        if (this.buildCost != p.buildCost);
-        if (this.goldCost != p.goldCost);
-        if (this.icon != p.icon);
+        if (this.discription != p.discription) return false;
+        if (this.buildCost != p.buildCost) return false;
+        if (this.goldCost != p.goldCost) return false;
+        if (this.icon != p.icon) return false;
+        return true;
     }
 
     @Override
