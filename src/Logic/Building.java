@@ -61,9 +61,11 @@ public class Building extends Production{
         return b;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public boolean equals(Building b) {
+        if (!super.equals(b)) return false;
+        if (this.productionChange != b.productionChange) return false;
+        if (this.goldChange != b.goldChange) return false;
+        return true;
     }
 
     @Override
