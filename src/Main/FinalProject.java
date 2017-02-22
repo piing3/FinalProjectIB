@@ -1,5 +1,6 @@
 package Main;
 
+import Logic.BuildIndex;
 import World.City;
 import Logic.Player;
 import Logic.TurnOrder;
@@ -21,6 +22,7 @@ public static ArrayList<Unit> units = new ArrayList<Unit>();//list of all units
 public static ArrayList<City> cities = new ArrayList<City>();//list of all cities
 public static ArrayList<Player> Players = new ArrayList<Player>();//list of players
 public static int play;
+public static Logic.BuildIndex buildIndex;
 
 public static int turnNumber = 0;//current turn number
 
@@ -29,7 +31,9 @@ public static int turnNumber = 0;//current turn number
      */
     public static void main(String[] args) throws FileNotFoundException {
         
+        buildIndex = new BuildIndex();
         
+    /*    
         play = 2;//Integer.parseInt(JOptionPane.showInputDialog("How many people are playing"));//gets the number of players, locked at 2 tempariliy
         TurnOrder turnorder = new TurnOrder();
         if (play < 2)JOptionPane.showMessageDialog(null, "you cant play alone.");//Check vailid input
@@ -72,5 +76,6 @@ public static int turnNumber = 0;//current turn number
         TurnOrder.spawnStart();//spawn player one
         visual.setVisible(true);//make display visable
         }
+    */
     }
 }

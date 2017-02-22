@@ -17,9 +17,9 @@ public class Unit extends Production implements Serializable{
         this.defence = 0;
     }
 
-    public Unit(String name, String discription, int buildCost, int goldCost, Icon icon, int unitType) {
+    public Unit(String name, String discription, int buildCost, int goldCost, Icon icon, int defence) {
         super(name, discription, buildCost, goldCost, icon);
-        this.defence = unitType;
+        this.defence = defence;
     }
 
     //----Variables-----------

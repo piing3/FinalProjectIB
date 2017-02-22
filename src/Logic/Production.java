@@ -1,5 +1,6 @@
 package Logic;
 
+import java.io.Serializable;
 import javax.swing.Icon;
 
 /**
@@ -7,16 +8,16 @@ import javax.swing.Icon;
  * 
  * @author Davin
  */
-public class Production {
+public class Production implements Serializable{
     
-    String name; // the object's display name
-    String discription; // a brief discription of the object
-    int buildCost; // the amount of product needed to build this object
-    int goldCost; // the amount of product needed to build this object
-    Icon icon; // the icon used in the build menu
+    private String name; // the object's display name
+    private String discription; // a brief discription of the object
+    private int buildCost; // the amount of product needed to build this object
+    private int goldCost; // the amount of product needed to build this object
+    /*private Icon icon; // the icon used in the build menu
     
-    Runnable built; // a special action run when the object is built
-
+    private Runnable built; // a special action run when the object is built
+*/
     /**
      * Makes a new blank production object
      */
@@ -37,21 +38,21 @@ public class Production {
         this.discription = discription;
         this.buildCost = buildCost;
         this.goldCost = goldCost;
-        this.icon = icon;
+        /*this.icon = icon;
         
         built = new Runnable() {
             @Override
             public void run() {
             }
-        };
+        };*/
     }
     
     /**
      * Run when the object is built
      */
-    public void Built(){
+    /*public void Built(){
         built.run();
-    }
+    }*/
     
     //----Variables-----------
 
@@ -83,7 +84,7 @@ public class Production {
         this.goldCost = goldCost;
     }
 
-    public Icon getIcon() {
+    /*public Icon getIcon() {
         return icon;
     }
     public void setIcon(Icon icon) {
@@ -95,26 +96,24 @@ public class Production {
     }
     public void setBuilt(Runnable built) {
         this.built = built;
-    }
+    }*/
     
     
     //----Object-Methods-------
 
     @Override
     public Production clone() throws CloneNotSupportedException {
-        Production p = new Production(name, discription, buildCost, goldCost, icon);
-        p.setBuilt(built);
+        Production p = new Production(name, discription, buildCost, goldCost, null);
+        //p.setBuilt(built);
         return p;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        Production p = (Production) obj;
+    public boolean equals(Production p) {
         if (this.name != p.name) return false;
         if (this.discription != p.discription) return false;
         if (this.buildCost != p.buildCost) return false;
         if (this.goldCost != p.goldCost) return false;
-        if (this.icon != p.icon) return false;
+        //if (this.icon != p.icon) return false;
         return true;
     }
 
