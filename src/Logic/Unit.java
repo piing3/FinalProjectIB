@@ -45,7 +45,6 @@ public class Unit extends Production implements Serializable{
     @Override
     public Unit clone() throws CloneNotSupportedException {
         Unit u = new Unit(name, discription, buildCost, goldCost, icon, defence);
-        u.setBuilt(built);
         return u;
     }
 

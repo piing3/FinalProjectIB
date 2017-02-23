@@ -1,131 +1,152 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Logic;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+import UI.Visual;
+import World.UnitType;
+import World.Map;
+import World.City;
+import Main.FinalProject;
+import java.util.Random;
 
 /**
- *Controls info on the things city's are able to build
+ *Handles most of the turn related mechanics 
  * 
- * @author Davin
+ * @author Ben (Tad bit to "organized")
  */
-public class Production {
-    int productionCost;//the amount of production needed to make it
-    String name;//the object's name
-    String discription;//a discription of the object
-    int productionChange = 0;//the change the object has on the city's production
-    int goldChange = 0;//the change the object has on the city's gold
-    int number;//the id the type of object uses when called below
-    int unitType;//the id the object uses to make a unit
-    Boolean rebuildable = true;//can the object be built multiple times in a simgle city
-    Boolean isUnit = false;//does the object make a unit 
-    Icon icon;
-    public Production(int object){
-        number = object;//store the object number
-        if (object == 0){//makes a warrior production element
-            name = "Warrior";
-            productionCost = 6;
-            icon = new ImageIcon("src\\Images\\WarriorIconMed.png");
-            discription = "The basic melee unit. Avalable from the start.";
-            rebuildable = true;
-            isUnit = true;
-            unitType = 1;
-        }
-        if (object == 1){//makes a archer production element
-            name = "Archer";
-            productionCost = 24;
-            icon = new ImageIcon("src\\Images\\WarriorIconMed.png");
-            discription = "The basic Ragned unit. Avalable once Barracks is built.";
-            rebuildable = true;
-            isUnit = true;
-            unitType = 3;
-        }
-        if (object == 2){//makes a settler production element
-            name = "Settler";
-            productionCost = 7;
-            icon = new ImageIcon("src\\Images\\WarriorIconMed.png");
-            discription = "Basic unit. able to settle new citys.";
-            rebuildable = true;
-            isUnit = true;
-            unitType = 2;
-        }
-        if (object == 3){//makes a boat production element
-            name = "Boat";
-            productionCost = 15;
-            icon = new ImageIcon("src\\Images\\WarriorIconMed.png");
-            discription = "The basic Naval Unit. Avalable once a Harbor is built.";
-            rebuildable = true;
-            isUnit = true;
-            unitType = 4;
-        }
-        if (object == 4){//makes a worker production element
-            name = "Worker";
-            productionCost = 10;
-            icon = new ImageIcon("src\\Images\\WarriorIconMed.png");
-            discription = "Able to work and improve tiles";
-            rebuildable = false;
-        }
-        //End of units, add more above if you want to add more units.
-        if (object == 25){//makes a warrior production element
-            name = "Barracks";
-            productionCost = 10;
-            icon = new ImageIcon("src\\Images\\WarriorIconMed.png");
-            discription = "Building Required to build Ground Units.";
-            rebuildable = false;
-        }
-        if (object == 24){//makes a warrior production element
-            name = "Farm";
-            productionCost = 20;
-            icon = new ImageIcon("src\\Images\\WarriorIconMed.png");
-            discription = "Building that provides Bonus food production.";
-            rebuildable = false;
-        }
-        if (object == 23){//makes a warrior production element
-            name = "Harbor";
-            productionCost = 15;
-            icon = new ImageIcon("src\\Images\\WarriorIconMed.png");
-            discription = "Building Required to build Navel Units.";
-            rebuildable = false;
-        }
-        if (object == 22){//makes a warrior production element
-            name = "WorkShop";
-            productionCost = 3;
-            productionChange = 5;
-            icon = new ImageIcon("src\\Images\\WarriorIconMed.png");
-            discription = "+5 Production";
-            rebuildable = false;
-        }
-        //End of Buildings, add more above if you want to add more buildings.
-    }
+public class TurnOrder{
+    /**
+     * Determines which players turn it currently is
+     * @return the current players id
+     */
+    public static int whoTurn(){
+        int result = -1;
 
-    public Boolean isRebuildable() {
-        return rebuildable;
+        if (FinalProject.Players.get(0).isTurn) result = 1;
+            else  if (FinalProject.Players.get(1).isTurn) result = 2;
+            else  if (FinalProject.Players.get(2).isTurn) result = 3;
+            else  if (FinalProject.Players.get(3).isTurn) result = 4;
+            return result;
     }
-
-    public int getNumber() {
-        return number;
+    /**
+     * advances the game logic to the next players turn
+     */
+    public static void NextTurn(){
+        FinalProject.turnNumber++;//increment counter
+        
+        if(FinalProject.play == 2){//if two players...(currently locked on this)
+             Player player1 =       FinalProject.Players.get(0);//store player 1
+             Player player2 =       FinalProject.Players.get(1);//store player 2
+                 if(player1.isTurn){//if player 1's turn, change to player 2's 
+                     FinalProject.Players.get(0).isTurn = false;
+                     FinalProject.Players.get(1).isTurn = true;
+                     City.updateCity(FinalProject.Players.get(1));//call the updateCity mechanic
+                     UnitType.ResetUnits(whoTurn());//reset player 2's units
+                     if (FinalProject.turnNumber == 1){//if it's players 2 first turn, spawn units
+                        TurnOrder.spawnStart();
+                     }
+                 }
+            else if(player2.isTurn){ //if player 2's turn, change to player 1's 
+                     FinalProject.Players.get(0).isTurn = true;
+                     FinalProject.Players.get(1).isTurn = false;
+                     City.updateCity(FinalProject.Players.get(0));
+                     UnitType.ResetUnits(whoTurn());//reset player 1's units
+            }
+        }
+        if(FinalProject.play == 3){//same as above
+             Player player1 =       FinalProject.Players.get(0);
+             Player player2 =       FinalProject.Players.get(1);
+             Player player3 =       FinalProject.Players.get(2);
+                 if(player1.isTurn){
+                     FinalProject.Players.get(0).isTurn = false;
+                     FinalProject.Players.get(1).isTurn = true;
+                     if (FinalProject.turnNumber == 1){
+                        TurnOrder.spawnStart();
+                     }
+                 }
+            else if(player2.isTurn){
+                     FinalProject.Players.get(1).isTurn = false;
+                     FinalProject.Players.get(2).isTurn = true;
+                     if (FinalProject.turnNumber == 2){
+                        TurnOrder.spawnStart();
+                     }
+            }
+            else if(player3.isTurn){
+                     FinalProject.Players.get(2).isTurn = false;
+                     FinalProject.Players.get(0).isTurn = true;
+            }
+        }
+        if(FinalProject.play == 4){//same as above
+             Player player1 =       FinalProject.Players.get(0);
+             Player player2 =       FinalProject.Players.get(1);
+             Player player3 =       FinalProject.Players.get(2);
+             Player player4 =       FinalProject.Players.get(3);
+                 if(player1.isTurn){
+                     FinalProject.Players.get(0).isTurn = false;
+                     FinalProject.Players.get(1).isTurn = true;
+                     if (FinalProject.turnNumber == 1){
+                        TurnOrder.spawnStart();
+                     }
+                 }
+            else if(player2.isTurn){
+                     FinalProject.Players.get(1).isTurn = false;
+                     FinalProject.Players.get(2).isTurn = true;
+                     if (FinalProject.turnNumber == 2){
+                        TurnOrder.spawnStart();
+                     }
+            }
+            else if(player3.isTurn){
+                     FinalProject.Players.get(2).isTurn = false;
+                     FinalProject.Players.get(3).isTurn = true;
+                     if (FinalProject.turnNumber == 3){
+                        TurnOrder.spawnStart();
+                     }
+            }
+            else if(player4.isTurn){
+                     FinalProject.Players.get(3).isTurn = false;
+                     FinalProject.Players.get(0).isTurn = true;
+            }
+        }
+        
+        int index = UnitType.FindUnit(whoTurn());//repositions the map to a unit of the current turn
+        if (FinalProject.units.get(index).x > Map.x)Visual.rightOff = FinalProject.units.get(index).x - (Map.x/2);
+        else Visual.downOff = FinalProject.units.get(index).x;
+        if (FinalProject.units.get(index).y > Map.y)Visual.downOff = FinalProject.units.get(index).y - (Map.y/2);
+        else Visual.rightOff = FinalProject.units.get(index).y; 
+        Visual.redrawMap();
+        Visual.LoadUnits();
     }
-
-    public Boolean isUnit() {
-        return isUnit;
+    /**
+     *spawns in a settler and warrior at a random location
+     */
+    public static void spawnStart() {
+        Random startPos = new Random();//random
+        int startX;//x pos
+        int startY;//y pos
+        boolean loopPass = false;// conditon to be met
+        do{
+            startX = startPos.nextInt(126);//set both to a random location
+            startY = startPos.nextInt(70);
+            loopPass = true;
+            if (Map.grid[startX][startY].tileType == 2) loopPass = false;//if location is water
+            if (13 > startX || startX > 115) loopPass = false;//if too close to edges
+            if (7 > startY || startY > 65) loopPass = false;
+            for (int i = -10; i < 10; i++) {
+                for (int j = -10; j < 10; j++) {
+                    if(UnitType.FindUnit(startX + i, startY + j) != -1) loopPass = false;//if too close to other player
+                }
+            }
+        }while(loopPass == false);
+        UnitType.CreateUnit(startX, startY, 1,Visual.Units);//make units
+        UnitType.CreateUnit(startX + 1, startY, 2,Visual.Units);
+        if (startX > Map.x)Visual.rightOff = startX - (Map.x/2);//move view to new location
+        else {Visual.rightOff = 0;}
+        if (startY > Map.y)Visual.downOff = startY - (Map.y/2);
+        else{ Visual.downOff = 0;}
+        Visual.redrawMap();
+        Visual.LoadUnits();
     }
-
-    public int getUnitType() {
-        return unitType;
-    }
-
-    public int getGoldChange() {
-        return goldChange;
-    }
-
-    public int getProductionChange() {
-        return productionChange;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
 }

@@ -10,14 +10,12 @@ import javax.swing.Icon;
  */
 public class Production implements Serializable{
     
-    private String name; // the object's display name
-    private String discription; // a brief discription of the object
-    private int buildCost; // the amount of product needed to build this object
-    private int goldCost; // the amount of product needed to build this object
-    /*private Icon icon; // the icon used in the build menu
+    protected String name; // the object's display name
+    protected String discription; // a brief discription of the object
+    protected int buildCost; // the amount of product needed to build this object
+    protected int goldCost; // the amount of product needed to build this object
+    protected Icon icon; // the icon used in the build menu
     
-    private Runnable built; // a special action run when the object is built
-*/
     /**
      * Makes a new blank production object
      */
@@ -38,21 +36,12 @@ public class Production implements Serializable{
         this.discription = discription;
         this.buildCost = buildCost;
         this.goldCost = goldCost;
-        /*this.icon = icon;
-        
-        built = new Runnable() {
-            @Override
-            public void run() {
-            }
-        };*/
+        this.icon = icon;
     }
     
     /**
      * Run when the object is built
      */
-    /*public void Built(){
-        built.run();
-    }*/
     
     //----Variables-----------
 
@@ -84,27 +73,18 @@ public class Production implements Serializable{
         this.goldCost = goldCost;
     }
 
-    /*public Icon getIcon() {
+    public Icon getIcon() {
         return icon;
     }
     public void setIcon(Icon icon) {
         this.icon = icon;
-    }
-
-    public Runnable getBuilt() {
-        return built;
-    }
-    public void setBuilt(Runnable built) {
-        this.built = built;
-    }*/
-    
+    }    
     
     //----Object-Methods-------
 
     @Override
     public Production clone() throws CloneNotSupportedException {
-        Production p = new Production(name, discription, buildCost, goldCost, null);
-        //p.setBuilt(built);
+        Production p = new Production(name, discription, buildCost, goldCost, icon);
         return p;
     }
 
@@ -113,7 +93,7 @@ public class Production implements Serializable{
         if (this.discription != p.discription) return false;
         if (this.buildCost != p.buildCost) return false;
         if (this.goldCost != p.goldCost) return false;
-        //if (this.icon != p.icon) return false;
+        if (!this.icon.equals(p.icon)) return false;
         return true;
     }
 

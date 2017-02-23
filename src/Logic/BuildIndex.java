@@ -16,8 +16,7 @@ public class BuildIndex {
 
 
     public BuildIndex() {
-        list poop = fileHandler.openObject(fileName);
-        System.out.println(poop.getName());
+        list = fileHandler.openObject(fileName);
         //writeFile();
     }
     
@@ -25,7 +24,7 @@ public class BuildIndex {
        
         list = new Production[100];
         
-        ImageIcon icon = new ImageIcon("src\\Resources\\WarriorIconMed.txt");
+        ImageIcon icon = new ImageIcon("src\\Resources\\WarriorIconMed.png");
         list[0] = new MeleeUnit("Warrior", "Basic melee unit", 40, 100, icon, 20, 50, false);
         list[1] = new RangedUnit("Archer", "Basic ranged unit", 45, 120, icon, 10, 50, false);
         list[2] = new CivilUnit("Settler", "Can make a new city", 70, 250, icon, 0);
@@ -39,6 +38,14 @@ public class BuildIndex {
     
     //----Variables-----------
 
+    public Production[] getList() {
+        return list;
+    }
+    public void setList(Production[] list) {
+        this.list = list;
+    }
+
+    
 
     
     //----Object-Methods-------
