@@ -45,6 +45,20 @@ public class Player {
         
     }
     
+    /**
+     * Generates the visual elements at a semi-random location  
+     */
+    public void spawn(){
+        //todo
+    }
+    
+    /**
+     * Runs when a players turn starts
+     */
+    public void startTurn(){
+        //todo
+    }
+    
     
     //----Variables-----------
     public String getName() {

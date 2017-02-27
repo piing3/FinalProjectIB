@@ -1,6 +1,8 @@
 package Logic;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import Main.Globals;
 
 /**
  * 
@@ -10,20 +12,32 @@ public class Turn {
 
     private int maxSize = 4;
     private int turn = 0;
-    private Player[] players = new Player[maxSize];
 
+    /**
+     * Add a new player to the game
+     * @param newPlayer 
+     */
     public void addPlayer(Player newPlayer){
-        for (int i = 0; i < maxSize; i++) {
-            if(players[i] == null) players[i] = newPlayer;
+        if (Globals.players.size() < maxSize) {
+            Globals.players.add(newPlayer);
+            return;
         }
+        JOptionPane.showMessageDialog(null, "Can not add anymore players.");
+        return;
+    }
+    
+    /**
+     * Change to the next turn
+     */
+    public void NextTurn(){
+        turn++;
+        if(turn == maxSize) turn -= maxSize;
+        Globals.players.get(turn).startTurn();
     }
 
 
     //----Variables-----------
 
-    public Player[] getPlayers() {
-        return players;
-    }
 
     public int getTurn() {
         return turn;

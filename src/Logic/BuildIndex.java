@@ -1,7 +1,8 @@
 package Logic;
 
+import Main.Globals;
 import Utill.FileHandler;
-import java.util.ArrayList;
+import static java.util.Collections.list;
 import javax.swing.ImageIcon;
 
 /**
@@ -10,40 +11,29 @@ import javax.swing.ImageIcon;
  */
 public class BuildIndex {
 
-    private Production[] list;
-    private String fileName = "src\\Resources\\BuildIndex.txt";
-    private FileHandler<Production[]> fileHandler = new FileHandler<Production[]>();
+    private static String fileName = "src\\Resources\\BuildIndex.txt";
+    private static FileHandler<Production[]> fileHandler = new FileHandler<Production[]>();
 
 
-    public BuildIndex() {
-        list = fileHandler.openObject(fileName);
-        //writeFile();
+    public static void readFile() {
+        Globals.buildList = fileHandler.openObject(fileName);
     }
     
-    private void writeFile(){
+    private static void writeFile(){
        
-        list = new Production[100];
+        Globals.buildList = new Production[100];
         
         ImageIcon icon = new ImageIcon("src\\Resources\\WarriorIconMed.png");
-        list[0] = new MeleeUnit("Warrior", "Basic melee unit", 40, 100, icon, 20, 50, false);
-        list[1] = new RangedUnit("Archer", "Basic ranged unit", 45, 120, icon, 10, 50, false);
-        list[2] = new CivilUnit("Settler", "Can make a new city", 70, 250, icon, 0);
-        list[3] = new CivilUnit("Worker", "Can build and repair tile improvements", 40, 100, icon, 0);
+        Globals.buildList[0] = new MeleeUnit("Warrior", "Basic melee unit", 40, 100, icon, 20, 50, false);
+        Globals.buildList[1] = new RangedUnit("Archer", "Basic ranged unit", 45, 120, icon, 10, 50, false);
+        Globals.buildList[2] = new CivilUnit("Settler", "Can make a new city", 70, 250, icon, 0);
+        Globals.buildList[3] = new CivilUnit("Worker", "Can build and repair tile improvements", 40, 100, icon, 0);
         
-        Production poop = new Production("test", "", 0, 0, null);
-        
-        fileHandler.saveObject(list, fileName);
+        fileHandler.saveObject(Globals.buildList, fileName);
     }
 
     
     //----Variables-----------
-
-    public Production[] getList() {
-        return list;
-    }
-    public void setList(Production[] list) {
-        this.list = list;
-    }
 
     
 
