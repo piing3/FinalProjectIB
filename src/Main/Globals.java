@@ -3,6 +3,7 @@ package Main;
 import Logic.BuildIndex;
 import Logic.Player;
 import Logic.Production;
+import UI.BaseFrame;
 import World.City;
 import World.Unit;
 import java.util.ArrayList;
@@ -21,9 +22,11 @@ public class Globals {
     public static ArrayList<City> cities = new ArrayList<City>();//list of all cities
     public static ArrayList<Unit> units = new ArrayList<Unit>();//list of all units
     public static Production[] buildList = new Production[100];
+    public static BaseFrame baseFrame = new BaseFrame();
     
     public static void initalize() {
         BuildIndex.readFile();
+        baseFrame.setVisible(true);
     }
     
     

@@ -1,13 +1,15 @@
 package Main;
 
+import UI.PauseMenu;
+
 /**
- *
+ * Handles all the operations of the main menu, static 
  * @author d.holmberg
  */
 public class MainMenu {
 
-    public void display(){
-        
+    public static void display(){
+        //todo
     }
     
     
