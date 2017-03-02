@@ -1,18 +1,19 @@
 package UI;
 
-import javax.swing.JFrame;
+import Main.Globals;
+import javax.swing.JDesktopPane;
 
 /**
  *
  * @author d.holmberg
  */
-public class BaseFrame extends JFrame{
+public class BaseFrame extends JDesktopPane{
 
     public BaseFrame() {
         
+        this.setLocation(0, 0);
         this.setSize(1000, 1000);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(null);
+        this.setVisible(true);
     
     }
 

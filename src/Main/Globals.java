@@ -23,11 +23,9 @@ public class Globals {
     public static ArrayList<Unit> units = new ArrayList<Unit>();//list of all units
     public static Production[] buildList = new Production[100];
     public static BaseFrame baseFrame = new BaseFrame();
-    public static Settings settings;
     
     public static void initalize() {
         BuildIndex.readFile();
-        settings = Settings.readFile();
         baseFrame.setVisible(true);
     }
     

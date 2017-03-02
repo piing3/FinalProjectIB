@@ -1,11 +1,7 @@
 package Main;
 
 import Main.Globals;
-import java.awt.Color;
-import java.awt.Event;
-import java.awt.event.MouseEvent;
 import javax.swing.JDesktopPane;
-import javax.swing.JFrame;
 
 /**
  *
@@ -15,9 +11,11 @@ public class Main {
 
     
     public static void main(String[] args) {
-        Globals.initalize();
+        //Globals.initalize();
         //MainMenu.display();
-        
+        JDesktopPane jdp = new JDesktopPane();
+        jdp.setSize(1000, 1000);
+        jdp.setVisible(true);
         
     }
 
