@@ -1,25 +1,19 @@
 package Main;
 
-import Main.Globals;
-import java.awt.Color;
-import java.awt.Event;
-import java.awt.event.MouseEvent;
-import javax.swing.JDesktopPane;
-import javax.swing.JFrame;
+import java.io.Serializable;
 
 /**
  *
  * @author d.holmberg
  */
-public class Main {
+class Settings implements Serializable{
 
-    
-    public static void main(String[] args) {
-        Globals.initalize();
-        //MainMenu.display();
-        
-        
+    static Settings readFile() {
+        return null;
     }
+
+
+
 
     //----Variables-----------
 
