@@ -1,6 +1,7 @@
 package Main;
 
 import Main.Globals;
+import UI.PauseMenu;
 import java.awt.Color;
 import java.awt.Event;
 import java.awt.event.MouseEvent;
@@ -16,6 +17,7 @@ public class Main {
     
     public static void main(String[] args) {
         Globals.initalize();
+        PauseMenu menu = new PauseMenu();
         //MainMenu.display();
         
         

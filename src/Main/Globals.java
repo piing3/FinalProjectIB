@@ -27,7 +27,7 @@ public class Globals {
     
     public static void initalize() {
         BuildIndex.readFile();
-        settings = Settings.readFile();
+        Settings.readFile();
         baseFrame.setVisible(true);
     }
     

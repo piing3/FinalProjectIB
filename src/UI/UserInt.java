@@ -1,26 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package UI;
 
-import UI.Visual;
 import World.UnitType;
 import World.City;
 import Main.FinalProject;
-import Logic.Production;
 import Logic.TurnOrder;
 import World.Unit;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.SystemColor;
-import java.awt.Transparency;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
@@ -31,8 +21,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-import sun.awt.AWTAccessor;
 
 /**
  *handles all user interface mechanics
@@ -55,7 +43,7 @@ class UserInt {
         static public JPanel productionBackrounds = new JPanel();
         static public JScrollPane jsp = new JScrollPane();
         static public JPanel SelectedProduction = new JPanel(null);
-        static publicProductionn selectedProductionItem = neProductionon(-1);
+        static public Production selectedProductionItem = new Production(-1);
         static public JLabel selectedIcon;
         static public JLabel selectedTitle;
         static public JLabel selectedCost;
