@@ -1,18 +1,23 @@
 package Main;
 
+import Logic.CivilUnit;
+import Logic.MeleeUnit;
+import Logic.Production;
+import Logic.RangedUnit;
 import Utill.FileHandler;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.io.Serializable;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author d.holmberg
  */
-class Settings implements Serializable{
+public class Settings implements Serializable{
 
-    static private String fileName = "src\\Resources\\Settings.txt";
-    static FileHandler<Settings> fileHandler = new FileHandler<Settings>();
+    public static String fileName = "src\\Resources\\Settings.txt";
+    private static FileHandler<Settings> fileHandler = new FileHandler<Settings>();
     
     public int width;
     public int hight;
@@ -25,11 +30,22 @@ class Settings implements Serializable{
         Globals.settings = fileHandler.openObject(fileName);
     }
     
+    private static void writeFile(){
+       
+        Globals.settings = new Settings();
+        
+        Globals.settings.width = 1000;
+        Globals.settings.hight = 1000;
+        
+        fileHandler.saveObject(Globals.settings, fileName);
+    }
+    
     public Point getPoint(int x, int y) {
         return new Point(width*(x/100), hight*(y/100));
     }
 
     public Dimension getDimension(int x, int y) {
+        return new Dimension(width*(x/100), hight*(y/100));
     }
 
 
