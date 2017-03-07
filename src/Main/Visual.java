@@ -1,10 +1,13 @@
 package Main;
 
 import GameUI.BaseFrame;
+import GameUI.PauseMenu;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JLabel;
 
 /**
  *
@@ -15,9 +18,9 @@ public class Visual implements KeyListener, MouseListener{
     public static BaseFrame baseFrame;
     
     static void initalize() {
-        baseFrame = new BaseFrame();
-        
-        
+        baseFrame = new BaseFrame(Globals.settings.getDimension(100, 100));
+        baseFrame.setVisible(true);
+        PauseMenu menu = new PauseMenu();
     }
 
     
@@ -150,10 +153,6 @@ public class Visual implements KeyListener, MouseListener{
 
     @Override
     public void keyReleased(KeyEvent e) {
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
     }
 
     @Override

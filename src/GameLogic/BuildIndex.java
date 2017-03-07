@@ -2,7 +2,6 @@ package GameLogic;
 
 import Main.Globals;
 import Utill.FileHandler;
-import static java.util.Collections.list;
 import javax.swing.ImageIcon;
 
 /**
@@ -16,6 +15,7 @@ public class BuildIndex {
 
 
     public static void readFile() {
+        //writeFile();
         Globals.buildList = fileHandler.openObject(fileName);
     }
     

@@ -1,14 +1,9 @@
 package Main;
 
-import GameLogic.CivilUnit;
-import GameLogic.MeleeUnit;
-import GameLogic.Production;
-import GameLogic.RangedUnit;
 import Utill.FileHandler;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.io.Serializable;
-import javax.swing.ImageIcon;
 
 /**
  *
@@ -28,6 +23,7 @@ public class Settings implements Serializable{
     }
     
     public static void readFile() {
+        writeFile();
         Globals.settings = fileHandler.openObject(fileName);
     }
     
@@ -35,8 +31,8 @@ public class Settings implements Serializable{
        
         Globals.settings = new Settings();
         
-        Globals.settings.width = 1000;
-        Globals.settings.hight = 1000;
+        Globals.settings.width = 1440;
+        Globals.settings.hight = 900;
         
         fileHandler.saveObject(Globals.settings, fileName);
     }

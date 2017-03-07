@@ -16,7 +16,7 @@ import java.io.PrintWriter;
 
 /**
  * FileHandler.java - description...
- * @author Mr. Wachs' Computer Science Student
+ * @author Mr. Wachs
  * @param <T>
  * @since 14-Dec-2015
  * @version 1.0

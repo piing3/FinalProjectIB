@@ -3,9 +3,8 @@ package Main;
 import GameLogic.BuildIndex;
 import GameLogic.Player;
 import GameLogic.Production;
-import GameUI.BaseFrame;
-import World.City;
-import World.Unit;
+//import World.City;
+//import World.Unit;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -19,15 +18,14 @@ public class Globals {
 
     public static int unitGrid[][];//the grid that stores unit positions 
     public static ArrayList<Player> players = new ArrayList<Player>();
-    public static ArrayList<City> cities = new ArrayList<City>();//list of all cities
-    public static ArrayList<Unit> units = new ArrayList<Unit>();//list of all units
+    //public static ArrayList<City> cities = new ArrayList<City>();//list of all cities
+    //public static ArrayList<Unit> units = new ArrayList<Unit>();//list of all units
     public static Production[] buildList = new Production[100];
     public static Settings settings = new Settings();
     
     public static void initalize() {
         BuildIndex.readFile();
-        Settings.readFile();
-        
+        Settings.readFile();    
     }
     
     

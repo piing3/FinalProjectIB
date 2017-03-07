@@ -17,7 +17,9 @@ public class PauseMenu extends JInternalFrame{
     
     public PauseMenu() {
         this.setLocation(Globals.settings.getPoint(45,20));
+        System.out.println(this.getLocation());
         this.setSize(Globals.settings.getDimension(20, 60));
+        System.out.println(this.getSize());
         this.setVisible(true);
         this.setResizable(false);
         this.setBackground(Color.red);

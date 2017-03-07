@@ -1,13 +1,5 @@
 package Main;
 
-import Main.Globals;
-import GameUI.PauseMenu;
-import java.awt.Color;
-import java.awt.Event;
-import java.awt.event.MouseEvent;
-import javax.swing.JDesktopPane;
-import javax.swing.JFrame;
-
 /**
  *
  * @author d.holmberg
@@ -18,9 +10,7 @@ public class Main {
     public static void main(String[] args) {
         Globals.initalize();//Globals need to come before visuals
         Visual.initalize();
-        PauseMenu menu = new PauseMenu();
         //MainMenu.display();
-        
         
     }
 

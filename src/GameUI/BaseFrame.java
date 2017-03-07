@@ -1,5 +1,6 @@
 package GameUI;
 
+import java.awt.Dimension;
 import javax.swing.JFrame;
 
 /**
@@ -9,8 +10,12 @@ import javax.swing.JFrame;
 public class BaseFrame extends JFrame{
 
     public BaseFrame() {
+        this(new Dimension(0, 0));
+    }
+
+    public BaseFrame(Dimension dimension) {
         
-        this.setSize(1000, 1000);
+        this.setSize(dimension);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
     
