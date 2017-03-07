@@ -1,4 +1,4 @@
-package Logic;
+package GameLogic;
 
 import Main.Globals;
 import Utill.FileHandler;

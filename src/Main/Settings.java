@@ -1,9 +1,9 @@
 package Main;
 
-import Logic.CivilUnit;
-import Logic.MeleeUnit;
-import Logic.Production;
-import Logic.RangedUnit;
+import GameLogic.CivilUnit;
+import GameLogic.MeleeUnit;
+import GameLogic.Production;
+import GameLogic.RangedUnit;
 import Utill.FileHandler;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -21,6 +21,7 @@ public class Settings implements Serializable{
     
     public int width;
     public int hight;
+    public String gQuality = "sh*t";// for "expandibility"
     
     public Settings() {
         width = hight = 0;
@@ -30,7 +31,7 @@ public class Settings implements Serializable{
         Globals.settings = fileHandler.openObject(fileName);
     }
     
-    private static void writeFile(){
+    public static void writeFile(){
        
         Globals.settings = new Settings();
         

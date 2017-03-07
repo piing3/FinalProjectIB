@@ -1,4 +1,4 @@
-package Logic;
+package GameLogic;
 
 import java.io.Serializable;
 import javax.swing.Icon;

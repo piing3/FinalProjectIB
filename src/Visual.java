@@ -1,36 +1,38 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package UI;
 
-import Main.Globals;
-import World.UnitType;
-import World.Map;
-import World.City;
-import Main.FinalProject;
-import Logic.TurnOrder;
-import World.Unit;
-import java.awt.Container;
-import java.awt.Dialog;
-import java.awt.Point;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.io.FileNotFoundException;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame; 
-import javax.swing.JOptionPane;
 
 /**
- *The base of all visuals in the game
- * 
- * @author Davin
+ *
+ * @author d.holmberg
  */
+public class Visual {
+
+
+
+
+    //----Variables-----------
+
+
+    
+    //----Object-Methods-------
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+
+}
+/* Legacy Code
+
 public class Visual extends JFrame implements KeyListener, MouseListener  {
     static Container tiles;//containers
     static Container Units;
@@ -146,9 +148,7 @@ public class Visual extends JFrame implements KeyListener, MouseListener  {
             }
         }
     }
-    /**
-     * redraws the map 
-     */
+
     public static void redrawMap(){
         for (int i = 0; i < Map.x; i++){
                 for (int j = 0; j < Map.y; j++){
@@ -158,9 +158,6 @@ public class Visual extends JFrame implements KeyListener, MouseListener  {
                 }
             }
     }
-    /**
-     * redraws all units
-     */
     public static void LoadUnits(){
         for (int i = 0; i <= 127; i++){
             for (int j = 0; j <= 71; j++){
@@ -169,7 +166,7 @@ public class Visual extends JFrame implements KeyListener, MouseListener  {
                     Unit unit = FinalProject.units.get(index);
                     if (unit.x == i&& unit.y == j){
                         unit.setLocation((i- rightOff)*50, (j- downOff)*50);
-                        unit.setUnit(Globals.unitGrid[i/* + Map.downOff*/][j/* + Map.rightOff*/]);
+                        unit.setUnit(Globals.unitGrid[i][j]);
                     }
                 }
             }
@@ -242,12 +239,6 @@ public class Visual extends JFrame implements KeyListener, MouseListener  {
             UnitType.Attack(index1, index2);
         }
     }
-    /**
-     * finds the index of the city at the given location
-     * @param x
-     * @param y
-     * @return: the index of the city 
-     */
     public static int FindCity(int x, int y){
         int result = -1;
         for (int i = 0; i < FinalProject.cities.size(); i++) {
@@ -316,5 +307,4 @@ public class Visual extends JFrame implements KeyListener, MouseListener  {
    
     
 }
-
-
+*/

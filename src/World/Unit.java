@@ -5,7 +5,7 @@
  */
 package World;
 
-import UI.UserInt;
+import GameUI.UserInt;
 import UI.Visual;
 import java.awt.Container;
 import javax.swing.Icon;

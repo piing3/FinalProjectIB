@@ -1,4 +1,4 @@
-package Logic;
+package GameLogic;
 
 import java.io.Serializable;
 import javax.swing.Icon;
@@ -7,17 +7,18 @@ import javax.swing.Icon;
  *
  * @author d.holmberg
  */
-public class MeleeUnit extends Unit implements Serializable{
+public class RangedUnit extends Unit implements Serializable{
 
 
     private int damage;
-    private boolean movAft;//move after attck
+    private int range;
+    private boolean movAft;//move after attack
     
-    public MeleeUnit() {
+    public RangedUnit() {
         this("", "", 0, 0, null, 0, 0, false);
     }
 
-    public MeleeUnit(String name, String discription, int buildCost, int goldCost, Icon icon, int defence, int damage, boolean movAft){
+    public RangedUnit(String name, String discription, int buildCost, int goldCost, Icon icon, int defence, int damage, boolean movAft){
         super(name, discription, buildCost, goldCost, icon, defence);
         this.damage = damage;
         this.movAft = movAft;
@@ -26,17 +27,17 @@ public class MeleeUnit extends Unit implements Serializable{
 
     //----Variables-----------
 
-    public void setDamage(int defence) {
+    public void setDefence(int defence) {
         this.damage = defence;
     }
-    public int getDamage() {
+    public int getDefence() {
         return damage;
     }
 
     public boolean canMovAftAtk() {
         return movAft;
     }
-    public void setMovAftAtk(boolean movAftAtk) {
+    public void setMovAft(boolean movAftAtk) {
         this.movAft = movAftAtk;
     }
 
@@ -46,8 +47,8 @@ public class MeleeUnit extends Unit implements Serializable{
     //----Object-Methods-------
 
     @Override
-    public MeleeUnit clone() throws CloneNotSupportedException {
-        return (MeleeUnit)super.clone();
+    public RangedUnit clone() throws CloneNotSupportedException {
+        return (RangedUnit)super.clone();
     }
 
     @Override

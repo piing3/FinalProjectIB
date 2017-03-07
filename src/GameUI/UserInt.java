@@ -1,4 +1,4 @@
-package UI;
+package GameUI;
 
 import World.UnitType;
 import World.City;

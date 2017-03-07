@@ -6,8 +6,8 @@
 package World;
 
 import Main.FinalProject;
-import Logic.Player;
-import Logic.Production;
+import GameLogic.Player;
+import GameLogic.Production;
 import Logic.TurnOrder;
 import UI.Visual;
 import java.awt.Point;

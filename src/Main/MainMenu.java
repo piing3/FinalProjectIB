@@ -1,6 +1,6 @@
 package Main;
 
-import UI.PauseMenu;
+import GameUI.PauseMenu;
 
 /**
  * Handles all the operations of the main menu, static 

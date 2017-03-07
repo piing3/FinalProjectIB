@@ -1,7 +1,7 @@
 package Main;
 
 import Main.Globals;
-import UI.PauseMenu;
+import GameUI.PauseMenu;
 import java.awt.Color;
 import java.awt.Event;
 import java.awt.event.MouseEvent;
@@ -16,7 +16,8 @@ public class Main {
 
     
     public static void main(String[] args) {
-        Globals.initalize();
+        Globals.initalize();//Globals need to come before visuals
+        Visual.initalize();
         PauseMenu menu = new PauseMenu();
         //MainMenu.display();
         
