@@ -5,6 +5,7 @@ import Main.Visual;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
+import javax.swing.JMenuBar;
 
 /**
  *
@@ -22,6 +23,7 @@ public class PauseMenu extends JInternalFrame{
         System.out.println(this.getSize());
         this.setVisible(true);
         this.setResizable(false);
+        this.setBorder(null);
         this.setBackground(Color.red);
         Visual.baseFrame.add(this);
     }

@@ -37,12 +37,12 @@ public class Settings implements Serializable{
         fileHandler.saveObject(Globals.settings, fileName);
     }
     
-    public Point getPoint(int x, int y) {
-        return new Point(width*(x/100), hight*(y/100));
+    public Point getPoint(double x, double y) {
+        return new Point((int)(width*(x/100)), (int)(hight*(y/100)));
     }
 
-    public Dimension getDimension(int x, int y) {
-        return new Dimension(width*(x/100), hight*(y/100));
+    public Dimension getDimension(double x, double y) {
+        return new Dimension((int)(width*(x/100)), (int)(hight*(y/100)));
     }
 
 
