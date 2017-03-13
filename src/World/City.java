@@ -202,3 +202,16 @@
 //        }
 //    }
 //}
+
+    /*
+    public static int FindCity(int x, int y){
+        int result = -1;
+        for (int i = 0; i < FinalProject.cities.size(); i++) {
+            City city = FinalProject.cities.get(i);
+            if (city.x == x && city.y == y){
+                result = i;
+            }
+        }
+        return result;
+    }
+    */

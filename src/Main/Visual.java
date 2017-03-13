@@ -15,15 +15,20 @@ import javax.swing.JLabel;
  */
 public class Visual{
     
+    public static boolean initalized = false;
+    
     protected static BaseFrame baseFrame;
     private static boolean gameStart = false;
     
-    static void initalize() {
+    public static void initalize() {
+        if (!Globals.initalized) Globals.initalize();
         baseFrame = new BaseFrame(Globals.settings.getDimension(100, 100));
         baseFrame.setVisible(true);
+        initalized = true;
     }
     
     public static void MainMenu(){
+        if (!initalized) initalize();
         if (baseFrame == null){
             initalize();
         }
@@ -32,24 +37,30 @@ public class Visual{
     }
     
     public static void Game(){
-        if (baseFrame == null){
-            GameVisual.display();
-        }
+        if (!initalized) initalize();
+        GameVisual.display();
         gameStart = true;
     }
     
     protected static void userInput(KeyEvent e) {
+        if (!initalized) initalize();
         if (gameStart){
             GameVisual.userInput(e);
         }
     }
     
     protected static void userInput(MouseEvent e) {
+        if (!initalized) initalize();
         if (gameStart){
             GameVisual.userInput(e);
         }
     }
       
+    public static void stop(){
+        gameStart = false;
+        baseFrame.dispose();
+    }
+    
     //----Variables-----------
   
     

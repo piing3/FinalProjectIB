@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 public class GameVisual extends Visual{
 
     public static void display() {
+        
     }
 
     public static void userInput(KeyEvent e) {
@@ -147,8 +148,6 @@ public class GameVisual extends Visual{
             UnitType.Attack(index1, index2);
         }
     }
-
-    
 
 
     //----Variables-----------

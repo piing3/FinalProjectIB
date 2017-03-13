@@ -22,8 +22,6 @@ public class MainMenu extends Visual{
         JButton btnStart = new JButton("Start");
         btnStart.setSize(Globals.settings.getDimension(20, 10));
         btnStart.setLocation(Globals.settings.getPoint(40, 35));
-        container.add(btnStart);
-        
         ActionListener start = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -31,6 +29,19 @@ public class MainMenu extends Visual{
             }
         };
         btnStart.addActionListener(start);
+        container.add(btnStart);
+        
+        JButton btnExit = new JButton("Exit");
+        btnExit.setSize(Globals.settings.getDimension(20, 10));
+        btnExit.setLocation(Globals.settings.getPoint(40, 65));
+        ActionListener exit = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.exit();
+            }
+        };
+        btnExit.addActionListener(exit);
+        container.add(btnExit);
         
         baseFrame.setContentPane(container);
     }

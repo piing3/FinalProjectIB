@@ -15,7 +15,8 @@ import javax.swing.JOptionPane;
  */
 public class Globals {
 
-
+    public static boolean initalized = false;
+    
     public static int unitGrid[][];//the grid that stores unit positions 
     public static ArrayList<Player> players = new ArrayList<Player>();
     //public static ArrayList<City> cities = new ArrayList<City>();//list of all cities
@@ -26,9 +27,13 @@ public class Globals {
     public static void initalize() {
         BuildIndex.readFile();
         Settings.readFile();    
+        
+        initalized = true;
     }
     
-    
+    public static void stop(){
+        //nothing yet
+    }
     
 
 

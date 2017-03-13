@@ -18,13 +18,15 @@ import javax.swing.JLabel;
 class Tile extends JLabel{
 
     
-        public int x;//tile's location
-        public int y;
-        public int tileType;//the tile's type
-        public int improvement;//what improvement is on the tile(unimplemented)
-        public int movement;//the movement cost of the tile
-        public int production;//the production given by the tile
-        public int food;//the food given by the tile
+        private int x;//tile's location
+        private int y;
+        private int tileType;//the tile's type
+        private int improvement;//what improvement is on the tile(unimplemented)
+        private int movement;//the movement cost of the tile
+        private int production;//the production given by the tile
+        private int food;//the food given by the tile
+        
+        public static final int SIZE = 50;
         
         public Tile(int i, int j) {
             x = i; y = j;//stores location
