@@ -1,10 +1,154 @@
+package GameUI;
+
+import Main.Visual;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+
 /**
  *
  * @author d.holmberg
  */
-public class Visual {
+public class GameVisual extends Visual{
 
+    public static void display() {
+    }
 
+    public static void userInput(KeyEvent e) {
+         if (e.getKeyCode() == 27){//escape, toggle menu
+            if (menuOpen == false){
+                menu.setVisible(true);
+                menuOpen = true;
+            }
+            else if (menuOpen == true){
+                menu.setVisible(false);
+                menuOpen = false;
+            }    
+        }
+        
+        if (e.getKeyCode() == 81){//q, make city at mouse
+            int cityX = (getMousePosition().x-25)/50+rightOff;
+            int cityY = (getMousePosition().y-25)/50+downOff;
+            int index = FindCity(cityX, cityY);
+            if (index == -1)
+            {
+                FinalProject.cities.add(new City(cityX, cityY, TurnOrder.whoTurn()-1));
+            } 
+            
+        }
+        
+        if (e.getKeyCode() == 87){//w, make unit at mouse
+            int unitX = (getMousePosition().x-25)/50+rightOff;
+            int unitY = (getMousePosition().y-25)/50+downOff;
+            int index = UnitType.FindUnit(unitX, unitY);
+            if (index == -1)
+            {
+                int type = Integer.parseInt(JOptionPane.showInputDialog("Enter Unit Type"));
+                UnitType.CreateUnit(unitX, unitY, type, Units);
+            } 
+            
+        }
+        if(moveEnabled){//map movement
+            
+            if (e.getKeyCode() == 38){//up
+                if (downOff != 0){
+                    downOff--;
+                }
+                redrawMap();
+                LoadUnits();
+            }
+            if (e.getKeyCode() == 37){//left
+                if (rightOff != 0){
+                    rightOff--;
+                }
+                redrawMap();
+                LoadUnits();
+            }
+            if (e.getKeyCode() == 40){//down
+
+                if (downOff != (72-Map.y)){
+                    downOff++;    
+                }
+                redrawMap();
+                LoadUnits();
+            }
+            if (e.getKeyCode() == 39){//right
+
+                if (rightOff != (128-Map.x)){
+                    rightOff++;    
+                }
+                redrawMap();
+                LoadUnits();
+            }
+        }
+    }
+
+    public static void userInput(MouseEvent e) {
+        int tileX = (getMousePosition().x-25)/50+rightOff;//get mouse grid location
+        int tileY = (getMousePosition().y-25)/50+downOff;
+        int cityIndex = FindCity(tileX, tileY);//get city index at mouse
+        int unitIndex = -1; 
+        if (movingUnit == false && attackingUnit == false ){//not moving or attacking 
+            
+            unitIndex = UnitType.FindUnit(tileX, tileY);//get unit index at mouse
+            if (unitIndex != -1 && cityIndex != -1) {//both unit and city
+                if (CityUIOpen) {//if city open, open unit
+                    UserInt.UnitUI(FinalProject.units.get(unitIndex));
+                    moveEnabled = true;
+                    CityUIOpen = false;
+                    UnitUIOpen = true;
+                }
+                else if (UnitUIOpen) {//if unit open, open city
+                    UserInt.CityUI(FinalProject.cities.get(cityIndex));
+                    moveEnabled = false;
+                    CityUIOpen = true;
+                    UnitUIOpen = false;
+                }
+                else if (!UnitUIOpen && !CityUIOpen){// if neither open, open unit
+                    UserInt.UnitUI(FinalProject.units.get(unitIndex));
+                    moveEnabled = true;
+                    CityUIOpen = false;
+                    UnitUIOpen = true;
+                }
+            }
+            else if (cityIndex != -1) {//if city, open city
+                UserInt.CityUI(FinalProject.cities.get(cityIndex));
+                moveEnabled = false;
+                CityUIOpen = true;
+                UnitUIOpen = false;
+            }
+            else if (unitIndex != -1) {//if unit, open unit
+                UserInt.UnitUI(FinalProject.units.get(unitIndex));
+                moveEnabled = true;
+                CityUIOpen = false;
+                UnitUIOpen = true;
+            }
+            if (cityIndex == -1 && unitIndex == -1) {//if neither, set normal UI
+                UserInt.NormalUI(); 
+                moveEnabled = true;
+                CityUIOpen = false;
+                UnitUIOpen = false;
+            }
+        }
+        if (movingUnit && attackingUnit == false){//if moving unit
+            int unitX = UserInt.unit.x;
+            int unitY = UserInt.unit.y;
+            if (Globals.unitGrid[unitX][unitY] != 4){//ground
+                UnitType.MoveGround(UnitType.FindUnit(UserInt.unit.x, UserInt.unit.y), tileX, tileY);
+                UserInt.updateMoves();
+            }
+            if (Globals.unitGrid[unitX][unitY] == 4){//water
+                UnitType.MoveWater(UnitType.FindUnit(UserInt.unit.x, UserInt.unit.y), tileX, tileY);
+                UserInt.updateMoves();
+            }
+        }
+        if (movingUnit == false && attackingUnit) {//if attacking
+            int index1 = UnitType.FindUnit(UserInt.unit.x, UserInt.unit.y);
+            int index2 = UnitType.FindUnit(tileX, tileY);
+            UnitType.Attack(index1, index2);
+        }
+    }
+
+    
 
 
     //----Variables-----------
@@ -29,6 +173,7 @@ public class Visual {
     }
 
 }
+
 /* Legacy Code
 
 public class Visual extends JFrame implements KeyListener, MouseListener  {

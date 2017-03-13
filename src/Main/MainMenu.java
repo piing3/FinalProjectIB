@@ -1,15 +1,38 @@
 package Main;
 
 import GameUI.PauseMenu;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 
 /**
  * Handles all the operations of the main menu, static 
  * @author d.holmberg
  */
-public class MainMenu {
+public class MainMenu extends Visual{
 
+    private static Container container;
+    
     public static void display(){
-        //todo
+        Container container = new Container();
+        container.setSize(baseFrame.getSize());
+        container.setLayout(null);
+        
+        JButton btnStart = new JButton("Start");
+        btnStart.setSize(Globals.settings.getDimension(20, 10));
+        btnStart.setLocation(Globals.settings.getPoint(40, 35));
+        container.add(btnStart);
+        
+        ActionListener start = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Visual.Game();
+            }
+        };
+        btnStart.addActionListener(start);
+        
+        baseFrame.setContentPane(container);
     }
     
     

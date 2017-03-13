@@ -1,6 +1,6 @@
 package Main;
 
-import GameUI.BaseFrame;
+import GameUI.GameVisual;
 import GameUI.PauseMenu;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -10,126 +10,50 @@ import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 
 /**
- *
+ * Master class for all application visuals.
  * @author d.holmberg
  */
-public class Visual implements KeyListener, MouseListener{
+public class Visual{
     
-    public static BaseFrame baseFrame;
+    protected static BaseFrame baseFrame;
+    private static boolean gameStart = false;
     
     static void initalize() {
         baseFrame = new BaseFrame(Globals.settings.getDimension(100, 100));
         baseFrame.setVisible(true);
-        PauseMenu menu = new PauseMenu();
-    }
-
-    
-    @Override
-    public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == 27){//escape
-        }
-        
-        if (e.getKeyCode() == 81){//q /debug
-        }
-        
-        if (e.getKeyCode() == 87){//w, debug
-        }
-        
-        /* //map movement code
-        if (e.getKeyCode() == 38){//up
-            if (downOff != 0){
-                downOff--;
-            }
-            redrawMap();
-            LoadUnits();
-        }
-        if (e.getKeyCode() == 37){//left
-            if (rightOff != 0){
-                rightOff--;
-            }
-            redrawMap();
-            LoadUnits();
-        }
-        if (e.getKeyCode() == 40){//down
-
-            if (downOff != (72-Map.y)){
-                downOff++;    
-            }
-            redrawMap();
-            LoadUnits();
-        }
-        if (e.getKeyCode() == 39){//right
-
-            if (rightOff != (128-Map.x)){
-                rightOff++;    
-            }
-            redrawMap();
-            LoadUnits();
-        }
-        */
     }
     
-    @Override
-    public void mouseClicked(MouseEvent e) {
-            
-        /*  //game interactions
-        int tileX = (getMousePosition().x-25)/50+rightOff;//get mouse grid location
-        int tileY = (getMousePosition().y-25)/50+downOff;
-        int cityIndex = FindCity(tileX, tileY);//get city index at mouse
-        int unitIndex = -1; 
-        if (movingUnit == false && attackingUnit == false ){//not moving or attacking 
-
-        unitIndex = UnitType.FindUnit(tileX, tileY);//get unit index at mouse
-        if (unitIndex != -1 && cityIndex != -1) {//both unit and city
-        if (CityUIOpen) {//if city open, open unit
-            UserInt.UnitUI(FinalProject.units.get(unitIndex));
-            moveEnabled = true;
-            CityUIOpen = false;
-            UnitUIOpen = true;
+    public static void MainMenu(){
+        if (baseFrame == null){
+            initalize();
         }
-        else if (UnitUIOpen) {//if unit open, open city
-            UserInt.CityUI(FinalProject.cities.get(cityIndex));
-            moveEnabled = false;
-            CityUIOpen = true;
-            UnitUIOpen = false;
+        
+        MainMenu.display();
+    }
+    
+    public static void Game(){
+        if (baseFrame == null){
+            GameVisual.display();
         }
-        else if (!UnitUIOpen && !CityUIOpen){// if neither open, open unit
-            UserInt.UnitUI(FinalProject.units.get(unitIndex));
-            moveEnabled = true;
-            CityUIOpen = false;
-            UnitUIOpen = true;
+        gameStart = true;
+    }
+    
+    protected static void userInput(KeyEvent e) {
+        if (gameStart){
+            GameVisual.userInput(e);
         }
     }
-        else if (cityIndex != -1) {//if city, open city
-            UserInt.CityUI(FinalProject.cities.get(cityIndex));
-            moveEnabled = false;
-            CityUIOpen = true;
-            UnitUIOpen = false;
+    
+    protected static void userInput(MouseEvent e) {
+        if (gameStart){
+            GameVisual.userInput(e);
         }
-        else if (unitIndex != -1) {//if unit, open unit
-            UserInt.UnitUI(FinalProject.units.get(unitIndex));
-            moveEnabled = true;
-            CityUIOpen = false;
-            UnitUIOpen = true;
-        }
-        if (cityIndex == -1 && unitIndex == -1) {//if neither, set normal UI
-            UserInt.NormalUI(); 
-            moveEnabled = true;
-            CityUIOpen = false;
-            UnitUIOpen = false;
-        }
-        */
     }
-
-
-
-
+      
     //----Variables-----------
-
-
+  
     
     //----Object-Methods-------
-    
     @Override
     protected Object clone() throws CloneNotSupportedException {
         return super.clone();
@@ -143,32 +67,6 @@ public class Visual implements KeyListener, MouseListener{
     @Override
     public String toString() {
         return super.toString();
-    }
-
-    //---Not-Needed-Overrides-- 
-    
-    @Override
-    public void keyTyped(KeyEvent e) {
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
     }
 
 }

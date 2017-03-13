@@ -6,26 +6,19 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JMenuBar;
+import javax.swing.JRootPane;
 
 /**
  *
  * @author d.holmberg
  */
-public class PauseMenu extends JInternalFrame{
+public class PauseMenu extends Visual{
 
     private JButton btnExit;
     private JButton btnClose;
     
     public PauseMenu() {
-        this.setLocation(Globals.settings.getPoint(45,20));
-        System.out.println(this.getLocation());
-        this.setSize(Globals.settings.getDimension(20, 60));
-        System.out.println(this.getSize());
-        this.setVisible(true);
-        this.setResizable(false);
-        this.setBorder(null);
-        this.setBackground(Color.red);
-        Visual.baseFrame.add(this);
+        baseFrame.getBounds();
     }
 
     
