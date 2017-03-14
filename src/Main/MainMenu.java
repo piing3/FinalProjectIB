@@ -16,7 +16,7 @@ public class MainMenu extends Visual{
     
     public static void display(){
         Container container = new Container();
-        container.setSize(baseFrame.getSize());
+        container.setSize(Globals.settings.getDimension(100, 100));
         container.setLayout(null);
         
         JButton btnStart = new JButton("Start");

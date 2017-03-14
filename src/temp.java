@@ -70,28 +70,5 @@ class Map {
 }
 
 /*
-public static void redrawMap(){
-        for (int i = 0; i < Map.x; i++){
-                for (int j = 0; j < Map.y; j++){
-                    Map.grid[i][j].setTile(Map.tileType[i + rightOff][j + downOff]);
-                    Map.borderGrid[i][j].setBorder(Map.borderType[i + rightOff][j + downOff]);
 
-                }
-            }
-    }
-    
-    public static void LoadUnits(){
-        for (int i = 0; i <= 127; i++){
-            for (int j = 0; j <= 71; j++){
-                if (UnitType.FindUnit(i,j) > -1){
-                    int index = UnitType.FindUnit(i,j);
-                    Unit unit = FinalProject.units.get(index);
-                    if (unit.x == i&& unit.y == j){
-                        unit.setLocation((i- rightOff)*50, (j- downOff)*50);
-                        unit.setUnit(Globals.unitGrid[i][j]);
-                    }
-                }
-            }
-        }
-    }
 */

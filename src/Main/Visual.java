@@ -1,13 +1,8 @@
 package Main;
 
 import GameUI.GameVisual;
-import GameUI.PauseMenu;
-import java.awt.Color;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import javax.swing.JLabel;
 
 /**
  * Master class for all application visuals.
@@ -38,7 +33,7 @@ public class Visual{
     
     public static void Game(){
         if (!initalized) initalize();
-        GameVisual.display();
+        GameVisual.initalize();
         gameStart = true;
     }
     

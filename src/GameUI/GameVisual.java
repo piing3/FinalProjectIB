@@ -1,21 +1,55 @@
 package GameUI;
 
+import Main.Globals;
 import Main.Visual;
+import World.Map;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 /**
- *
+ * Sub-master class for game visuals 
  * @author d.holmberg
  */
 public class GameVisual extends Visual{
 
-    public static void display() {
+    private static Container world;
+    private static Container ui;
+    
+    public static void initalize() {
+        
+        world = new Container();
+        world.setSize(Globals.settings.getDimension(100, 100));
+        world.setLayout(null);
+        
+        ui = new Container();
+        ui.setSize(Globals.settings.getDimension(100, 100));
+        ui.setLayout(null);
+
+        //UserInt.initalize();
+        Map.initalize();
+        
+        Container c = new Container();
+        c.add(world);
+        c.add(ui);
+        c.setBackground(Color.red);
+        
+        
+        
+        Visual.baseFrame.setContentPane(c);
         
     }
 
+    /**
+     * Enacts a key event
+     * <b> Not Finished </b>
+     * @param e The key event
+     */
     public static void userInput(KeyEvent e) {
          if (e.getKeyCode() == 27){//escape, toggle menu
+            /*
             if (menuOpen == false){
                 menu.setVisible(true);
                 menuOpen = true;
@@ -23,10 +57,12 @@ public class GameVisual extends Visual{
             else if (menuOpen == true){
                 menu.setVisible(false);
                 menuOpen = false;
-            }    
+            }
+            */
         }
         
         if (e.getKeyCode() == 81){//q, make city at mouse
+            /*
             int cityX = (getMousePosition().x-25)/50+rightOff;
             int cityY = (getMousePosition().y-25)/50+downOff;
             int index = FindCity(cityX, cityY);
@@ -34,10 +70,11 @@ public class GameVisual extends Visual{
             {
                 FinalProject.cities.add(new City(cityX, cityY, TurnOrder.whoTurn()-1));
             } 
-            
+            */
         }
         
         if (e.getKeyCode() == 87){//w, make unit at mouse
+            /*
             int unitX = (getMousePosition().x-25)/50+rightOff;
             int unitY = (getMousePosition().y-25)/50+downOff;
             int index = UnitType.FindUnit(unitX, unitY);
@@ -46,8 +83,9 @@ public class GameVisual extends Visual{
                 int type = Integer.parseInt(JOptionPane.showInputDialog("Enter Unit Type"));
                 UnitType.CreateUnit(unitX, unitY, type, Units);
             } 
-            
+            */
         }
+        /*
         if(moveEnabled){//map movement
             
             if (e.getKeyCode() == 38){//up
@@ -81,9 +119,16 @@ public class GameVisual extends Visual{
                 LoadUnits();
             }
         }
+        */
     }
 
+    /**
+     * Enacts a mouse event
+     * <b> Not Finished</b>
+     * @param e The mouse event
+     */
     public static void userInput(MouseEvent e) {
+        /*
         int tileX = (getMousePosition().x-25)/50+rightOff;//get mouse grid location
         int tileY = (getMousePosition().y-25)/50+downOff;
         int cityIndex = FindCity(tileX, tileY);//get city index at mouse
@@ -147,10 +192,18 @@ public class GameVisual extends Visual{
             int index2 = UnitType.FindUnit(tileX, tileY);
             UnitType.Attack(index1, index2);
         }
+        */
     }
 
 
     //----Variables-----------
+
+    public static void worldAdd(Component comp) {
+        world.add(comp,0);
+    }
+    public static void uiAdd(Component comp) {
+        //ui.add(comp);
+    }
 
 
     

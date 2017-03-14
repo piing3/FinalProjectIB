@@ -15,11 +15,13 @@ public class Settings implements Serializable{
     private static FileHandler<Settings> fileHandler = new FileHandler<Settings>();
     
     public int width;
-    public int hight;
+    public int height;
+    public int mapWidth;
+    public int mapHeight;
     public String gQuality = "sh*t";// for "expandibility"
     
     public Settings() {
-        width = hight = 0;
+        width = height = 0;
     }
     
     public static void readFile() {
@@ -32,17 +34,20 @@ public class Settings implements Serializable{
         Globals.settings = new Settings();
         
         Globals.settings.width = 1440;
-        Globals.settings.hight = 900;
+        Globals.settings.height = 900;
+        
+        Globals.settings.mapWidth = 128;
+        Globals.settings.mapWidth = 72;
         
         fileHandler.saveObject(Globals.settings, fileName);
     }
     
     public Point getPoint(double x, double y) {
-        return new Point((int)(width*(x/100)), (int)(hight*(y/100)));
+        return new Point((int)(width*(x/100)), (int)(height*(y/100)));
     }
 
     public Dimension getDimension(double x, double y) {
-        return new Dimension((int)(width*(x/100)), (int)(hight*(y/100)));
+        return new Dimension((int)(width*(x/100)), (int)(height*(y/100)));
     }
 
 
