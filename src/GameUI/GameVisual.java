@@ -3,7 +3,6 @@ package GameUI;
 import Main.Globals;
 import Main.Visual;
 import World.Map;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.KeyEvent;
@@ -33,12 +32,10 @@ public class GameVisual extends Visual{
         
         Container c = new Container();
         c.add(world);
-        c.add(ui);
-        c.setBackground(Color.red);
-        
-        
+        c.add(ui,0);
         
         Visual.baseFrame.setContentPane(c);
+        Visual.baseFrame.repaint();
         
     }
 
@@ -202,7 +199,7 @@ public class GameVisual extends Visual{
         world.add(comp,0);
     }
     public static void uiAdd(Component comp) {
-        //ui.add(comp);
+        ui.add(comp,0);
     }
 
 

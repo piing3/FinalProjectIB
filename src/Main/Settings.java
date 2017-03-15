@@ -36,9 +36,6 @@ public class Settings implements Serializable{
         Globals.settings.width = 1440;
         Globals.settings.height = 900;
         
-        Globals.settings.mapWidth = 128;
-        Globals.settings.mapWidth = 72;
-        
         fileHandler.saveObject(Globals.settings, fileName);
     }
     

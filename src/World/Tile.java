@@ -26,6 +26,7 @@ class Tile extends JLabel{
         private int production;//the production given by the tile
         private int food;//the food given by the tile
         
+        
         public static final int SIZE = 50;
         
         public Tile(int i, int j) {

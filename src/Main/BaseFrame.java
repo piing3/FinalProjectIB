@@ -25,7 +25,8 @@ public class BaseFrame extends JFrame implements KeyListener, MouseListener{
         this.getContentPane();
         this.addKeyListener(this);
         this.addMouseListener(this);
-    
+        this.setResizable(false);
+        
     }
 
     @Override
