@@ -11,14 +11,12 @@ import java.io.Serializable;
  */
 public class Settings implements Serializable{
 
-    public static String fileName = "src\\Resources\\Settings.txt";
+    private static String fileName = "src\\Resources\\Settings.txt";
     private static FileHandler<Settings> fileHandler = new FileHandler<Settings>();
     
-    public int width;
-    public int height;
-    public int mapWidth;
-    public int mapHeight;
-    public String gQuality = "sh*t";// for "expandibility"
+    private int width;
+    private int height;
+    private String gQuality = "sh*t";// for "expandibility"
     
     public Settings() {
         width = height = 0;
@@ -51,6 +49,14 @@ public class Settings implements Serializable{
 
     //----Variables-----------
 
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+    
 
     
     //----Object-Methods-------

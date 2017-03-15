@@ -7,6 +7,7 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import javax.swing.JButton;
 
 /**
  * Sub-master class for game visuals 
@@ -32,9 +33,9 @@ public class GameVisual extends Visual{
         
         Container c = new Container();
         c.add(world);
-        c.add(ui,0);
+        //c.add(ui,0);
         
-        Visual.baseFrame.setContentPane(c);
+        Visual.baseFrame.setContentPane(world);
         Visual.baseFrame.repaint();
         
     }
