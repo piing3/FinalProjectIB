@@ -86,9 +86,12 @@ public class Map {
     
     private static void SeedTiles() {
         
-        for (int i = 0; i < MAP_WIDTH-1; i++){
-            for (int j = 0; j < MAP_HEIGHT-1; j++){
-                tileType[i][j] = -1;
+        for (int x = 0; x < MAP_WIDTH-1; x++){
+            for (int y = 0; y < MAP_HEIGHT-1; y++){
+                tileType[x][y] = -1;
+                tileGrid[x][y] = new Tile(x, y);//creates all the tiles
+                GameVisual.worldAdd(tileGrid[x][y]);//adds the tiles to the tile container
+                
             }
         }   
         
@@ -97,9 +100,9 @@ public class Map {
         for (int i = 0; i < amount; i++) {
             int x = random.nextInt(100);
             
-            if(x <= 40) tileType[random.nextInt(MAP_WIDTH-1)][random.nextInt(MAP_HEIGHT-1)] = 0;
-            else if(x <= 80) tileType[random.nextInt(MAP_WIDTH-1)][random.nextInt(MAP_HEIGHT-1)] = 2;
-            else if(x <= 100) tileType[random.nextInt(MAP_WIDTH-1)][random.nextInt(MAP_HEIGHT-1)] = 1;
+            if(x <= 65) tileType[random.nextInt(MAP_WIDTH-1)][random.nextInt(MAP_HEIGHT-1)] = 0;
+            else if(x <= 80) tileType[random.nextInt(MAP_WIDTH-1)][random.nextInt(MAP_HEIGHT-1)] = 1;
+            else if(x <= 100) tileType[random.nextInt(MAP_WIDTH-1)][random.nextInt(MAP_HEIGHT-1)] = 2;
             
         }
         

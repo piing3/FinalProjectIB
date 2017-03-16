@@ -19,6 +19,8 @@ public class MainMenu extends Visual{
         Container container = new Container();
         container.setSize(Globals.settings.getDimension(100, 100));
         container.setLayout(null);
+        Visual.baseFrame.addKeyListener(Globals.userInput);//these get axe'd when you change the conent pane(i think)
+        Visual.baseFrame.addMouseListener(Globals.userInput);
         
         JButton btnStart = new JButton("Start");
         btnStart.setSize(Globals.settings.getDimension(20, 10));

@@ -1,8 +1,75 @@
+package World;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
+/**
+ *
+ * @author d.holmberg
+ */
+public class Tile extends JLabel{
+
+    public static final int SIZE = 50;
+    
+    private int x;
+    private int y;
+    private int tileType;
+
+    public Tile(int x, int y) {
+        this.x = x;
+        this.y = y;
+        this.tileType = -1;
+        
+        this.setSize(SIZE, SIZE);
+        this.setLocation(x*SIZE, y*SIZE);
+    }
+    
+    
+
+
+    //----Variables-----------
+
+    /**
+    * Sets the 'tyleType' value and the tile image
+    * @param type 
+    */
+    public void setTile(int type){
+        tileType = type;
+        String file = "src\\Resources\\";
+        if (tileType == 0) file += "GrassTile1.png";
+        if (tileType == 1) file += "DessertTile1.png";
+        if (tileType == 2) file += "WaterTile1.png";
+        if (tileType == 3) file += "BorderTile1.png";
+        
+        this.setIcon(new ImageIcon(file));
+    }
+    
+    
+    //----Object-Methods-------
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+
+}
+
+/* Lagacy Code
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+ *
 package World;
 
 import java.awt.Color;
@@ -16,8 +83,8 @@ import javax.swing.JLabel;
  *Controls the info and most of the mechanics around the terrain tiles
  * 
  * @author Davin
- */
-class Tile extends JLabel{
+ *
+//class Tile extends JLabel{
 
     
     private int x;//tile's location
@@ -39,7 +106,7 @@ class Tile extends JLabel{
     /**
      * sets the tile to the given type
      * @param type: the new type of the tile 
-     */
+     *
     public void setTile(int type) {
         tileType = type;//stores new type
         if (type == 0 ){//grass
@@ -89,8 +156,10 @@ class Tile extends JLabel{
     /**
      * get the type id of tile 
      * @return the type id  
-     */
+     *
     static public int getTileType(Tile tile) {
       return tile.tileType;
    }
 }
+
+*/

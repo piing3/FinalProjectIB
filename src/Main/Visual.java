@@ -37,14 +37,14 @@ public class Visual{
         gameStart = true;
     }
     
-    protected static void userInput(KeyEvent e) {
+    public static void userInput(KeyEvent e) {
         if (!initalized) initalize();
         if (gameStart){
             GameVisual.userInput(e);
         }
     }
     
-    protected static void userInput(MouseEvent e) {
+    public static void userInput(MouseEvent e) {
         if (!initalized) initalize();
         if (gameStart){
             GameVisual.userInput(e);

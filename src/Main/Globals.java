@@ -3,6 +3,7 @@ package Main;
 import GameLogic.BuildIndex;
 import GameLogic.Player;
 import GameLogic.Production;
+import GameUI.UserInput;
 //import World.City;
 //import World.Unit;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class Globals {
     //public static ArrayList<Unit> units = new ArrayList<Unit>();//list of all units
     public static Production[] buildList = new Production[100];
     public static Settings settings = new Settings();
+    public static UserInput userInput = new UserInput();
     
     public static void initalize() {
         BuildIndex.readFile();

@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /**
- *
+ * to clean
  * @author Davin
  * 
  * Currently used for city borders but could be used for other, unimplemented borders 

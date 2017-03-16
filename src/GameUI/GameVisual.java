@@ -32,11 +32,15 @@ public class GameVisual extends Visual{
         Map.initalize();
         
         Container c = new Container();
+        c.setSize(Globals.settings.getDimension(100, 100));
+        c.setLayout(null);
         c.add(world);
         //c.add(ui,0);
         
-        Visual.baseFrame.setContentPane(world);
+        Visual.baseFrame.setContentPane(c);
         Visual.baseFrame.repaint();
+        Visual.baseFrame.addKeyListener(Globals.userInput);//these get axe'd when you change the conent pane(i think)
+        Visual.baseFrame.addMouseListener(Globals.userInput);
         
     }
 
@@ -46,7 +50,9 @@ public class GameVisual extends Visual{
      * @param e The key event
      */
     public static void userInput(KeyEvent e) {
-         if (e.getKeyCode() == 27){//escape, toggle menu
+        System.out.println(e.getKeyCode());
+        if (e.getKeyCode() == 27){//escape, toggle menu
+             System.out.println("Escape");
             /*
             if (menuOpen == false){
                 menu.setVisible(true);

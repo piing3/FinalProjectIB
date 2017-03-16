@@ -13,6 +13,7 @@
 //import javax.swing.JLabel;
 //
 ///**
+// * to clean 
 // *creates and stores info on units
 // * 
 // * @author Ben Allen
