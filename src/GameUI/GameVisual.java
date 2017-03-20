@@ -1,8 +1,10 @@
 package GameUI;
 
+import GameLogic.Unit;
 import Main.Globals;
 import Main.Visual;
 import World.Map;
+import World.UnitDisplay;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.KeyEvent;
@@ -75,6 +77,9 @@ public class GameVisual extends Visual{
         }
         
         if (e.getKeyCode() == 87){//w, make unit at mouse
+            
+            addUnit(10, 10, Unit.UNIT_WARRIOR);
+            
             /*
             int unitX = (getMousePosition().x-25)/50+rightOff;
             int unitY = (getMousePosition().y-25)/50+downOff;
@@ -181,7 +186,7 @@ public class GameVisual extends Visual{
     }
 
     public static void addUnit(int x, int y, int type){
-        
+        Unit unit = new Unit(type, x, y);
     }
     
     

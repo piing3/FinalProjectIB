@@ -4,6 +4,7 @@ import GameUI.GameVisual;
 import Main.Globals;
 import Main.Main;
 import java.awt.Color;
+import java.awt.Point;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Random;
@@ -26,8 +27,10 @@ public class Map {
     
     private static Tile[][] tileDisplay;
     private static Border[][] borderDisplay;
+    private static UnitDisplay[][] unitDisplay;
     private static final int[][] TILE_WORLD = new int[MAP_WIDTH][MAP_HEIGHT]; 
     private static final int[][] BORDER_TYPE = new int[MAP_WIDTH][MAP_HEIGHT];
+    private static final int[][] UNIT_WORLD = new int[MAP_WIDTH][MAP_HEIGHT];
     
     public static int rightOff = 0;
     public static int downOff = 0;
@@ -44,7 +47,6 @@ public class Map {
         
         initalized = true;
         
-        //readFile();
         SeedTiles();
         GrowTiles();
         redrawMap();
@@ -109,9 +111,6 @@ public class Map {
                 int xAdj = x;
                 if(x+rightOff >= MAP_WIDTH) xAdj -= MAP_WIDTH;
                 if(x+rightOff < 0) xAdj += MAP_WIDTH;
-                if (y+downOff == 72){
-                    System.out.println("error");
-                };
                 tileDisplay[x][y].setTile(TILE_WORLD[xAdj + rightOff][y + downOff]);
                 //borderGrid[x][y].setBorder(borderType[x + rightOff][y + downOff]);
 
@@ -119,11 +118,20 @@ public class Map {
         }
     }
     
-//    public static void LoadUnits(){
-//        for (int x = 0; x <= WIDTH; x++){
-//            for (int y = 0; y <= HEIGHT; y++){
-//                if (UnitType.FindUnit(x,y) > -1){
-//                    int index = UnitType.FindUnit(x,y);                    
+    public static void LoadUnits(){
+        for (int i = 0; i < Globals.unitList.size(); i++) {
+            Point p = Globals.unitList.get(i).getPos();
+            
+            if(p.x > rightOff && p.x < rightOff + displayWidth){
+                if(p.y > downOff && p.y < downOff + displayHeight);
+                Globals.unitList.get(i).setLocation((p.x-rightOff)*50, (p.y-downOff)*50);
+            }
+        }
+        
+//        for (int x = 0; x <= displayWidth; x++){
+//            for (int y = 0; y <= displayHeight; y++){
+//                int index = UnitType.FindUnit(x,y);
+//                if (index != -1){                    
 //                    Unit unit = Globals.units.get(index);
 //                    if (unit.x == x && unit.y == y){
 //                        unit.setLocation((x - rightOff)*50, (y - downOff)*50);
@@ -133,7 +141,7 @@ public class Map {
 //                }
 //            }
 //        }
-//    }
+    }
     
     //----Variables-----------
 

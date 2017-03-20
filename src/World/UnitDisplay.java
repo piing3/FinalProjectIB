@@ -1,5 +1,9 @@
 package World;
 
+import java.awt.Color;
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /**
@@ -12,10 +16,6 @@ public class UnitDisplay extends JLabel{
     private int y;
     
     private int type;
-    public final int WARRIOR = 0; 
-    public final int ARCHER = 1; 
-    public final int SCOUT = 2; 
-    public final int SETTLER = 3; 
 
     
     
@@ -24,8 +24,11 @@ public class UnitDisplay extends JLabel{
         this.y = y;
         this.type = type;
         
+        this.setIcon(new ImageIcon("src\\Resources\\UnitIcons\\WarriorBlue.png"));
+        
         this.setLocation(x*Tile.SIZE, y*Tile.SIZE);
         this.setSize(Tile.SIZE, Tile.SIZE);
+        this.setBackground(Color.red);
         
     }    
 

@@ -2,6 +2,7 @@ package Main;
 
 import GameLogic.Player;
 import GameLogic.Production;
+import GameLogic.Unit;
 import GameUI.UserInput;
 //import World.City;
 //import World.Unit;
@@ -17,7 +18,7 @@ public class Globals {
 
     public static boolean initalized = false;
     
-    public static int unitGrid[][];//the grid that stores unit positions 
+    public static ArrayList<Unit> unitList = new ArrayList<Unit>();//the list that stores unit
     public static ArrayList<Player> players = new ArrayList<Player>();
     //public static ArrayList<City> cities = new ArrayList<City>();//list of all cities
     //public static ArrayList<Unit> units = new ArrayList<Unit>();//list of all units

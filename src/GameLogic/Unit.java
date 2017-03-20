@@ -1,6 +1,7 @@
 package GameLogic;
 
 import World.UnitDisplay;
+import java.awt.Point;
 import java.util.ArrayList;
 
 /**
@@ -58,13 +59,22 @@ public class Unit {
             this.builds = 3;
         }
         
-        GameUI.GameVisual.addUnit(x, y, unit);
+        display = new UnitDisplay(x, y, unit);
+        GameUI.GameVisual.worldAdd(display);
     }
 
-
+ 
+    
     //------Varibles-Methods------------
 
-
+    public Point getPos() {
+        return new Point(x, y);
+    }
+    
+    public void setLocation(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
 
     //-------Object-Methods------------- 
 
