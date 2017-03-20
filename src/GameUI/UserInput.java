@@ -17,7 +17,6 @@ public class UserInput implements KeyListener, MouseListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println("poop");
         Visual.userInput(e);
         
         /* //map movement code

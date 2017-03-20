@@ -19,12 +19,11 @@ public class MainMenu extends Visual{
         Container container = new Container();
         container.setSize(Globals.settings.getDimension(100, 100));
         container.setLayout(null);
-        Visual.baseFrame.addKeyListener(Globals.userInput);//these get axe'd when you change the conent pane(i think)
-        Visual.baseFrame.addMouseListener(Globals.userInput);
         
         JButton btnStart = new JButton("Start");
         btnStart.setSize(Globals.settings.getDimension(20, 10));
         btnStart.setLocation(Globals.settings.getPoint(40, 35));
+        btnStart.setFocusable(false);
         ActionListener start = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -37,6 +36,7 @@ public class MainMenu extends Visual{
         JButton btnExit = new JButton("Exit");
         btnExit.setSize(Globals.settings.getDimension(20, 10));
         btnExit.setLocation(Globals.settings.getPoint(40, 65));
+        btnExit.setFocusable(false);
         ActionListener exit = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

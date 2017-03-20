@@ -39,8 +39,6 @@ public class GameVisual extends Visual{
         
         Visual.baseFrame.setContentPane(c);
         Visual.baseFrame.repaint();
-        Visual.baseFrame.addKeyListener(Globals.userInput);//these get axe'd when you change the conent pane(i think)
-        Visual.baseFrame.addMouseListener(Globals.userInput);
         
     }
 
@@ -52,7 +50,6 @@ public class GameVisual extends Visual{
     public static void userInput(KeyEvent e) {
         System.out.println(e.getKeyCode());
         if (e.getKeyCode() == 27){//escape, toggle menu
-             System.out.println("Escape");
             /*
             if (menuOpen == false){
                 menu.setVisible(true);
@@ -88,42 +85,26 @@ public class GameVisual extends Visual{
                 UnitType.CreateUnit(unitX, unitY, type, Units);
             } 
             */
-        }
-        /*
-        if(moveEnabled){//map movement
-            
+        }   
             if (e.getKeyCode() == 38){//up
-                if (downOff != 0){
-                    downOff--;
+                if (Map.downOff != 0){
+                    Map.downOff--;
                 }
-                redrawMap();
-                LoadUnits();
             }
             if (e.getKeyCode() == 37){//left
-                if (rightOff != 0){
-                    rightOff--;
-                }
-                redrawMap();
-                LoadUnits();
+                Map.rightOff--;
             }
             if (e.getKeyCode() == 40){//down
 
-                if (downOff != (72-Map.y)){
-                    downOff++;    
+                if (Map.downOff != (Map.MAP_HEIGHT-Map.getDisplayHeight())){//
+                    Map.downOff++;    
                 }
-                redrawMap();
-                LoadUnits();
             }
             if (e.getKeyCode() == 39){//right
-
-                if (rightOff != (128-Map.x)){
-                    rightOff++;    
-                }
-                redrawMap();
-                LoadUnits();
+                Map.rightOff++;
             }
-        }
-        */
+            Map.redrawMap();
+            //Map.LoadUnits();
     }
 
     /**
@@ -199,7 +180,11 @@ public class GameVisual extends Visual{
         */
     }
 
-
+    public static void addUnit(int x, int y, int type){
+        
+    }
+    
+    
     //----Variables-----------
 
     public static void worldAdd(Component comp) {

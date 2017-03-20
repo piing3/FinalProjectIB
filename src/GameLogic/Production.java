@@ -1,27 +1,22 @@
 package GameLogic;
 
+import Main.Globals;
 import java.io.Serializable;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 /**
  * An object that can be built in cities
  * 
  * @author Davin
  */
-public class Production implements Serializable{
+public abstract class Production{
     
     protected String name; // the object's display name
     protected String discription; // a brief discription of the object
     protected int buildCost; // the amount of product needed to build this object
     protected int goldCost; // the amount of product needed to build this object
     protected Icon icon; // the icon used in the build menu
-    
-    /**
-     * Makes a new blank production object
-     */
-    protected Production() {
-        this("", "", 0, 0, null);
-    }
     
     /**
      * Makes a new production object
@@ -31,7 +26,7 @@ public class Production implements Serializable{
      * @param goldCost
      * @param icon 
      */
-    protected Production(String name, String discription, int buildCost, int goldCost, Icon icon) {
+    public Production(String name, String discription, int buildCost, int goldCost, Icon icon) {
         this.name = name;
         this.discription = discription;
         this.buildCost = buildCost;
@@ -39,9 +34,17 @@ public class Production implements Serializable{
         this.icon = icon;
     }
     
-    /**
-     * Run when the object is built
-     */
+    public abstract void built();
+    
+    public static void fillList(){
+        Globals.buildList = new Production[100];
+//        
+//        ImageIcon icon = new ImageIcon("src\\Resources\\WarriorIconMed.png");
+//        Globals.buildList[0] = new UnitProduction("Warrior", "Basic melee unit", 40, 100, icon);
+//        Globals.buildList[1] = new UnitProduction("Archer", "Basic ranged unit", 45, 120, icon);
+//        Globals.buildList[2] = new UnitProduction("Settler", "Can make a new city", 70, 250, icon);
+//        Globals.buildList[3] = new UnitProduction("Worker", "Can build and repair tile improvements", 40, 100, icon);
+    } 
     
     //----Variables-----------
 
@@ -81,12 +84,6 @@ public class Production implements Serializable{
     }    
     
     //----Object-Methods-------
-
-    @Override
-    public Production clone() throws CloneNotSupportedException {
-        Production p = new Production(name, discription, buildCost, goldCost, icon);
-        return p;
-    }
 
     public boolean equals(Production p) {
         if (this.name != p.name) return false;

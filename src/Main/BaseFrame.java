@@ -24,6 +24,9 @@ public class BaseFrame extends JFrame{
         this.setLayout(null);
         this.getContentPane();
         this.setResizable(false);
+        this.addKeyListener(Globals.userInput);
+        this.addMouseListener(Globals.userInput);
+
         
     }
 

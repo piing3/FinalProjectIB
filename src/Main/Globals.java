@@ -1,6 +1,5 @@
 package Main;
 
-import GameLogic.BuildIndex;
 import GameLogic.Player;
 import GameLogic.Production;
 import GameUI.UserInput;
@@ -27,7 +26,7 @@ public class Globals {
     public static UserInput userInput = new UserInput();
     
     public static void initalize() {
-        BuildIndex.readFile();
+        Production.fillList();
         Settings.readFile();    
         
         initalized = true;

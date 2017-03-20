@@ -18,31 +18,29 @@ public class Map {
 
     public static boolean initalized = false;
     
-    private static final int MAP_WIDTH = 128;
-    private static final int MAP_HEIGHT = 72;
+    public static final int MAP_WIDTH = 200;
+    public static final int MAP_HEIGHT = 100;
     
     private static int displayWidth;
     private static int displayHeight;
     
-    private static Tile[][] tileGrid;
-    private static Border[][] borderGrid;
-    private static int[][] tileType; 
-    private static int[][] borderType;
+    private static Tile[][] tileDisplay;
+    private static Border[][] borderDisplay;
+    private static final int[][] TILE_WORLD = new int[MAP_WIDTH][MAP_HEIGHT]; 
+    private static final int[][] BORDER_TYPE = new int[MAP_WIDTH][MAP_HEIGHT];
     
-    private static int rightOff = 0;
-    private static int downOff = 0;
+    public static int rightOff = 0;
+    public static int downOff = 0;
     
     
     public static void initalize(){
         if (!Globals.initalized) Globals.initalize();
         
         displayWidth = (Globals.settings.getWidth()/Tile.SIZE)+1;
-        displayHeight = (Globals.settings.getHeight()/Tile.SIZE)+1;
+        displayHeight = (Globals.settings.getHeight()/Tile.SIZE);
         
-        tileGrid  = new Tile[MAP_WIDTH][MAP_HEIGHT];
-        borderGrid  = new Border[MAP_WIDTH][MAP_HEIGHT];
-        tileType  = new int[MAP_WIDTH][MAP_HEIGHT];
-        borderType  = new int[MAP_WIDTH][MAP_HEIGHT];
+        tileDisplay = new Tile[displayWidth][MAP_HEIGHT];
+        borderDisplay = new Border[displayWidth][MAP_HEIGHT];
         
         initalized = true;
         
@@ -53,44 +51,15 @@ public class Map {
         
     }
     
-    private static void readFile(){
-        if (!initalized) initalize();
-        try {
-            File temp = new File("src\\World\\Map.txt");//reads the map and stores it in tileType, also sets all borderType to 0
-            Scanner s = new Scanner(temp);
-            for (int i = 0; i < MAP_WIDTH; i++){
-                for (int j = 0; j < MAP_HEIGHT; j++){
-                    tileType[i][j] = s.nextInt();
-                    borderType[i][j] = 0;
-                }
-            }
-            s.close(); 
-        } catch (FileNotFoundException e) {
-            System.out.println("Map.txt not found - "+e.getMessage());
-            Main.exit();
-        }
-        
-        for (int x = rightOff; x < displayWidth; x++){
-            for (int y = downOff; y <  displayWidth; y++){
-                tileGrid[x][y] = new Tile(x, y);//creates all the tiles
-                GameVisual.worldAdd(tileGrid[x][y]);//adds the tiles to the tile container
-                                
-                //borderGrid[i][j] = new Border(i, j);//creates all the borders
-                //GameVisual.worldAdd(borderGrid[i][j]);//adds the borders to the tile container
-                
-            }
-        }
-        redrawMap();
-    }
-
-    
     private static void SeedTiles() {
         
-        for (int x = 0; x < MAP_WIDTH-1; x++){
-            for (int y = 0; y < MAP_HEIGHT-1; y++){
-                tileType[x][y] = -1;
-                tileGrid[x][y] = new Tile(x, y);//creates all the tiles
-                GameVisual.worldAdd(tileGrid[x][y]);//adds the tiles to the tile container
+        for (int x = 0; x < MAP_WIDTH; x++){
+            for (int y = 0; y < MAP_HEIGHT; y++){
+                TILE_WORLD[x][y] = -1;
+                if (x < displayWidth && y < displayHeight) {
+                    tileDisplay[x][y] = new Tile(x, y);//creates all the tiles
+                    GameVisual.worldAdd(tileDisplay[x][y]);//adds the tiles to the tile container
+                }
                 
             }
         }   
@@ -98,11 +67,11 @@ public class Map {
         Random random = new Random();
         int amount = (int) ((MAP_HEIGHT*MAP_WIDTH)/10);
         for (int i = 0; i < amount; i++) {
-            int x = random.nextInt(100);
+            int seed = random.nextInt(100);
             
-            if(x <= 65) tileType[random.nextInt(MAP_WIDTH-1)][random.nextInt(MAP_HEIGHT-1)] = 0;
-            else if(x <= 80) tileType[random.nextInt(MAP_WIDTH-1)][random.nextInt(MAP_HEIGHT-1)] = 1;
-            else if(x <= 100) tileType[random.nextInt(MAP_WIDTH-1)][random.nextInt(MAP_HEIGHT-1)] = 2;
+            if(seed <= 65) TILE_WORLD[random.nextInt(MAP_WIDTH-1)][random.nextInt(MAP_HEIGHT-1)] = 0;
+            else if(seed <= 80) TILE_WORLD[random.nextInt(MAP_WIDTH-1)][random.nextInt(MAP_HEIGHT-1)] = 1;
+            else if(seed <= 100) TILE_WORLD[random.nextInt(MAP_WIDTH-1)][random.nextInt(MAP_HEIGHT-1)] = 2;
             
         }
         
@@ -112,33 +81,38 @@ public class Map {
         boolean gate = true;
         while (gate) {
             gate = false;
-            for (int x = 0; x < MAP_WIDTH-1; x++) {
-                for (int y = 0; y < MAP_HEIGHT-1; y++) {
-                    if(tileType[x][y] == -1){
+            for (int x = 0; x < MAP_WIDTH; x++) {
+                for (int y = 0; y < MAP_HEIGHT; y++) {
+                    if(TILE_WORLD[x][y] == -1){
                         gate = true;
                         Random r = new Random();
                         int direction = r.nextInt(4);
-                        if (direction == 0 && x != MAP_WIDTH-1) tileType[x][y] = tileType[x+1][y];
-                        if (direction == 0 && x == MAP_WIDTH-1) tileType[x][y] = tileType[0][y];
-                        if (direction == 1 && x != 0) tileType[x][y] = tileType[x-1][y];
-                        if (direction == 1 && x == 0) tileType[x][y] = tileType[MAP_WIDTH-1][y];
-                        if (direction == 2 && y != MAP_HEIGHT-1) tileType[x][y] = tileType[x][y+1];
-                        if (direction == 3 && y != 0) tileType[x][y] = tileType[x][y-1];
-                        if (y == 0 || y == MAP_WIDTH-1) tileType[x][y] = 2; 
+                        
+                        if (direction == 0 && x != MAP_WIDTH-1) TILE_WORLD[x][y] = TILE_WORLD[x+1][y];
+                        if (direction == 0 && x == MAP_WIDTH-1) TILE_WORLD[x][y] = TILE_WORLD[0][y];
+                        if (direction == 1 && x != 0) TILE_WORLD[x][y] = TILE_WORLD[x-1][y];
+                        if (direction == 1 && x == 0) TILE_WORLD[x][y] = TILE_WORLD[MAP_WIDTH-1][y];
+                        if (direction == 2 && y != MAP_HEIGHT-1) TILE_WORLD[x][y] = TILE_WORLD[x][y+1];
+                        if (direction == 3 && y != 0) TILE_WORLD[x][y] = TILE_WORLD[x][y-1];
+                        if (y <= 4 || y >= (MAP_HEIGHT)-4) TILE_WORLD[x][y] = 2; 
                     }
                 }
             }
         }
     }
-
-
     
     public static void redrawMap(){
+        if(rightOff >= MAP_WIDTH) rightOff -= MAP_WIDTH;
+        if(rightOff < 0) rightOff += MAP_WIDTH;
         for (int x = 0; x < displayWidth; x++){
             for (int y = 0; y < displayHeight; y++){
-                System.out.println("X:" + x);
-                System.out.println("Y:" + y);
-                tileGrid[x][y].setTile(tileType[x + rightOff][y + downOff]);
+                int xAdj = x;
+                if(x+rightOff >= MAP_WIDTH) xAdj -= MAP_WIDTH;
+                if(x+rightOff < 0) xAdj += MAP_WIDTH;
+                if (y+downOff == 72){
+                    System.out.println("error");
+                };
+                tileDisplay[x][y].setTile(TILE_WORLD[xAdj + rightOff][y + downOff]);
                 //borderGrid[x][y].setBorder(borderType[x + rightOff][y + downOff]);
 
             }
@@ -162,6 +136,13 @@ public class Map {
 //    }
     
     //----Variables-----------
+
+    public static int getDisplayHeight() {
+        return displayHeight;
+    }
+    public static int getDisplayWidth() {
+        return displayWidth;
+    }
 
 
     

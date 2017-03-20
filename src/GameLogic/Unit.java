@@ -1,51 +1,76 @@
 package GameLogic;
 
-import java.io.Serializable;
-import javax.swing.Icon;
+import World.UnitDisplay;
+import java.util.ArrayList;
 
 /**
+ * Purpose: 
+ * @author Davin
  *
- * @author d.holmberg
  */
-public class Unit extends Production implements Serializable{
+public class Unit {
 
-    private int defence;
-    private int speed;
-
-    public Unit() {
-        super();
-        this.defence = 0;
-    }
-
-    public Unit(String name, String discription, int buildCost, int goldCost, Icon icon, int defence) {
-        super(name, discription, buildCost, goldCost, icon);
-        this.defence = defence;
-    }
-
-    //----Variables-----------
-
-    public int getUnitType() {
-        return defence;
-    }
-    public void setUnitType(int unitType) {
-        this.defence = unitType;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
+    private String name;
+    private int x, y;
+    private int movementMax = 2, movementCur = 0;
     
+    private int health = 100; 
+    private int mDamage = 0, mDefence = 0;
+    private int range = 0, rDamage = 0, rDefence = 0;
     
+    private int builds = 0, settles = 0;
     
-    //----Object-Methods-------
+    private int multiCount = 1;
+    private UnitDisplay display; 
+
+    public static final int UNIT_WARRIOR = 0; 
+    public static final int UNIT_ARCHER = 1; 
+    public static final int UNIT_SCOUT = 3; 
+    public static final int UNIT_SETTLER = 3; 
+    public static final int UNIT_BUILDER = 4; 
+    
+    public Unit(int unit, int x, int y) {
+        this.x = x; this.y = y;
+        
+        if(unit == UNIT_WARRIOR){
+            this.name = "Warrior";
+            this.mDamage = 30; mDefence = 15;
+            this.rDefence = 10;
+            
+        }
+        if(unit == UNIT_ARCHER){
+            this.name = "Archer";
+            this.mDefence = 5;
+            this.range = 2; this.rDamage = 30; this.rDefence = 5;
+        }
+        if(unit == UNIT_SCOUT){
+            this.name = "Scout";
+            this.movementMax = 4;
+            this.mDamage = 20; mDefence = 5;
+            this.rDefence = 10;
+        }
+        if(unit == UNIT_SETTLER){
+            this.name = "Settler";
+            this.settles = 1;
+        }
+        if(unit == UNIT_BUILDER){
+            this.name = "Builder";
+            this.builds = 3;
+        }
+        
+        GameUI.GameVisual.addUnit(x, y, unit);
+    }
+
+
+    //------Varibles-Methods------------
+
+
+
+    //-------Object-Methods------------- 
 
     @Override
-    public Unit clone() throws CloneNotSupportedException {
-        Unit u = new Unit(name, discription, buildCost, goldCost, icon, defence);
-        return u;
+    public Object clone() throws CloneNotSupportedException {
+        return this;
     }
 
     @Override
@@ -57,5 +82,6 @@ public class Unit extends Production implements Serializable{
     public String toString() {
         return super.toString();
     }
+
 
 }
