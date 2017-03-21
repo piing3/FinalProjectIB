@@ -50,6 +50,7 @@ public class Map {
         SeedTiles();
         GrowTiles();
         redrawMap();
+        redrawUnits();
         
     }
     
@@ -104,28 +105,25 @@ public class Map {
     }
     
     public static void redrawMap(){
-        if(rightOff >= MAP_WIDTH) rightOff -= MAP_WIDTH;
-        if(rightOff < 0) rightOff += MAP_WIDTH;
         for (int x = 0; x < displayWidth; x++){
             for (int y = 0; y < displayHeight; y++){
                 int xAdj = x;
                 if(x+rightOff >= MAP_WIDTH) xAdj -= MAP_WIDTH;
-                if(x+rightOff < 0) xAdj += MAP_WIDTH;
                 tileDisplay[x][y].setTile(TILE_WORLD[xAdj + rightOff][y + downOff]);
                 //borderGrid[x][y].setBorder(borderType[x + rightOff][y + downOff]);
-
             }
         }
     }
     
-    public static void LoadUnits(){
+    public static void redrawUnits(){
         for (int i = 0; i < Globals.unitList.size(); i++) {
             Point p = Globals.unitList.get(i).getPos();
             
-            if(p.x > rightOff && p.x < rightOff + displayWidth){
-                if(p.y > downOff && p.y < downOff + displayHeight);
-                Globals.unitList.get(i).setLocation((p.x-rightOff)*50, (p.y-downOff)*50);
-            }
+            int xAdj = p.x;
+            
+            if(rightOff < MAP_WIDTH && rightOff > displayWidth) xAdj = p.x+MAP_WIDTH;
+            Globals.unitList.get(i).getDisplay().setLocation((xAdj-rightOff)*50, (p.y-downOff)*50);
+            
         }
         
 //        for (int x = 0; x <= displayWidth; x++){

@@ -3,10 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Davin/Documents/NetBeansProjects/FinalProjectIB/src/temp.java</file>
-            <file>file:/C:/Users/Davin/Documents/NetBeansProjects/FinalProjectIB/src/World/Unit.java</file>
-            <file>file:/C:/Users/Davin/Documents/NetBeansProjects/FinalProjectIB/src/World/Map.txt</file>
-            <file>file:/C:/Users/Davin/Documents/NetBeansProjects/FinalProjectIB/src/World/Tile.java</file>
+            <file>file:/C:/Users/d.holmberg/Desktop/GitHub/FinalProjectIB/src/GameLogic/Unit.java</file>
+            <file>file:/C:/Users/d.holmberg/Desktop/GitHub/FinalProjectIB/src/GameUI/UserInput.java</file>
+            <file>file:/C:/Users/d.holmberg/Desktop/GitHub/FinalProjectIB/src/World/Map.java</file>
+            <file>file:/C:/Users/d.holmberg/Desktop/GitHub/FinalProjectIB/src/World/Tile.java</file>
+            <file>file:/C:/Users/d.holmberg/Desktop/GitHub/FinalProjectIB/src/Main/Globals.java</file>
+            <file>file:/C:/Users/d.holmberg/Desktop/GitHub/FinalProjectIB/src/GameUI/GameVisual.java</file>
+            <file>file:/C:/Users/d.holmberg/Desktop/GitHub/FinalProjectIB/src/Main/Main.java</file>
+            <file>file:/C:/Users/d.holmberg/Desktop/GitHub/FinalProjectIB/src/World/UnitDisplay.java</file>
         </group>
     </open-files>
 </project-private>

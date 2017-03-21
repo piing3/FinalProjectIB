@@ -4,6 +4,9 @@ import GameLogic.Unit;
 import Main.Globals;
 import Main.Visual;
 import World.Map;
+import static World.Map.MAP_WIDTH;
+import static World.Map.downOff;
+import static World.Map.rightOff;
 import World.UnitDisplay;
 import java.awt.Component;
 import java.awt.Container;
@@ -50,7 +53,6 @@ public class GameVisual extends Visual{
      * @param e The key event
      */
     public static void userInput(KeyEvent e) {
-        System.out.println(e.getKeyCode());
         if (e.getKeyCode() == 27){//escape, toggle menu
             /*
             if (menuOpen == false){
@@ -108,8 +110,13 @@ public class GameVisual extends Visual{
             if (e.getKeyCode() == 39){//right
                 Map.rightOff++;
             }
+            
+            if(Map.rightOff == -1) Map.rightOff = Map.MAP_WIDTH-1;
+            if(Map.rightOff == Map.MAP_WIDTH) Map.rightOff = 0;
+            
             Map.redrawMap();
-            //Map.LoadUnits();
+            Map.redrawUnits();
+            System.out.println("Right: "+Map.rightOff+", Down: "+Map.downOff);
     }
 
     /**
@@ -187,6 +194,7 @@ public class GameVisual extends Visual{
 
     public static void addUnit(int x, int y, int type){
         Unit unit = new Unit(type, x, y);
+        Globals.unitList.add(unit);
     }
     
     

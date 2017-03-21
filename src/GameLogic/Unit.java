@@ -70,10 +70,8 @@ public class Unit {
     public Point getPos() {
         return new Point(x, y);
     }
-    
-    public void setLocation(int x, int y){
-        this.x = x;
-        this.y = y;
+    public UnitDisplay getDisplay(){
+        return display;
     }
 
     //-------Object-Methods------------- 
