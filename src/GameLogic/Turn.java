@@ -10,8 +10,8 @@ import Main.Globals;
  */
 public class Turn {
 
-    private int maxSize = 4;
-    private int turn = 0;
+    private static int maxSize = 4;
+    private static int turn = 0;
 
     /**
      * Add a new player to the game
@@ -29,7 +29,7 @@ public class Turn {
     /**
      * Change to the next turn
      */
-    public void NextTurn(){
+    public static void NextTurn(){
         turn++;
         if(turn == maxSize) turn -= maxSize;
         Globals.players.get(turn).startTurn();
@@ -39,11 +39,11 @@ public class Turn {
     //----Variables-----------
 
 
-    public int getTurn() {
+    public static int getTurn() {
         return turn;
     }
-    public void setTurn(int turn) {
-        this.turn = turn;
+    public static void setTurn(int turn) {
+        Turn.turn = turn;
     }
 
     

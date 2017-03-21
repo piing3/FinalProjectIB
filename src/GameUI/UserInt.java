@@ -1,42 +1,32 @@
-//package GameUI;
-//
-//import GameLogic.Production;
-//import World.UnitType;
-//import World.City;
-//import Main.FinalProject;
-//import static GameUI.UserInt.selectedProductionItem;
-//import Main.Visual;
-//import World.Unit;
-//import java.awt.Color;
-//import java.awt.Component;
-//import java.awt.Dimension;
-//import java.awt.Font;
-//import java.awt.event.ActionEvent;
-//import java.awt.event.ActionListener;
-//import java.io.FileNotFoundException;
-//import java.util.ArrayList;
-//import javax.swing.BoxLayout;
-//import javax.swing.Icon;
-//import javax.swing.ImageIcon;
-//import javax.swing.JButton;
-//import javax.swing.JLabel;
-//import javax.swing.JPanel;
-//import javax.swing.JScrollPane;
-//import javax.swing.SwingConstants;
-//
-///**
-// *to clean
-// *handles all user interface mechanics
-// * @author Davin
-// */
-//class UserInt {
-//    
-//        public JButton nextTurn;//normal ui components
-//        public JLabel PlayerTurn;
-//        
+package GameUI;
+
+import Main.Globals;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+/**
+ *to clean
+ *handles all user interface mechanics
+ * @author Davin
+ */
+class UserInt {
+    
+    public static JButton nextTurn;//normal ui components
+    public static JLabel playerTurn;
+        
 //        static public JButton cityTest = new JButton();//city ui components
 //        static public City city = new City();
-//        static public Unit unit = new Unit(); 
+          static public GameLogic.Unit unit; 
 //        static public JLabel cityLeft;
 //        static public JLabel cityGold;
 //        static public JLabel cityFood;
@@ -51,60 +41,60 @@
 //        static public JLabel selectedTitle;
 //        static public JLabel selectedCost;
 //        static public JLabel selectedDicription;
-//        
-//        static public JLabel unitBack;//unit ui components 
-//        static public JLabel unitHealth; 
-//        static public JLabel unitStrength; 
-//        static public JLabel unitMoves; 
-//        static public JLabel unitName; 
-//        static public JButton unitMove;
-//        static public JButton unitSettle;
-//        static public JButton unitAttack;
-//        static public JLabel unitIcon;
-//        
-//        static public ArrayList<JPanel> productionPanelList = new ArrayList<JPanel>();//production lists
-//        static public ArrayList<JButton> productionButtonList = new ArrayList<JButton>();
-//        
-//
-//    
-//    UserInt() throws FileNotFoundException{
-//        
-//        nextTurn = new JButton("Next Turn");//make nextTurn button
-//        ActionListener actionListener = new ActionListener() {
-//
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                TurnOrder.NextTurn();
-//                System.out.println(TurnOrder.whoTurn());
-//                PlayerTurn.setText(FinalProject.Players.get(TurnOrder.whoTurn()-1).name+"'s Turn");
-//                
-//                
-//            }
-//        };
-//        nextTurn.addActionListener(actionListener);
-//        nextTurn.setSize(200, 25); 
-//        nextTurn.setLocation(Visual.width - 200, Visual.hight - 175);
-//        nextTurn.setBackground(Color.orange);
-//        nextTurn.setFocusable(false);
-//        Visual.UI.add(nextTurn);
-//        
-//        PlayerTurn = new JLabel(FinalProject.Players.get(TurnOrder.whoTurn()-1).name+"'s Turn");//make playerTurn label 
-//        PlayerTurn.setSize(200, 20);
-//        PlayerTurn.setLocation(Visual.width - 200, Visual.hight - 195);
-//        PlayerTurn.setHorizontalAlignment(SwingConstants.CENTER);
-//        PlayerTurn.setForeground(Color.BLACK);
-//        Visual.UI.add(PlayerTurn);
-//        
-//        JPanel UIBackround = new JPanel();//make UIBackround
-//        UIBackround.setLocation(Visual.width - 200, Visual.hight - 200);
-//        UIBackround.setSize(200, 200);
-//        UIBackround.setBackground(Color.GRAY);
-//        Visual.UI.add(UIBackround);
-//        
-//        MakeCityUI();//make the city ui
-//        MakeUnitUI();//make the unit ui
-//
-//        }
+        
+    public static JLabel unitBack;//unit ui components 
+    public static JLabel unitHealth; 
+    public static JLabel unitStrength; 
+    public static JLabel unitMoves; 
+    public static JLabel unitName; 
+    public static JButton unitMove;
+    public static JButton unitSettle;
+    public static JButton unitAttack;
+    public static JLabel unitIcon;
+
+    public static ArrayList<JPanel> productionPanelList = new ArrayList<JPanel>();//production lists
+    public static ArrayList<JButton> productionButtonList = new ArrayList<JButton>();
+        
+
+    
+    public static void initalize(){
+        
+        nextTurn = new JButton("Next Turn");//make nextTurn button
+        ActionListener actionListener = new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GameLogic.Turn.NextTurn();
+                System.out.println(GameLogic.Turn.getTurn());
+                playerTurn.setText("It's player #"+GameLogic.Turn.getTurn()+"'s Turn");
+                
+                
+            }
+        };
+        nextTurn.addActionListener(actionListener);
+        nextTurn.setSize(Globals.settings.getDimension(10, 5)); 
+        nextTurn.setLocation(Globals.settings.getPoint(90, 95));
+        nextTurn.setBackground(Color.orange);
+        nextTurn.setFocusable(false);
+        GameVisual.uiAdd(nextTurn);
+        
+        playerTurn = new JLabel("It's player #"+GameLogic.Turn.getTurn()+"'s Turn");//make playerTurn label 
+        playerTurn.setSize(Globals.settings.getDimension(10, 5));
+        playerTurn.setLocation(Globals.settings.getPoint(90, 90));
+        playerTurn.setHorizontalAlignment(SwingConstants.CENTER);
+        playerTurn.setForeground(Color.BLACK);
+        GameVisual.uiAdd(playerTurn);
+        
+        JPanel UIBackround = new JPanel();//make UIBackround
+        UIBackround.setLocation(Globals.settings.getPoint(90, 90));
+        UIBackround.setSize(Globals.settings.getDimension(10, 10));
+        UIBackround.setBackground(Color.GRAY);
+        GameVisual.uiAdd(UIBackround);
+        
+        //MakeCityUI();//make the city ui
+        MakeUnitUI();//make the unit ui
+
+        }
 //    /**
 //     * opens the city UI of the given city
 //     * @param newCity: the city to open
@@ -123,31 +113,30 @@
 //        updateCityName();
 //        
 //    }
-//    /**
-//     * open the unit UI of the given unit
-//     * @param newUnit: the unit to open 
-//     */
-//    public static void UnitUI(Unit newUnit){   
-//        unit = newUnit;
-//        
-//        visibleCityUI(false);        
-//        visibleUnitUI(true);
-//        
-//        updateHealth();
-//        updateStength();
-//        updateMoves();
-//        updateIcon();
-//        unitName.setText(unit.name);
-//    }
-//    /**
-//     * closes city and unit UI
-//     */
-//    public static void NormalUI(){        
-//        visibleCityUI(false);
-//        visibleUnitUI(false);
-//        
-//    }
-//    
+    /**
+     * open the unit UI of the given unit
+     * @param newUnit: the unit to open 
+     */
+    public static void UnitUI(GameLogic.Unit newUnit){   
+        unit = newUnit;
+        
+        //visibleCityUI(false);        
+        visibleUnitUI(true);
+        
+        updateName();
+        updateHealth();
+        updateMoves();
+        //updateIcon();
+    }
+    /**
+     * closes city and unit UI
+     */
+    public static void NormalUI(){        
+        //visibleCityUI(false);
+        visibleUnitUI(false);
+        
+    }
+    
 //    public static void updateGold() {cityGold.setText(city.gold+"");}//updates the cityGold label
 //    public static void updateFood() {cityFood.setText(city.food+"");}//updates the cityFood label
 //    public static void updateProduction() {cityProduction.setText(city.production+"");}//updates the cityProduction label
@@ -169,15 +158,15 @@
 //        selectedDicription.setText(selectedProductionItem.discription+"");
 //        selectedIcon.setIcon(selectedProductionItem.icon);
 //    }
-//    
-//    public static void updateHealth() {unitHealth.setText(unit.health+"");}//updates the unitHealth label
-//    public static void updateStength(){unitStrength.setText(unit.Damage+"");}//updates the unitStrength label
-//    public static void updateMoves(){unitMoves.setText(unit.movement+"");}//updates the unitMoves label
-//    public static void updateIcon(){unitIcon.setIcon(unit.unitIcon);}//updates the unitIcon label
-//    
-//    /**
-//     * creates all the city UI elements
-//     */
+    
+    private static void updateHealth() {unitHealth.setText(unit.getHealth()+"");}//updates the unitHealth label
+    private static void updateMoves(){unitMoves.setText(unit.getMovementCur()+"");}//updates the unitMoves label
+    private static void updateName(){unitName.setText(unit.getName()+"");}//updates the unitMoves label
+    //public static void updateIcon(){unitIcon.setIcon(unit.getUnitIcon());}//updates the unitIcon label
+    
+    /**
+     * creates all the city UI elements
+     */
 //    public void MakeCityUI(){
 //        
 //        Icon leftBack = new ImageIcon("src\\Images\\CityLeft.png");
@@ -235,58 +224,52 @@
 //        Visual.CityUI.add(cityName, 0);
 //        MakeProductionUI();
 //    }
-//    /**
-//     * makes all the unit UI elements
-//     */
-//    public void MakeUnitUI(){
-//        Icon unitBackround = new ImageIcon("src\\Images\\UnitBackround.png");
-//        unitBack = new JLabel(unitBackround);
-//        unitBack.setSize(600,220);
-//        unitBack.setLocation(0, 490);
-//        unitBack.setVisible(false);
-//        unitBack.setFocusable(false);
-//        Visual.UnitUI.add(unitBack,0);
-//        
-//        unitIcon = new JLabel();
-//        unitIcon.setSize(200,200);
-//        unitIcon.setLocation(20, 500);
-//        unitIcon.setVisible(false);
-//        unitIcon.setFocusable(false);
-//        Visual.UnitUI.add(unitIcon,0);
-//        
-//        unitHealth = new JLabel();
-//        unitHealth.setSize(100, 20);
-//        unitHealth.setLocation(450, 540);
-//        unitHealth.setVisible(false);
-//        unitHealth.setFocusable(false);
-//        unitHealth.setFont(new Font(null, Font.PLAIN, 20));
-//        Visual.UnitUI.add(unitHealth,0);
-//        
-//        unitStrength = new JLabel();
-//        unitStrength.setSize(100, 20);
-//        unitStrength.setLocation(450, 575);
-//        unitStrength.setVisible(false);
-//        unitStrength.setFocusable(false);
-//        unitStrength.setFont(new Font(null, Font.PLAIN, 20));
-//        Visual.UnitUI.add(unitStrength,0);
-//        
-//        unitMoves = new JLabel();
-//        unitMoves.setSize(100, 20);
-//        unitMoves.setLocation(450, 610);
-//        unitMoves.setVisible(false);
-//        unitMoves.setFocusable(false);
-//        unitMoves.setFont(new Font(null, Font.PLAIN, 20));
-//        Visual.UnitUI.add(unitMoves,0);
-//        
-//        unitName = new JLabel();
-//        unitName.setSize(390, 30);
-//        unitName.setLocation(210, 500);
-//        unitName.setVisible(false);
-//        unitName.setFocusable(false);
-//        unitName.setFont(new Font(null, Font.PLAIN, 30));
-//        unitName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-//        Visual.UnitUI.add(unitName,0);
-//        
+    /**
+     * makes all the unit UI elements
+     */
+    private static void MakeUnitUI(){
+        Icon unitBackround = new ImageIcon("src\\Resources\\UnitBackround.png");
+        unitBack = new JLabel(unitBackround);
+        unitBack.setSize(Globals.settings.getDimension(45, 20));
+        unitBack.setLocation(Globals.settings.getPoint(0, 80));
+        unitBack.setVisible(false);
+        unitBack.setFocusable(false);
+        GameVisual.uiAdd(unitBack);
+        
+        unitIcon = new JLabel();
+        unitIcon.setSize(Globals.settings.getDimension(28, 28));
+        unitIcon.setLocation(Globals.settings.getPoint(1, 81));
+        unitIcon.setVisible(false);
+        unitIcon.setFocusable(false);
+        GameVisual.uiAdd(unitIcon);
+                
+        unitName = new JLabel();
+        unitName.setSize(Globals.settings.getDimension(15, 5));
+        unitName.setLocation(Globals.settings.getPoint(30, 81));
+        unitName.setVisible(false);
+        unitName.setFocusable(false);
+        unitName.setFont(new Font(null, Font.PLAIN, 30));
+        unitName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        GameVisual.uiAdd(unitName);
+        
+        unitHealth = new JLabel();
+        unitHealth.setSize(Globals.settings.getDimension(15, 5));
+        unitHealth.setLocation(Globals.settings.getPoint(30, 87));
+        unitHealth.setVisible(false);
+        unitHealth.setFocusable(false);
+        unitHealth.setFont(new Font(null, Font.PLAIN, 20));
+        GameVisual.uiAdd(unitHealth);
+        
+        unitMoves = new JLabel();
+        unitMoves.setSize(100, 20);
+        unitMoves.setSize(Globals.settings.getDimension(15, 5));
+        unitMoves.setLocation(Globals.settings.getPoint(30, 94));
+        unitMoves.setVisible(false);
+        unitMoves.setFocusable(false);
+        unitMoves.setFont(new Font(null, Font.PLAIN, 20));
+        GameVisual.uiAdd(unitMoves);
+
+        
 //        Icon imgMove = new ImageIcon("src\\Images\\unitMove.png");
 //        unitMove = new JButton(imgMove);
 //        ActionListener move = new ActionListener() {
@@ -351,10 +334,11 @@
 //        unitAttack.setVisible(false);
 //        unitAttack.setFocusable(false);
 //        Visual.UnitUI.add(unitAttack,0);
-//    }
-//    /**
-//     * makes all the production UI elements(part of city UI)
-//     */
+    }
+    
+    /**
+     * makes all the production UI elements(part of city UI)
+     */
 //    public void MakeProductionUI() {
 //        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 //        jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -421,27 +405,23 @@
 //        jsp.setVisible(visible);
 //        SelectedProduction.setVisible(visible); 
 //    }
-//    /**
-//     * sets all the unit UI elements to the given visibility 
-//     * @param visable:the given visibility 
-//     */
-//    public static void visibleUnitUI(boolean visible){
-//        unitBack.setVisible(visible);
-//        unitHealth.setVisible(visible);
-//        unitStrength.setVisible(visible);
-//        unitMoves.setVisible(visible);
-//        unitMove.setVisible(visible);
-//        unitName.setVisible(visible);
-//        unitIcon.setVisible(visible);
-//        if (unit.type == 2) unitSettle.setVisible(visible);
-//        else unitSettle.setVisible(false);
-//        
-//        if (unit.type == 1) unitAttack.setVisible(visible);
-//        else unitAttack.setVisible(false);
-//    }
-//    /**
-//     * updates the city UI's list of build objects
-//     */
+    
+    /**
+     * sets all the unit UI elements to the given visibility 
+     * @param visable:the given visibility 
+     */
+    private static void visibleUnitUI(boolean visible){
+        unitBack.setVisible(visible);
+        unitHealth.setVisible(visible);
+        unitStrength.setVisible(visible);
+        unitMoves.setVisible(visible);
+        unitMove.setVisible(visible);
+        unitName.setVisible(visible);
+        unitIcon.setVisible(visible);
+    }
+    /**
+     * updates the city UI's list of build objects
+     */
 //    public static void updateProductionList(){
 //        productionPanelList.clear();
 //        productionBackrounds.removeAll();
@@ -516,4 +496,4 @@
 //            productionInfo.add(icon, 0);
 //        }
 //    }
-//}
+}

@@ -33,8 +33,8 @@ public class GameVisual extends Visual{
         ui.setSize(Globals.settings.getDimension(100, 100));
         ui.setLayout(null);
 
-        //UserInt.initalize();
         Map.initalize();
+        UserInt.initalize();
         
         Container c = new Container();
         c.setSize(Globals.settings.getDimension(100, 100));

@@ -1,8 +1,11 @@
 package GameLogic;
 
 import World.UnitDisplay;
+import java.awt.Image;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  * Purpose: 
@@ -73,6 +76,17 @@ public class Unit {
     public UnitDisplay getDisplay(){
         return display;
     }
+
+    public String getName() {
+        return name;
+    }
+    public int getHealth() {
+        return health;
+    }
+    public int getMovementCur() {
+        return movementCur;
+    }
+    
 
     //-------Object-Methods------------- 
 
