@@ -113,7 +113,6 @@ public abstract class GameVisual extends Visual{
             
             Map.redrawMap();
             Map.redrawUnits();
-            //System.out.println("Right: "+Map.rightOff+", Down: "+Map.downOff);
     }
 
     /**
@@ -127,10 +126,12 @@ public abstract class GameVisual extends Visual{
         
         System.out.println("X: "+mouse.x+",Y: "+(mouse.y-22));
         int tileX = (int)(mouse.x/Tile.SIZE)+Map.rightOff;
-        int tileY = (int)(mouse.y-22/Tile.SIZE)+Map.downOff;
+        int tileY = (int)((mouse.y-22)/Tile.SIZE)+Map.downOff;
+        System.out.println("TileX: "+tileX+",TileY: "+tileY);
         
         int unitIndex = Unit.findUnit(tileX, tileY);
         if (unitIndex != -1) {
+            System.out.println(unitIndex);
             UserInt.UnitUI(Globals.unitList.get(unitIndex));
         }
 //        Point mouse = e.getLocationOnScreen();

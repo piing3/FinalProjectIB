@@ -94,7 +94,7 @@ abstract class UserInt {
         
         
         //MakeCityUI();//make the city ui
-        //MakeUnitUI();//make the unit ui
+        MakeUnitUI();//make the unit ui
     }
 //    /**
 //     * opens the city UI of the given city
@@ -271,32 +271,32 @@ abstract class UserInt {
         GameVisual.uiAdd(unitMoves);
 
         
-//        Icon imgMove = new ImageIcon("src\\Images\\unitMove.png");
-//        unitMove = new JButton(imgMove);
-//        ActionListener move = new ActionListener() {
-//
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                Icon imgMove = new ImageIcon("src\\Images\\unitMove.png");
-//                Icon imgMoveSelected = new ImageIcon("src\\Images\\unitMoveSelected.png");
-//                if (!Visual.movingUnit){Visual.movingUnit = true; unitMove.setIcon(imgMoveSelected);}
-//                else {Visual.movingUnit = false; unitMove.setIcon(imgMove);}
-//
-//            }
-//        };
-//        unitMove.addActionListener(move);
-//        unitMove.setSize(50, 50);
-//        unitMove.setLocation(0, 440);
-//        unitMove.setVisible(false);
-//        unitMove.setFocusable(false);
-//        Visual.UnitUI.add(unitMove,0);
-//           
-//        Icon imgSettle = new ImageIcon("src\\Images\\unitSettle.png");
-//        unitSettle = new JButton(imgSettle);
-//        ActionListener settle = new ActionListener() {
-//
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
+        Icon imgMove = new ImageIcon("src\\Resources\\unitMove.png");
+        unitMove = new JButton(imgMove);
+        ActionListener move = new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Icon imgMove = new ImageIcon("src\\Resources\\unitMove.png");
+                Icon imgMoveSelected = new ImageIcon("src\\Resources\\unitMoveSelected.png");
+                //if (!Visual.movingUnit){Visual.movingUnit = true; unitMove.setIcon(imgMoveSelected);}
+                //else Visual.movingUnit = false; unitMove.setIcon(imgMove);
+
+            }
+        };
+        unitMove.addActionListener(move);
+        unitMove.setSize(50, 50);
+        unitMove.setLocation(0, 440);
+        unitMove.setVisible(false);
+        unitMove.setFocusable(false);
+        GameVisual.uiAdd(unitMove);
+           
+        Icon imgSettle = new ImageIcon("src\\Images\\unitSettle.png");
+        unitSettle = new JButton(imgSettle);
+        ActionListener settle = new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
 //                int index = Visual.FindCity(unit.x, unit.y);
 //                if (index == -1)
 //                {
@@ -304,37 +304,36 @@ abstract class UserInt {
 //                    int UnitIndex = UnitType.FindUnit(unit.x, unit.y);
 //                    UnitType.Death(UnitIndex);
 //                    CityUI(FinalProject.cities.get(Visual.FindCity(unit.x, unit.y)));
-//                } 
-//                
-//            }
-//        };
-//        unitSettle.addActionListener(settle);
-//        unitSettle.setSize(50, 50);
-//        unitSettle.setLocation(0, 380);
-//        unitSettle.setVisible(false);
-//        unitSettle.setFocusable(false);
-//        Visual.UnitUI.add(unitSettle,0);
-//           
-//        Icon imgAttack = new ImageIcon("src\\Images\\unitAttack.png");
-//        unitAttack = new JButton(imgAttack);
-//        ActionListener attack = new ActionListener() {
-//
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//
+//                }  
+            }
+        };
+        unitSettle.addActionListener(settle);
+        unitSettle.setSize(50, 50);
+        unitSettle.setLocation(0, 380);
+        unitSettle.setVisible(false);
+        unitSettle.setFocusable(false);
+        GameVisual.uiAdd(unitSettle);
+           
+        Icon imgAttack = new ImageIcon("src\\Images\\unitAttack.png");
+        unitAttack = new JButton(imgAttack);
+        ActionListener attack = new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
 //                Icon imgAttack = new ImageIcon("src\\Images\\unitAttack.png");
 //                Icon imgAttackSelected = new ImageIcon("src\\Images\\unitAttackSelected.png");
 //                if (!Visual.attackingUnit){Visual.attackingUnit = true; unitAttack.setIcon(imgAttackSelected);}
 //                else {Visual.attackingUnit = false; Visual.attackingUnit = false;unitAttack.setIcon(imgAttack);} 
-//                
-//            }
-//        };
-//        unitAttack.addActionListener(attack);
-//        unitAttack.setSize(50, 50);
-//        unitAttack.setLocation(0, 380);
-//        unitAttack.setVisible(false);
-//        unitAttack.setFocusable(false);
-//        Visual.UnitUI.add(unitAttack,0);
+                
+            }
+        };
+        unitAttack.addActionListener(attack);
+        unitAttack.setSize(50, 50);
+        unitAttack.setLocation(0, 380);
+        unitAttack.setVisible(false);
+        unitAttack.setFocusable(false);
+        GameVisual.uiAdd(unitAttack);
     }
     
     /**
@@ -414,7 +413,6 @@ abstract class UserInt {
     private static void visibleUnitUI(boolean visible){
         unitBack.setVisible(visible);
         unitHealth.setVisible(visible);
-        unitStrength.setVisible(visible);
         unitMoves.setVisible(visible);
         unitMove.setVisible(visible);
         unitName.setVisible(visible);
