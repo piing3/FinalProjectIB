@@ -1,11 +1,8 @@
 package GameLogic;
 
+import Main.Globals;
 import World.UnitDisplay;
-import java.awt.Image;
 import java.awt.Point;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import javax.swing.ImageIcon;
 
 /**
  * Purpose: 
@@ -65,9 +62,16 @@ public class Unit {
         display = new UnitDisplay(x, y, unit);
         GameUI.GameVisual.worldAdd(display);
     }
-
- 
     
+    public static int findUnit(int tileX, int tileY) {
+        for (int i = 0; i < Globals.unitList.size(); i++) {
+            if (Globals.unitList.get(i).x == tileX && Globals.unitList.get(i).y == tileY) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     //------Varibles-Methods------------
 
     public Point getPos() {

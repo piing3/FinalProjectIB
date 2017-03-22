@@ -4,21 +4,18 @@ import GameLogic.Unit;
 import Main.Globals;
 import Main.Visual;
 import World.Map;
-import static World.Map.MAP_WIDTH;
-import static World.Map.downOff;
-import static World.Map.rightOff;
-import World.UnitDisplay;
+import World.Tile;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import javax.swing.JButton;
 
 /**
  * Sub-master class for game visuals 
  * @author d.holmberg
  */
-public class GameVisual extends Visual{
+public abstract class GameVisual extends Visual{
 
     private static Container world;
     private static Container ui;
@@ -40,7 +37,7 @@ public class GameVisual extends Visual{
         c.setSize(Globals.settings.getDimension(100, 100));
         c.setLayout(null);
         c.add(world);
-        //c.add(ui,0);
+        c.add(ui,0);
         
         Visual.baseFrame.setContentPane(c);
         Visual.baseFrame.repaint();
@@ -116,7 +113,7 @@ public class GameVisual extends Visual{
             
             Map.redrawMap();
             Map.redrawUnits();
-            System.out.println("Right: "+Map.rightOff+", Down: "+Map.downOff);
+            //System.out.println("Right: "+Map.rightOff+", Down: "+Map.downOff);
     }
 
     /**
@@ -125,71 +122,81 @@ public class GameVisual extends Visual{
      * @param e The mouse event
      */
     public static void userInput(MouseEvent e) {
-        /*
-        int tileX = (getMousePosition().x-25)/50+rightOff;//get mouse grid location
-        int tileY = (getMousePosition().y-25)/50+downOff;
-        int cityIndex = FindCity(tileX, tileY);//get city index at mouse
-        int unitIndex = -1; 
-        if (movingUnit == false && attackingUnit == false ){//not moving or attacking 
-            
-            unitIndex = UnitType.FindUnit(tileX, tileY);//get unit index at mouse
-            if (unitIndex != -1 && cityIndex != -1) {//both unit and city
-                if (CityUIOpen) {//if city open, open unit
-                    UserInt.UnitUI(FinalProject.units.get(unitIndex));
-                    moveEnabled = true;
-                    CityUIOpen = false;
-                    UnitUIOpen = true;
-                }
-                else if (UnitUIOpen) {//if unit open, open city
-                    UserInt.CityUI(FinalProject.cities.get(cityIndex));
-                    moveEnabled = false;
-                    CityUIOpen = true;
-                    UnitUIOpen = false;
-                }
-                else if (!UnitUIOpen && !CityUIOpen){// if neither open, open unit
-                    UserInt.UnitUI(FinalProject.units.get(unitIndex));
-                    moveEnabled = true;
-                    CityUIOpen = false;
-                    UnitUIOpen = true;
-                }
-            }
-            else if (cityIndex != -1) {//if city, open city
-                UserInt.CityUI(FinalProject.cities.get(cityIndex));
-                moveEnabled = false;
-                CityUIOpen = true;
-                UnitUIOpen = false;
-            }
-            else if (unitIndex != -1) {//if unit, open unit
-                UserInt.UnitUI(FinalProject.units.get(unitIndex));
-                moveEnabled = true;
-                CityUIOpen = false;
-                UnitUIOpen = true;
-            }
-            if (cityIndex == -1 && unitIndex == -1) {//if neither, set normal UI
-                UserInt.NormalUI(); 
-                moveEnabled = true;
-                CityUIOpen = false;
-                UnitUIOpen = false;
-            }
+        
+        Point mouse = e.getPoint();
+        
+        System.out.println("X: "+mouse.x+",Y: "+(mouse.y-22));
+        int tileX = (int)(mouse.x/Tile.SIZE)+Map.rightOff;
+        int tileY = (int)(mouse.y-22/Tile.SIZE)+Map.downOff;
+        
+        int unitIndex = Unit.findUnit(tileX, tileY);
+        if (unitIndex != -1) {
+            UserInt.UnitUI(Globals.unitList.get(unitIndex));
         }
-        if (movingUnit && attackingUnit == false){//if moving unit
-            int unitX = UserInt.unit.x;
-            int unitY = UserInt.unit.y;
-            if (Globals.unitGrid[unitX][unitY] != 4){//ground
-                UnitType.MoveGround(UnitType.FindUnit(UserInt.unit.x, UserInt.unit.y), tileX, tileY);
-                UserInt.updateMoves();
-            }
-            if (Globals.unitGrid[unitX][unitY] == 4){//water
-                UnitType.MoveWater(UnitType.FindUnit(UserInt.unit.x, UserInt.unit.y), tileX, tileY);
-                UserInt.updateMoves();
-            }
-        }
-        if (movingUnit == false && attackingUnit) {//if attacking
-            int index1 = UnitType.FindUnit(UserInt.unit.x, UserInt.unit.y);
-            int index2 = UnitType.FindUnit(tileX, tileY);
-            UnitType.Attack(index1, index2);
-        }
-        */
+//        Point mouse = e.getLocationOnScreen();
+//        int tileX = (mouse.x-25)/50+rightOff;//get mouse grid location
+//        int tileY = (mouse.y-25)/50+downOff;
+//        //int cityIndex = FindCity(tileX, tileY);//get city index at mouse
+//        int unitIndex = -1; 
+//        if (movingUnit == false && attackingUnit == false ){//not moving or attacking 
+//            
+//            unitIndex = UnitType.FindUnit(tileX, tileY);//get unit index at mouse
+//            if (unitIndex != -1 && cityIndex != -1) {//both unit and city
+//                if (CityUIOpen) {//if city open, open unit
+//                    UserInt.UnitUI(FinalProject.units.get(unitIndex));
+//                    moveEnabled = true;
+//                    CityUIOpen = false;
+//                    UnitUIOpen = true;
+//                }
+//                else if (UnitUIOpen) {//if unit open, open city
+//                    UserInt.CityUI(FinalProject.cities.get(cityIndex));
+//                    moveEnabled = false;
+//                    CityUIOpen = true;
+//                    UnitUIOpen = false;
+//                }
+//                else if (!UnitUIOpen && !CityUIOpen){// if neither open, open unit
+//                    UserInt.UnitUI(FinalProject.units.get(unitIndex));
+//                    moveEnabled = true;
+//                    CityUIOpen = false;
+//                    UnitUIOpen = true;
+//                }
+//            }
+//            else if (cityIndex != -1) {//if city, open city
+//                UserInt.CityUI(FinalProject.cities.get(cityIndex));
+//                moveEnabled = false;
+//                CityUIOpen = true;
+//                UnitUIOpen = false;
+//            }
+//            else if (unitIndex != -1) {//if unit, open unit
+//                UserInt.UnitUI(FinalProject.units.get(unitIndex));
+//                moveEnabled = true;
+//                CityUIOpen = false;
+//                UnitUIOpen = true;
+//            }
+//            if (cityIndex == -1 && unitIndex == -1) {//if neither, set normal UI
+//                UserInt.NormalUI(); 
+//                moveEnabled = true;
+//                CityUIOpen = false;
+//                UnitUIOpen = false;
+//            }
+//        }
+//        if (movingUnit && attackingUnit == false){//if moving unit
+//            int unitX = UserInt.unit.x;
+//            int unitY = UserInt.unit.y;
+//            if (Globals.unitGrid[unitX][unitY] != 4){//ground
+//                UnitType.MoveGround(UnitType.FindUnit(UserInt.unit.x, UserInt.unit.y), tileX, tileY);
+//                UserInt.updateMoves();
+//            }
+//            if (Globals.unitGrid[unitX][unitY] == 4){//water
+//                UnitType.MoveWater(UnitType.FindUnit(UserInt.unit.x, UserInt.unit.y), tileX, tileY);
+//                UserInt.updateMoves();
+//            }
+//        }
+//        if (movingUnit == false && attackingUnit) {//if attacking
+//            int index1 = UnitType.FindUnit(UserInt.unit.x, UserInt.unit.y);
+//            int index2 = UnitType.FindUnit(tileX, tileY);
+//            UnitType.Attack(index1, index2);
+//        }
     }
 
     public static void addUnit(int x, int y, int type){

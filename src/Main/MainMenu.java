@@ -11,7 +11,7 @@ import javax.swing.JButton;
  * Handles all the operations of the main menu, static 
  * @author d.holmberg
  */
-public class MainMenu extends Visual{
+public abstract class MainMenu extends Visual{
 
     private static Container container;
     

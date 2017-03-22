@@ -8,7 +8,7 @@ import Main.Globals;
  * 
  * @author d.holmberg
  */
-public class Turn {
+public abstract class Turn {
 
     private static int maxSize = 4;
     private static int turn = 0;

@@ -15,7 +15,7 @@ import java.util.Scanner;
  *
  * @author d.holmberg
  */
-public class Map {
+public abstract class Map {
 
     public static boolean initalized = false;
     

@@ -35,8 +35,7 @@ public class UnitProduction extends Production{
 
     @Override
     public UnitProduction clone() throws CloneNotSupportedException {
-        UnitProduction u = new UnitProduction(name, discription, buildCost, goldCost, icon, x, y, unitType);
-        return u;
+        return (UnitProduction) super.clone();
     }
 
     @Override

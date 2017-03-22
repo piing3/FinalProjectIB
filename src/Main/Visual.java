@@ -8,7 +8,7 @@ import java.awt.event.MouseEvent;
  * Master class for all application visuals.
  * @author d.holmberg
  */
-public class Visual{
+public abstract class Visual{
     
     public static boolean initalized = false;
     
@@ -17,7 +17,7 @@ public class Visual{
     
     public static void initalize() {
         if (!Globals.initalized) Globals.initalize();
-        baseFrame = new BaseFrame(Globals.settings.getDimension(100, 100));
+        baseFrame = new BaseFrame(Globals.settings.getFrameDimension());
         baseFrame.setVisible(true);
         initalized = true;
     }

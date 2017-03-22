@@ -12,9 +12,6 @@ import java.awt.event.MouseListener;
  */
 public class UserInput implements KeyListener, MouseListener{
 
-    public UserInput() {
-    }
-
     @Override
     public void keyPressed(KeyEvent e) {
         Visual.userInput(e);

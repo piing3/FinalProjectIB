@@ -19,14 +19,14 @@ import javax.swing.SwingConstants;
  *handles all user interface mechanics
  * @author Davin
  */
-class UserInt {
+abstract class UserInt {
     
     public static JButton nextTurn;//normal ui components
     public static JLabel playerTurn;
         
 //        static public JButton cityTest = new JButton();//city ui components
 //        static public City city = new City();
-          static public GameLogic.Unit unit; 
+    static public GameLogic.Unit unit; 
 //        static public JLabel cityLeft;
 //        static public JLabel cityGold;
 //        static public JLabel cityFood;
@@ -59,6 +59,12 @@ class UserInt {
     
     public static void initalize(){
         
+        JPanel UIBackround = new JPanel();//make UIBackround
+        UIBackround.setLocation(Globals.settings.getPoint(80, 80));
+        UIBackround.setSize(Globals.settings.getDimension(20, 20));
+        UIBackround.setBackground(Color.GRAY);
+        GameVisual.uiAdd(UIBackround);
+        
         nextTurn = new JButton("Next Turn");//make nextTurn button
         ActionListener actionListener = new ActionListener() {
 
@@ -72,29 +78,24 @@ class UserInt {
             }
         };
         nextTurn.addActionListener(actionListener);
-        nextTurn.setSize(Globals.settings.getDimension(10, 5)); 
-        nextTurn.setLocation(Globals.settings.getPoint(90, 95));
+        nextTurn.setSize(Globals.settings.getDimension(20, 15)); 
+        nextTurn.setLocation(Globals.settings.getPoint(80, 85));
         nextTurn.setBackground(Color.orange);
+        nextTurn.setForeground(Color.black);
         nextTurn.setFocusable(false);
         GameVisual.uiAdd(nextTurn);
         
         playerTurn = new JLabel("It's player #"+GameLogic.Turn.getTurn()+"'s Turn");//make playerTurn label 
-        playerTurn.setSize(Globals.settings.getDimension(10, 5));
-        playerTurn.setLocation(Globals.settings.getPoint(90, 90));
+        playerTurn.setSize(Globals.settings.getDimension(20, 5));
+        playerTurn.setLocation(Globals.settings.getPoint(80, 80));
         playerTurn.setHorizontalAlignment(SwingConstants.CENTER);
         playerTurn.setForeground(Color.BLACK);
         GameVisual.uiAdd(playerTurn);
         
-        JPanel UIBackround = new JPanel();//make UIBackround
-        UIBackround.setLocation(Globals.settings.getPoint(90, 90));
-        UIBackround.setSize(Globals.settings.getDimension(10, 10));
-        UIBackround.setBackground(Color.GRAY);
-        GameVisual.uiAdd(UIBackround);
         
         //MakeCityUI();//make the city ui
-        MakeUnitUI();//make the unit ui
-
-        }
+        //MakeUnitUI();//make the unit ui
+    }
 //    /**
 //     * opens the city UI of the given city
 //     * @param newCity: the city to open

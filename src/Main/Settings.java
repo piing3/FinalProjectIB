@@ -16,6 +16,7 @@ public class Settings implements Serializable{
     
     private int width;
     private int height;
+    private int heightMenuBar = 22;
     private String gQuality = "sh*t";// for "expandibility"
     
     public Settings() {
@@ -29,10 +30,13 @@ public class Settings implements Serializable{
     
     public static void writeFile(){
        
+        int width = 1440;
+        int height = 900;
+        
         Globals.settings = new Settings();
         
-        Globals.settings.width = 1440;
-        Globals.settings.height = 900;
+        Globals.settings.width = width;
+        Globals.settings.height = height;
         
         fileHandler.saveObject(Globals.settings, fileName);
     }
@@ -42,7 +46,11 @@ public class Settings implements Serializable{
     }
 
     public Dimension getDimension(double x, double y) {
-        return new Dimension((int)(width*(x/100)), (int)(height*(y/100)));
+        return new Dimension((int)(width*(x/100)), (int)((height-heightMenuBar)*(y/100)));
+    }
+    
+    public Dimension getFrameDimension(){
+        return new Dimension(width, height);
     }
 
 

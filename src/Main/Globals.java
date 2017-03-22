@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  * "if it's used in multiple packages, it probably should be here"
  * @author d.holmberg
  */
-public class Globals {
+public abstract class Globals {
 
     public static boolean initalized = false;
     
@@ -28,6 +28,7 @@ public class Globals {
     
     public static void initalize() {
         Production.fillList();
+        Settings.writeFile();
         Settings.readFile();    
         
         initalized = true;
