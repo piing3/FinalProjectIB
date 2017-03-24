@@ -1,6 +1,8 @@
 package GameLogic;
 
+import World.Map;
 import java.util.ArrayList;//replace with my own
+import java.util.Random;
 
 /**
  * A player object
@@ -30,6 +32,8 @@ public class Player {
         this.startX = 0;
         this.startY = 0;
         
+        
+        spawn();
         startBuildList();
     }
 
@@ -49,7 +53,12 @@ public class Player {
      * Generates the visual elements at a semi-random location  
      */
     public void spawn(){
-        //todo
+        Random r = new Random();
+        do{
+            startX = r.nextInt(Map.MAP_WIDTH);
+            startY = r.nextInt(Map.MAP_HEIGHT);
+        }while (!Map.checkTileLand(startX, startY));
+        GameUI.GameVisual.addUnit(startX, startY, Unit.UNIT_SETTLER);
     }
     
     /**

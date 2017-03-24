@@ -1,5 +1,6 @@
 package GameUI;
 
+import GameLogic.Player;
 import GameLogic.Unit;
 import Main.Globals;
 import Main.Visual;
@@ -10,6 +11,7 @@ import java.awt.Container;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import javax.swing.JOptionPane;
 
 /**
  * Sub-master class for game visuals 
@@ -38,6 +40,8 @@ public abstract class GameVisual extends Visual{
         c.setLayout(null);
         c.add(world);
         c.add(ui,0);
+        
+        addPlayers();
         
         Visual.baseFrame.setContentPane(c);
         Visual.baseFrame.repaint();
@@ -203,9 +207,20 @@ public abstract class GameVisual extends Visual{
     public static void addUnit(int x, int y, int type){
         Unit unit = new Unit(type, x, y);
         Globals.unitList.add(unit);
+    }  
+
+    private static void addPlayers() {
+        String[] options = {2+"",3+"",4+""};
+        String playersTemp = (String) JOptionPane.showInputDialog(baseFrame, "How many players?", null, JOptionPane.PLAIN_MESSAGE, null, options, 2);
+        int players = Integer.parseInt(playersTemp);
+        GameLogic.Turn.setMaxSize(players);
+        for (int i = 0; i < players; i++) {
+            String name = JOptionPane.showInputDialog("Enter a name for player #"+(i+1));
+            GameLogic.Player p = new Player(name);
+            Globals.players.add(p);
+        }
+        World.Map.setFocus(Globals.players.get(0));
     }
-    
-    
     //----Variables-----------
 
     public static void worldAdd(Component comp) {
@@ -214,6 +229,7 @@ public abstract class GameVisual extends Visual{
     public static void uiAdd(Component comp) {
         ui.add(comp,0);
     }
+
 
 
     

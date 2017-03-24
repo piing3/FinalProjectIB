@@ -1,8 +1,10 @@
 package Main;
 
+import GameLogic.Player;
 import GameUI.GameVisual;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import javax.swing.JOptionPane;
 
 /**
  * Master class for all application visuals.

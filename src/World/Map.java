@@ -1,5 +1,6 @@
 package World;
 
+import GameLogic.Player;
 import GameUI.GameVisual;
 import Main.Globals;
 import Main.Main;
@@ -148,6 +149,23 @@ public abstract class Map {
     }
     public static int getDisplayWidth() {
         return displayWidth;
+    }
+
+    public static boolean checkTileLand(int startX, int startY) {
+        if (TILE_WORLD[startX][startY] == 0) return true;
+        if (TILE_WORLD[startX][startY] == 1) return true;
+        return false;
+    }
+
+    public static void setFocus(Player player) {
+        if(!initalized) initalize();
+        rightOff = player.getStartX();
+        downOff = player.getStartY();
+        
+        if(rightOff == MAP_WIDTH) rightOff = 0;
+        
+        redrawMap();
+        redrawUnits();
     }
 
 

@@ -1,11 +1,12 @@
 package Main;
 
-import GameUI.PauseMenu;
-import java.awt.Color;
+import GameLogic.Player;
+import GameUI.GameVisual;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
  * Handles all the operations of the main menu, static 

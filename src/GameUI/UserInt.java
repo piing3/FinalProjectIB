@@ -71,7 +71,6 @@ abstract class UserInt {
             @Override
             public void actionPerformed(ActionEvent e) {
                 GameLogic.Turn.NextTurn();
-                System.out.println(GameLogic.Turn.getTurn());
                 playerTurn.setText("It's player #"+GameLogic.Turn.getTurn()+"'s Turn");
                 
                 
