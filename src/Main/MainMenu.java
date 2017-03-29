@@ -1,6 +1,7 @@
 package Main;
 
 import GameLogic.Player;
+import GameLogic.Unit;
 import GameUI.GameVisual;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
@@ -29,6 +30,7 @@ public abstract class MainMenu extends Visual{
             @Override
             public void actionPerformed(ActionEvent e) {
                 Visual.Game();
+                addPlayers();
             }
         };
         btnStart.addActionListener(start);
@@ -50,17 +52,38 @@ public abstract class MainMenu extends Visual{
         baseFrame.setContentPane(container);
     }
     
+    public static void addPlayers() {
+        if(!World.Map.initalized) World.Map.initalize();
+        String[] options = new String[4];
+        options[0] = 1+"";
+        options[1] = 2+"";
+        options[2] = 3+"";
+        options[3] = 4+"";
+        String playersTemp = (String) JOptionPane.showInputDialog(baseFrame, "How many players?", null, JOptionPane.PLAIN_MESSAGE, null, options, 2);
+        int players = Integer.parseInt(playersTemp);
+        GameLogic.Turn.setMaxSize(players);
+        for (int i = 0; i < players; i++) {
+            String name = JOptionPane.showInputDialog(baseFrame, "Enter a name for player #"+(i+1));
+            GameLogic.Player p = new Player(name);
+            p.spawn(i);
+            Globals.playerList.add(p);
+        }
+        
+        World.Map.setFocus(Globals.playerList.get(0));
+        GameUI.UserInt.updateTurn();
+    }
+    
     
     
     /*Legacy code
         public static int play;
          
-        play = 2;//Integer.parseInt(JOptionPane.showInputDialog("How many people are playing"));//gets the number of players, locked at 2 tempariliy
+        play = 2;//Integer.parseInt(JOptionPane.showInputDialog("How many people are playing"));//gets the number of playerList, locked at 2 tempariliy
         TurnOrder turnorder = new TurnOrder();
         if (play < 2)JOptionPane.showMessageDialog(null, "you cant play alone.");//Check vailid input
-        else if (play > 4) JOptionPane.showMessageDialog(null, "You can only have up to 4 players");
+        else if (play > 4) JOptionPane.showMessageDialog(null, "You can only have up to 4 playerList");
         else {
-        for (int i = 0; i < play; i++) {//makes players
+        for (int i = 0; i < play; i++) {//makes playerList
             String name = JOptionPane.showInputDialog("What is your name?");
                  if(i == 0) FinalProject.Players.add(new Player(name, i+1));
             else if(i == 1) FinalProject.Players.add(new Player(name, i+1));

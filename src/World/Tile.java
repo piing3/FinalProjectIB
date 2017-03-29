@@ -11,6 +11,11 @@ public class Tile extends JLabel{
 
     public static final int SIZE = 50;
     
+    public static final int TILE_GRASS = 0;
+    public static final int TILE_DESSERT = 1;
+    public static final int TILE_WATER = 2;
+    public static final int TILE_CITY = 3;
+    
     private int x;
     private int y;
     private int tileType;
@@ -36,10 +41,10 @@ public class Tile extends JLabel{
     public void setTile(int type){
         tileType = type;
         String file = "src\\Resources\\";
-        if (tileType == 0) file += "GrassTile1.png";
-        if (tileType == 1) file += "DessertTile1.png";
-        if (tileType == 2) file += "WaterTile1.png";
-        if (tileType == 3) file += "BorderTile1.png";
+        if (tileType == TILE_GRASS) file += "GrassTile1.png";
+        if (tileType == TILE_DESSERT) file += "DessertTile1.png";
+        if (tileType == TILE_WATER) file += "WaterTile1.png";
+        if (tileType == TILE_CITY) file += "CityTile1.png";
         
         this.setIcon(new ImageIcon(file));
     }

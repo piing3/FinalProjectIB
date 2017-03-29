@@ -3,13 +3,8 @@ package World;
 import GameLogic.Player;
 import GameUI.GameVisual;
 import Main.Globals;
-import Main.Main;
-import java.awt.Color;
 import java.awt.Point;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Random;
-import java.util.Scanner;
 
 
 /**
@@ -52,7 +47,6 @@ public abstract class Map {
         GrowTiles();
         redrawMap();
         redrawUnits();
-        
     }
     
     private static void SeedTiles() {
@@ -106,24 +100,29 @@ public abstract class Map {
     }
     
     public static void redrawMap(){
+        
         for (int x = 0; x < displayWidth; x++){
             for (int y = 0; y < displayHeight; y++){
+                
                 int xAdj = x;
                 if(x+rightOff >= MAP_WIDTH) xAdj -= MAP_WIDTH;
-                tileDisplay[x][y].setTile(TILE_WORLD[xAdj + rightOff][y + downOff]);
+                
+                int yAdj = y;
+                if(y+downOff >= MAP_HEIGHT) yAdj -= MAP_HEIGHT;
+                
+                tileDisplay[x][y].setTile(TILE_WORLD[xAdj + rightOff][yAdj + downOff]);
                 //borderGrid[x][y].setBorder(borderType[x + rightOff][y + downOff]);
             }
         }
     }
     
     public static void redrawUnits(){
+        if(rightOff == -1) rightOff = MAP_WIDTH-1;
+        if(rightOff == MAP_WIDTH) rightOff = 0;
+        
         for (int i = 0; i < Globals.unitList.size(); i++) {
             Point p = Globals.unitList.get(i).getPos();
-            
-            int xAdj = p.x;
-            
-            if(rightOff < MAP_WIDTH && rightOff > displayWidth) xAdj = p.x+MAP_WIDTH;
-            Globals.unitList.get(i).getDisplay().setLocation((xAdj-rightOff)*50, (p.y-downOff)*50);
+            Globals.unitList.get(i).getDisplay().setLocation((p.x-rightOff)*50, (p.y-downOff)*50);
             
         }
         
@@ -151,6 +150,11 @@ public abstract class Map {
         return displayWidth;
     }
 
+    public static void setTile(int x, int y, int type){
+        TILE_WORLD[x][y] = type;
+        redrawMap();
+    }
+    
     public static boolean checkTileLand(int startX, int startY) {
         if (TILE_WORLD[startX][startY] == 0) return true;
         if (TILE_WORLD[startX][startY] == 1) return true;
@@ -159,10 +163,11 @@ public abstract class Map {
 
     public static void setFocus(Player player) {
         if(!initalized) initalize();
-        rightOff = player.getStartX();
-        downOff = player.getStartY();
+        rightOff = player.getStartX()-(displayWidth/2);
+        downOff = player.getStartY()-(displayHeight/2);
         
-        if(rightOff == MAP_WIDTH) rightOff = 0;
+        if(rightOff < 0) rightOff = MAP_WIDTH + rightOff;
+        if(downOff < 0) downOff = MAP_HEIGHT + downOff;
         
         redrawMap();
         redrawUnits();

@@ -1,11 +1,10 @@
 package Main;
 
+import GameLogic.City;
 import GameLogic.Player;
 import GameLogic.Production;
 import GameLogic.Unit;
 import GameUI.UserInput;
-//import World.City;
-//import World.Unit;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -19,8 +18,8 @@ public abstract class Globals {
     public static boolean initalized = false;
     
     public static ArrayList<Unit> unitList = new ArrayList<Unit>();//the list that stores unit
-    public static ArrayList<Player> players = new ArrayList<Player>();
-    //public static ArrayList<City> cities = new ArrayList<City>();//list of all cities
+    public static ArrayList<Player> playerList = new ArrayList<Player>();
+    public static ArrayList<City> cityList = new ArrayList<City>();//list of all cityList
     //public static ArrayList<Unit> units = new ArrayList<Unit>();//list of all units
     public static Production[] buildList = new Production[100];
     public static Settings settings = new Settings();
@@ -43,9 +42,9 @@ public abstract class Globals {
     //----Variables-----------
 
     public void removePlayer(Player player){
-        for (int i = 0; i < players.size(); i++) {
-            if(players.get(i).equals(player)){
-                players.remove(i);
+        for (int i = 0; i < playerList.size(); i++) {
+            if(playerList.get(i).equals(player)){
+                playerList.remove(i);
                 return;
             }
         }

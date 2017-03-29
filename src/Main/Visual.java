@@ -58,7 +58,12 @@ public abstract class Visual{
         baseFrame.dispose();
     }
     //----Variables-----------
+
+    public static BaseFrame getBaseFrame() {
+        return baseFrame;
+    }
   
+    
     
     //----Object-Methods-------
     @Override

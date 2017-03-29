@@ -6,7 +6,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /**
- * An object that can be built in cities
+ * An object that can be built in cityList
  * 
  * @author Davin
  */
@@ -34,16 +34,18 @@ public abstract class Production{
         this.icon = icon;
     }
     
-    public abstract void built();
+    public abstract void built(City city);
     
     public static void fillList(){
         Globals.buildList = new Production[100];
-//        
-//        ImageIcon icon = new ImageIcon("src\\Resources\\WarriorIconMed.png");
-//        Globals.buildList[0] = new UnitProduction("Warrior", "Basic melee unit", 40, 100, icon);
-//        Globals.buildList[1] = new UnitProduction("Archer", "Basic ranged unit", 45, 120, icon);
-//        Globals.buildList[2] = new UnitProduction("Settler", "Can make a new city", 70, 250, icon);
-//        Globals.buildList[3] = new UnitProduction("Worker", "Can build and repair tile improvements", 40, 100, icon);
+        
+        Globals.buildList[0] = new UnitProduction("Warrior", "Basic melee unit", 3, 100, null, Unit.UNIT_WARRIOR);
+        Globals.buildList[1] = new UnitProduction("Archer", "Basic ranged unit", 3, 120, null, Unit.UNIT_ARCHER);
+        Globals.buildList[2] = new UnitProduction("Settler", "Can make a new city", 4, 250, null, Unit.UNIT_SETTLER);
+        Globals.buildList[3] = new UnitProduction("Worker", "Can build and repair tile improvements", 3, 100, null, Unit.UNIT_BUILDER);
+        Globals.buildList[4] = new BuildingProduction("Workshop", "Raises the city's production", 2, 200, null, BuildingProduction.BUILDING_WORKSHOP);
+        Globals.buildList[5] = new BuildingProduction("Farm", "Raises the city's food", 2, 200, null, BuildingProduction.BUILDING_FARM);
+        Globals.buildList[6] = new BuildingProduction("Bank", "Raises the city's gold", 2, 200, null, BuildingProduction.BUILDING_BANK);
     } 
     
     //----Variables-----------

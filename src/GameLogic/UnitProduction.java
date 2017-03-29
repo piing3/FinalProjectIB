@@ -10,21 +10,17 @@ import javax.swing.Icon;
  */
 public class UnitProduction extends Production{
 
-    private int x;
-    private int y;
     private int unitType;
     
     
-    public UnitProduction(String name, String discription, int buildCost, int goldCost, Icon icon, int x, int y, int unitType) {
+    public UnitProduction(String name, String discription, int buildCost, int goldCost, Icon icon, int unitType) {
         super(name, discription, buildCost, goldCost, icon);
-        this.x = x;
-        this.y = y;
         this.unitType = unitType;
     }
     
     @Override
-    public void built() {
-        GameUI.GameVisual.addUnit(x, y, unitType);
+    public void built(City city) {
+        GameUI.GameVisual.addUnit(city.getX(), city.getY(), unitType, Turn.getTurn());
     }
     
     //----Variables-----------

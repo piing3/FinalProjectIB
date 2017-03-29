@@ -19,8 +19,8 @@ public abstract class Turn {
      * @param newPlayer 
      */
     public void addPlayer(Player newPlayer){
-        if (Globals.players.size() < maxSize) {
-            Globals.players.add(newPlayer);
+        if (Globals.playerList.size() < maxSize) {
+            Globals.playerList.add(newPlayer);
             return;
         }
         JOptionPane.showMessageDialog(null, "Can not add anymore players.");
@@ -33,8 +33,8 @@ public abstract class Turn {
     public static void NextTurn(){
         turn++;
         if(turn == maxSize) turn -= maxSize;
-        Map.setFocus(Globals.players.get(turn));
-        Globals.players.get(turn).startTurn();
+        Map.setFocus(Globals.playerList.get(turn));
+        Globals.playerList.get(turn).startTurn();
     }
 
 

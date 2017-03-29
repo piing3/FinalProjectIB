@@ -1,6 +1,9 @@
 package GameLogic;
 
+import GameUI.UserInt;
 import Main.Globals;
+import World.Map;
+import World.Tile;
 import World.UnitDisplay;
 import java.awt.Point;
 
@@ -11,18 +14,22 @@ import java.awt.Point;
  */
 public class Unit {
 
+    private int player;
+    
     private String name;
-    private int x, y;
-    private int movementMax = 2, movementCur = 0;
+    int x, y;
+    private int movementMax = 2, movementCur = 2;
     
     private int health = 100; 
     private int mDamage = 0, mDefence = 0;
     private int range = 0, rDamage = 0, rDefence = 0;
     
-    private int builds = 0, settles = 0;
+    private int builds = 0; 
+    private boolean settle = false;
     
-    private int multiCount = 1;
     private UnitDisplay display; 
+    
+    private static Unit selectedUnit;
 
     public static final int UNIT_WARRIOR = 0; 
     public static final int UNIT_ARCHER = 1; 
@@ -30,7 +37,7 @@ public class Unit {
     public static final int UNIT_SETTLER = 3; 
     public static final int UNIT_BUILDER = 4; 
     
-    public Unit(int unit, int x, int y) {
+    public Unit(int unit, int x, int y, int player) {
         this.x = x; this.y = y;
         
         if(unit == UNIT_WARRIOR){
@@ -52,14 +59,14 @@ public class Unit {
         }
         if(unit == UNIT_SETTLER){
             this.name = "Settler";
-            this.settles = 1;
+            this.settle = true;
         }
         if(unit == UNIT_BUILDER){
             this.name = "Builder";
             this.builds = 3;
         }
         
-        display = new UnitDisplay(x, y, unit);
+        display = new UnitDisplay(x, y, unit, player);
         GameUI.GameVisual.worldAdd(display);
     }
     
@@ -72,6 +79,35 @@ public class Unit {
         return -1;
     }
 
+    public void kill() {
+        display.setVisible(false);
+        display = null;
+    }
+
+    public static void MoveGround(int index, int newX, int newY){
+        Unit unit = Globals.unitList.get(index);
+        if(unit.x == newX && unit.y == newY) return;
+        if(findUnit(newX, newY) != -1) return; 
+        if(!World.Map.checkTileLand(newX, newY) || unit.movementCur <= 0) return;
+        if(Turn.getTurn() != unit.player) return;
+        
+        if (unit.x + 1 == newX || unit.x -1 == newX || unit.x == newX){
+            if (unit.y + 1 == newY || unit.y -1 == newY || unit.y == newY){
+                unit.x = newX;
+                unit.y = newY;
+                unit.movementCur--;
+                UserInt.setMovingUnit(false);
+                Map.redrawUnits();
+                                                                                                                                                                                                                                                                                                                                                                                                            
+            }
+        }
+    }
+    
+    
+    public void startTurn() {
+        movementCur = movementMax;
+    }
+    
     //------Varibles-Methods------------
 
     public Point getPos() {
@@ -90,7 +126,21 @@ public class Unit {
     public int getMovementCur() {
         return movementCur;
     }
+    public boolean canSettle() {
+        return settle;
+    }
+
+    public int getPlayer() {
+        return player;
+    }
     
+    public static Unit getSelectedUnit() {
+        return selectedUnit;
+    }
+
+    public static void setSelectedUnit(Unit selectedUnit) {
+        Unit.selectedUnit = selectedUnit;
+    }
 
     //-------Object-Methods------------- 
 
@@ -108,6 +158,5 @@ public class Unit {
     public String toString() {
         return super.toString();
     }
-
 
 }

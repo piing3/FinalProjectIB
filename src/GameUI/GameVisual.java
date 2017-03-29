@@ -1,8 +1,9 @@
 package GameUI;
 
-import GameLogic.Player;
+import GameLogic.City;
 import GameLogic.Unit;
 import Main.Globals;
+import Main.MainMenu;
 import Main.Visual;
 import World.Map;
 import World.Tile;
@@ -11,7 +12,6 @@ import java.awt.Container;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import javax.swing.JOptionPane;
 
 /**
  * Sub-master class for game visuals 
@@ -32,6 +32,7 @@ public abstract class GameVisual extends Visual{
         ui.setSize(Globals.settings.getDimension(100, 100));
         ui.setLayout(null);
 
+        
         Map.initalize();
         UserInt.initalize();
         
@@ -40,8 +41,6 @@ public abstract class GameVisual extends Visual{
         c.setLayout(null);
         c.add(world);
         c.add(ui,0);
-        
-        addPlayers();
         
         Visual.baseFrame.setContentPane(c);
         Visual.baseFrame.repaint();
@@ -68,20 +67,19 @@ public abstract class GameVisual extends Visual{
         }
         
         if (e.getKeyCode() == 81){//q, make city at mouse
+            
             /*
             int cityX = (getMousePosition().x-25)/50+rightOff;
             int cityY = (getMousePosition().y-25)/50+downOff;
             int index = FindCity(cityX, cityY);
             if (index == -1)
             {
-                FinalProject.cities.add(new City(cityX, cityY, TurnOrder.whoTurn()-1));
+                FinalProject.cityList.add(new City(cityX, cityY, TurnOrder.whoTurn()-1));
             } 
             */
         }
         
         if (e.getKeyCode() == 87){//w, make unit at mouse
-            
-            addUnit(10, 10, Unit.UNIT_WARRIOR);
             
             /*
             int unitX = (getMousePosition().x-25)/50+rightOff;
@@ -127,100 +125,44 @@ public abstract class GameVisual extends Visual{
     public static void userInput(MouseEvent e) {
         
         Point mouse = e.getPoint();
-        
-        System.out.println("X: "+mouse.x+",Y: "+(mouse.y-22));
         int tileX = (int)(mouse.x/Tile.SIZE)+Map.rightOff;
         int tileY = (int)((mouse.y-22)/Tile.SIZE)+Map.downOff;
-        System.out.println("TileX: "+tileX+",TileY: "+tileY);
         
         int unitIndex = Unit.findUnit(tileX, tileY);
-        if (unitIndex != -1) {
-            System.out.println(unitIndex);
-            UserInt.UnitUI(Globals.unitList.get(unitIndex));
+        int cityIndex = City.findCity(tileX, tileY);
+        
+        if(UserInt.isMovingUnit()){
+            if(Unit.getSelectedUnit() == null) return;
+            int selectedIndex = Unit.findUnit(Unit.getSelectedUnit().getPos().x, Unit.getSelectedUnit().getPos().y);
+            Unit.MoveGround(selectedIndex, tileX, tileY);
         }
-//        Point mouse = e.getLocationOnScreen();
-//        int tileX = (mouse.x-25)/50+rightOff;//get mouse grid location
-//        int tileY = (mouse.y-25)/50+downOff;
-//        //int cityIndex = FindCity(tileX, tileY);//get city index at mouse
-//        int unitIndex = -1; 
-//        if (movingUnit == false && attackingUnit == false ){//not moving or attacking 
-//            
-//            unitIndex = UnitType.FindUnit(tileX, tileY);//get unit index at mouse
-//            if (unitIndex != -1 && cityIndex != -1) {//both unit and city
-//                if (CityUIOpen) {//if city open, open unit
-//                    UserInt.UnitUI(FinalProject.units.get(unitIndex));
-//                    moveEnabled = true;
-//                    CityUIOpen = false;
-//                    UnitUIOpen = true;
-//                }
-//                else if (UnitUIOpen) {//if unit open, open city
-//                    UserInt.CityUI(FinalProject.cities.get(cityIndex));
-//                    moveEnabled = false;
-//                    CityUIOpen = true;
-//                    UnitUIOpen = false;
-//                }
-//                else if (!UnitUIOpen && !CityUIOpen){// if neither open, open unit
-//                    UserInt.UnitUI(FinalProject.units.get(unitIndex));
-//                    moveEnabled = true;
-//                    CityUIOpen = false;
-//                    UnitUIOpen = true;
-//                }
-//            }
-//            else if (cityIndex != -1) {//if city, open city
-//                UserInt.CityUI(FinalProject.cities.get(cityIndex));
-//                moveEnabled = false;
-//                CityUIOpen = true;
-//                UnitUIOpen = false;
-//            }
-//            else if (unitIndex != -1) {//if unit, open unit
-//                UserInt.UnitUI(FinalProject.units.get(unitIndex));
-//                moveEnabled = true;
-//                CityUIOpen = false;
-//                UnitUIOpen = true;
-//            }
-//            if (cityIndex == -1 && unitIndex == -1) {//if neither, set normal UI
-//                UserInt.NormalUI(); 
-//                moveEnabled = true;
-//                CityUIOpen = false;
-//                UnitUIOpen = false;
-//            }
-//        }
-//        if (movingUnit && attackingUnit == false){//if moving unit
-//            int unitX = UserInt.unit.x;
-//            int unitY = UserInt.unit.y;
-//            if (Globals.unitGrid[unitX][unitY] != 4){//ground
-//                UnitType.MoveGround(UnitType.FindUnit(UserInt.unit.x, UserInt.unit.y), tileX, tileY);
-//                UserInt.updateMoves();
-//            }
-//            if (Globals.unitGrid[unitX][unitY] == 4){//water
-//                UnitType.MoveWater(UnitType.FindUnit(UserInt.unit.x, UserInt.unit.y), tileX, tileY);
-//                UserInt.updateMoves();
-//            }
-//        }
-//        if (movingUnit == false && attackingUnit) {//if attacking
-//            int index1 = UnitType.FindUnit(UserInt.unit.x, UserInt.unit.y);
-//            int index2 = UnitType.FindUnit(tileX, tileY);
-//            UnitType.Attack(index1, index2);
-//        }
+        
+        else if(UserInt.isAttackingUnit()){
+            //unimplemented
+        }
+        
+        else if (unitIndex != -1) {
+            UserInt.showUI(Globals.unitList.get(unitIndex));
+        }
+        
+        else if (cityIndex != -1) {
+            UserInt.showUI(Globals.cityList.get(cityIndex));
+        }
+        else{
+            UserInt.showUI();
+        }
     }
 
-    public static void addUnit(int x, int y, int type){
-        Unit unit = new Unit(type, x, y);
+    public static void addUnit(int x, int y, int type, int player){
+        Unit unit = new Unit(type, x, y, player);
         Globals.unitList.add(unit);
     }  
-
-    private static void addPlayers() {
-        String[] options = {2+"",3+"",4+""};
-        String playersTemp = (String) JOptionPane.showInputDialog(baseFrame, "How many players?", null, JOptionPane.PLAIN_MESSAGE, null, options, 2);
-        int players = Integer.parseInt(playersTemp);
-        GameLogic.Turn.setMaxSize(players);
-        for (int i = 0; i < players; i++) {
-            String name = JOptionPane.showInputDialog("Enter a name for player #"+(i+1));
-            GameLogic.Player p = new Player(name);
-            Globals.players.add(p);
-        }
-        World.Map.setFocus(Globals.players.get(0));
+    
+    public static void addCity(int x, int y, int player){
+        City city = new City(x, y, player);
+        Globals.cityList.add(city);
     }
+    
     //----Variables-----------
 
     public static void worldAdd(Component comp) {
@@ -260,7 +202,7 @@ public class Visual extends JFrame implements KeyListener, MouseListener  {
     static Container UI;
     static Container CityUI;
     static Container ProdutionUI;
-    static Container UnitUI;
+    static Container showUI;
     
     static public int width;// width and height of the form
     static public int hight;
@@ -288,7 +230,7 @@ public class Visual extends JFrame implements KeyListener, MouseListener  {
         tiles = this.getContentPane();//make containers
         Units = this.getContentPane();
         UI = this.getContentPane();
-        UnitUI = this.getContentPane();
+        showUI = this.getContentPane();
         CityUI = this.getContentPane();
         ProdutionUI = this.getContentPane();  
         
@@ -319,7 +261,7 @@ public class Visual extends JFrame implements KeyListener, MouseListener  {
             int index = FindCity(cityX, cityY);
             if (index == -1)
             {
-                FinalProject.cities.add(new City(cityX, cityY, TurnOrder.whoTurn()-1));
+                FinalProject.cityList.add(new City(cityX, cityY, TurnOrder.whoTurn()-1));
             } 
             
         }
@@ -405,38 +347,38 @@ public class Visual extends JFrame implements KeyListener, MouseListener  {
             unitIndex = UnitType.FindUnit(tileX, tileY);//get unit index at mouse
             if (unitIndex != -1 && cityIndex != -1) {//both unit and city
                 if (CityUIOpen) {//if city open, open unit
-                    UserInt.UnitUI(FinalProject.units.get(unitIndex));
+                    UserInt.showUI(FinalProject.units.get(unitIndex));
                     moveEnabled = true;
                     CityUIOpen = false;
                     UnitUIOpen = true;
                 }
                 else if (UnitUIOpen) {//if unit open, open city
-                    UserInt.CityUI(FinalProject.cities.get(cityIndex));
+                    UserInt.CityUI(FinalProject.cityList.get(cityIndex));
                     moveEnabled = false;
                     CityUIOpen = true;
                     UnitUIOpen = false;
                 }
                 else if (!UnitUIOpen && !CityUIOpen){// if neither open, open unit
-                    UserInt.UnitUI(FinalProject.units.get(unitIndex));
+                    UserInt.showUI(FinalProject.units.get(unitIndex));
                     moveEnabled = true;
                     CityUIOpen = false;
                     UnitUIOpen = true;
                 }
             }
             else if (cityIndex != -1) {//if city, open city
-                UserInt.CityUI(FinalProject.cities.get(cityIndex));
+                UserInt.CityUI(FinalProject.cityList.get(cityIndex));
                 moveEnabled = false;
                 CityUIOpen = true;
                 UnitUIOpen = false;
             }
             else if (unitIndex != -1) {//if unit, open unit
-                UserInt.UnitUI(FinalProject.units.get(unitIndex));
+                UserInt.showUI(FinalProject.units.get(unitIndex));
                 moveEnabled = true;
                 CityUIOpen = false;
                 UnitUIOpen = true;
             }
             if (cityIndex == -1 && unitIndex == -1) {//if neither, set normal UI
-                UserInt.NormalUI(); 
+                UserInt.showUI(); 
                 moveEnabled = true;
                 CityUIOpen = false;
                 UnitUIOpen = false;
@@ -462,8 +404,8 @@ public class Visual extends JFrame implements KeyListener, MouseListener  {
     }
     public static int FindCity(int x, int y){
         int result = -1;
-        for (int i = 0; i < FinalProject.cities.size(); i++) {
-            City city = FinalProject.cities.get(i);
+        for (int i = 0; i < FinalProject.cityList.size(); i++) {
+            City city = FinalProject.cityList.get(i);
             if (city.x == x && city.y == y){
                 result = i;
             }

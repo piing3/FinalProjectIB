@@ -8,7 +8,10 @@ import javax.swing.Icon;
  */
 public class BuildingProduction extends Production{
 
-    private City city;
+    public static final int BUILDING_WORKSHOP = 0; 
+    public static final int BUILDING_FARM = 1;
+    public static final int BUILDING_BANK = 2;
+    
     public int buildingType;
     
     /**
@@ -21,14 +24,13 @@ public class BuildingProduction extends Production{
      * @param city
      * @param buildingType
      */
-    public BuildingProduction(String name, String discription, int buildCost, int goldCost, Icon icon, City city, int buildingType) {
+    public BuildingProduction(String name, String discription, int buildCost, int goldCost, Icon icon, int buildingType) {
         super(name, discription, buildCost, goldCost, icon);
-        this.city = city;
         this.buildingType = buildingType;
     }
 
     @Override
-    public void built() {
+    public void built(City city) {
         city.addBuilding(this);
     }
     
@@ -40,13 +42,12 @@ public class BuildingProduction extends Production{
 
     @Override
     public BuildingProduction clone() throws CloneNotSupportedException {
-        BuildingProduction b = new BuildingProduction(name, discription, buildCost, goldCost, icon, city, buildingType);
+        BuildingProduction b = new BuildingProduction(name, discription, buildCost, goldCost, icon, buildingType);
         return b;
     }
 
     public boolean equals(BuildingProduction b) {
         if (!super.equals(b)) return false;
-        if (!this.city.equals(b.city)) return false;
         if (this.buildingType != buildingType) return false;
         return true;
     }
