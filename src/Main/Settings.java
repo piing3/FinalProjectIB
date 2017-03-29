@@ -17,7 +17,6 @@ public class Settings implements Serializable{
     private int width;
     private int height;
     private int heightMenuBar = 22;
-    private String gQuality = "sh*t";// for "expandibility"
     
     public Settings() {
         width = height = 0;

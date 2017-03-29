@@ -21,7 +21,6 @@ public class BuildingProduction extends Production{
      * @param buildCost
      * @param goldCost
      * @param icon
-     * @param city
      * @param buildingType
      */
     public BuildingProduction(String name, String discription, int buildCost, int goldCost, Icon icon, int buildingType) {
@@ -56,7 +55,4 @@ public class BuildingProduction extends Production{
     public String toString() {
         return super.toString();
     }
-
-
-
 }

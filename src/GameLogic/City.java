@@ -1,7 +1,6 @@
 package GameLogic;
 
 import Main.Globals;
-import Main.Visual;
 import World.Tile;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -130,9 +129,6 @@ public class City {
         return y;
     }
     
-    
-    
-
     //-------Object-Methods------------- 
 
     @Override

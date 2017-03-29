@@ -2,7 +2,7 @@ package GameLogic;
 
 import Main.Globals;
 import World.Map;
-import java.util.ArrayList;//replace with my own
+import java.util.ArrayList;
 import java.util.Random;
 
 /**

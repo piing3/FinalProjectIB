@@ -94,11 +94,5 @@ public abstract class Production{
         if (this.goldCost != p.goldCost) return false;
         if (!this.icon.equals(p.icon)) return false;
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return super.toString();
-    }
-   
+    }  
 }

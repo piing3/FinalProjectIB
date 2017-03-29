@@ -1,10 +1,8 @@
 package Main;
 
-import GameLogic.Player;
 import GameUI.GameVisual;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import javax.swing.JOptionPane;
 
 /**
  * Master class for all application visuals.
@@ -62,23 +60,4 @@ public abstract class Visual{
     public static BaseFrame getBaseFrame() {
         return baseFrame;
     }
-  
-    
-    
-    //----Object-Methods-------
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
-
-    @Override
-    public String toString() {
-        return super.toString();
-    }
-
 }

@@ -7,13 +7,11 @@ import GameLogic.Turn;
 import GameLogic.Unit;
 import Main.Globals;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
@@ -53,7 +51,6 @@ public abstract class UserInt {
         
     private static JLabel unitBack;//unit ui components 
     private static JLabel unitHealth; 
-    private static JLabel unitStrength; 
     private static JLabel unitMoves; 
     private static JLabel unitName; 
     private static JButton unitMove;
@@ -540,9 +537,6 @@ public abstract class UserInt {
             movingUnit = false; 
             unitMove.setIcon(new ImageIcon("src\\Resources\\unitMove.png"));
             Unit.setSelectedUnit(null);
-        }     
-        
-        
-    }
-    
+        }      
+    }   
 }

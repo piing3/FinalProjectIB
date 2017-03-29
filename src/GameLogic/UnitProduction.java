@@ -1,7 +1,5 @@
 package GameLogic;
 
-import World.UnitDisplay;
-import java.io.Serializable;
 import javax.swing.Icon;
 
 /**
@@ -43,6 +41,4 @@ public class UnitProduction extends Production{
     public String toString() {
         return super.toString();
     }
-
-
 }

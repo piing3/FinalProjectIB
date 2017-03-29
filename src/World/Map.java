@@ -22,11 +22,7 @@ public abstract class Map {
     private static int displayHeight;
     
     private static Tile[][] tileDisplay;
-    private static Border[][] borderDisplay;
-    private static UnitDisplay[][] unitDisplay;
-    private static final int[][] TILE_WORLD = new int[MAP_WIDTH][MAP_HEIGHT]; 
-    private static final int[][] BORDER_TYPE = new int[MAP_WIDTH][MAP_HEIGHT];
-    private static final int[][] UNIT_WORLD = new int[MAP_WIDTH][MAP_HEIGHT];
+    private static final int[][] TILE_WORLD = new int[MAP_WIDTH][MAP_HEIGHT];
     
     public static int rightOff = 0;
     public static int downOff = 0;
@@ -38,8 +34,7 @@ public abstract class Map {
         displayWidth = (Globals.settings.getWidth()/Tile.SIZE)+1;
         displayHeight = (Globals.settings.getHeight()/Tile.SIZE);
         
-        tileDisplay = new Tile[displayWidth][MAP_HEIGHT];
-        borderDisplay = new Border[displayWidth][MAP_HEIGHT];
+        tileDisplay = new Tile[displayWidth][displayHeight];
         
         initalized = true;
         
@@ -111,7 +106,6 @@ public abstract class Map {
                 if(y+downOff >= MAP_HEIGHT) yAdj -= MAP_HEIGHT;
                 
                 tileDisplay[x][y].setTile(TILE_WORLD[xAdj + rightOff][yAdj + downOff]);
-                //borderGrid[x][y].setBorder(borderType[x + rightOff][y + downOff]);
             }
         }
     }
@@ -125,20 +119,6 @@ public abstract class Map {
             Globals.unitList.get(i).getDisplay().setLocation((p.x-rightOff)*50, (p.y-downOff)*50);
             
         }
-        
-//        for (int x = 0; x <= displayWidth; x++){
-//            for (int y = 0; y <= displayHeight; y++){
-//                int index = UnitType.FindUnit(x,y);
-//                if (index != -1){                    
-//                    Unit unit = Globals.units.get(index);
-//                    if (unit.x == x && unit.y == y){
-//                        unit.setLocation((x - rightOff)*50, (y - downOff)*50);
-//                        unit.setUnit(Globals.unitGrid[x][y]);
-//                    }
-//                    
-//                }
-//            }
-//        }
     }
     
     //----Variables-----------
@@ -172,24 +152,4 @@ public abstract class Map {
         redrawMap();
         redrawUnits();
     }
-
-
-    
-    //----Object-Methods-------
-
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
-
-    @Override
-    public String toString() {
-        return super.toString();
-    }
-
 }

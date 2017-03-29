@@ -1,6 +1,5 @@
 package GameLogic;
 
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import Main.Globals;
 import World.Map;
@@ -51,23 +50,4 @@ public abstract class Turn {
     public static void setMaxSize(int maxSize) {
         Turn.maxSize = maxSize;
     }
-    
-
-    
-    //----Object-Methods-------
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
-
-    @Override
-    public String toString() {
-        return super.toString();
-    }
-
 }
