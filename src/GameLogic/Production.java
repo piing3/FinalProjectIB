@@ -1,6 +1,6 @@
 package GameLogic;
 
-import Main.Globals;
+import Utill.Globals;
 import java.io.Serializable;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;

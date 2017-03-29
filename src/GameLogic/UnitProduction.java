@@ -18,7 +18,7 @@ public class UnitProduction extends Production{
     
     @Override
     public void built(City city) {
-        GameUI.GameVisual.addUnit(city.getX(), city.getY(), unitType, Turn.getTurn());
+        GameVisual.GameVisual.addUnit(city.getX(), city.getY(), unitType, Turn.getTurn());
     }
     
     //----Variables-----------

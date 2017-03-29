@@ -1,8 +1,9 @@
 package World;
 
+import GameVisual.Tile;
 import GameLogic.Player;
-import GameUI.GameVisual;
-import Main.Globals;
+import GameVisual.GameVisual;
+import Utill.Globals;
 import java.awt.Point;
 import java.util.Random;
 

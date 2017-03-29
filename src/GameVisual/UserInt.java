@@ -1,11 +1,11 @@
-package GameUI;
+package GameVisual;
 
 import GameLogic.City;
 import GameLogic.Player;
 import GameLogic.Production;
 import GameLogic.Turn;
 import GameLogic.Unit;
-import Main.Globals;
+import Utill.Globals;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;

@@ -1,5 +1,7 @@
 package Main;
 
+import Utill.Globals;
+
 /**
  *
  * @author d.holmberg

@@ -1,7 +1,7 @@
 package GameLogic;
 
 import javax.swing.JOptionPane;
-import Main.Globals;
+import Utill.Globals;
 import World.Map;
 
 /**

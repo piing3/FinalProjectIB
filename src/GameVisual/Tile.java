@@ -1,4 +1,4 @@
-package World;
+package GameVisual;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;

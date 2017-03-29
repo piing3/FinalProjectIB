@@ -1,9 +1,11 @@
 package GameLogic;
 
-import Main.Globals;
+import Utill.Globals;
+import static Utill.Globals.playerList;
 import World.Map;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 /**
  * A player object
@@ -62,7 +64,7 @@ public class Player {
             startX = r.nextInt(Map.MAP_WIDTH);
             startY = r.nextInt(Map.MAP_HEIGHT);
         }while (!Map.checkTileLand(startX, startY));
-        GameUI.GameVisual.addUnit(startX, startY, Unit.UNIT_SETTLER, index);
+        GameVisual.GameVisual.addUnit(startX, startY, Unit.UNIT_SETTLER, index);
     }
     
     
@@ -80,6 +82,16 @@ public class Player {
             }
         }
         
+    }
+    
+    public static void removePlayer(Player player){
+        for (int i = 0; i < Globals.playerList.size(); i++) {
+            if(Globals.playerList.get(i).equals(player)){
+                Globals.playerList.remove(i);
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Error: Player not found");
     }
     
     //----Variables-----------

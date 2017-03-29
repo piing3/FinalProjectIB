@@ -1,5 +1,6 @@
 package Main;
 
+import Utill.Globals;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 

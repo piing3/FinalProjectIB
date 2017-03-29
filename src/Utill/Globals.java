@@ -1,10 +1,10 @@
-package Main;
+package Utill;
 
 import GameLogic.City;
 import GameLogic.Player;
 import GameLogic.Production;
 import GameLogic.Unit;
-import GameUI.UserInput;
+import Utill.UserInput;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -38,13 +38,4 @@ public abstract class Globals {
     
     //----Variables-----------
 
-    public void removePlayer(Player player){
-        for (int i = 0; i < playerList.size(); i++) {
-            if(playerList.get(i).equals(player)){
-                playerList.remove(i);
-                return;
-            }
-        }
-        JOptionPane.showMessageDialog(null, "Error: Player not found");
-    }
 }

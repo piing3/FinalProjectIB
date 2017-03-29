@@ -1,11 +1,10 @@
-package GameUI;
+package GameVisual;
 
 import GameLogic.City;
 import GameLogic.Unit;
-import Main.Globals;
+import Utill.Globals;
 import Main.Visual;
 import World.Map;
-import World.Tile;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Point;

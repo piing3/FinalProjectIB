@@ -1,7 +1,7 @@
 package GameLogic;
 
-import Main.Globals;
-import World.Tile;
+import Utill.Globals;
+import GameVisual.Tile;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -46,7 +46,7 @@ public class City {
     
     
     public static int findCity(int tileX, int tileY){
-        for (int i = 0; i < Main.Globals.cityList.size(); i++) {
+        for (int i = 0; i < Utill.Globals.cityList.size(); i++) {
             if (Globals.cityList.get(i).x == tileX && Globals.cityList.get(i).y == tileY) {
                 return i;
             }

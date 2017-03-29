@@ -1,5 +1,6 @@
 package Main;
 
+import Utill.Globals;
 import GameLogic.Player;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
@@ -68,7 +69,7 @@ public abstract class MainMenu extends Visual{
         }
         
         World.Map.setFocus(Globals.playerList.get(0));
-        GameUI.UserInt.updateTurn();
+        GameVisual.UserInt.updateTurn();
     }
 
     //----Variables-----------

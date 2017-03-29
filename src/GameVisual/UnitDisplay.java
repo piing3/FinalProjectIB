@@ -1,4 +1,4 @@
-package World;
+package GameVisual;
 
 import GameLogic.Turn;
 import GameLogic.Unit;

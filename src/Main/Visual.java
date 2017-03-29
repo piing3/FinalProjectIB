@@ -1,6 +1,7 @@
 package Main;
 
-import GameUI.GameVisual;
+import Utill.Globals;
+import GameVisual.GameVisual;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 

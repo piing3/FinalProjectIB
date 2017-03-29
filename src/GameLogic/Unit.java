@@ -1,10 +1,9 @@
 package GameLogic;
 
-import GameUI.UserInt;
-import Main.Globals;
+import GameVisual.UserInt;
+import Utill.Globals;
 import World.Map;
-import World.Tile;
-import World.UnitDisplay;
+import GameVisual.UnitDisplay;
 import java.awt.Point;
 
 /**
@@ -67,7 +66,7 @@ public class Unit {
         }
         
         display = new UnitDisplay(x, y, unit, player);
-        GameUI.GameVisual.worldAdd(display);
+        GameVisual.GameVisual.worldAdd(display);
     }
     
     public static int findUnit(int tileX, int tileY) {
