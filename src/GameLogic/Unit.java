@@ -102,10 +102,10 @@ public class Unit {
         }
     }
     
-    
     public void startTurn() {
         movementCur = movementMax;
     }
+    
     
     //------Varibles-Methods------------
 
@@ -140,6 +140,34 @@ public class Unit {
     public static void setSelectedUnit(Unit selectedUnit) {
         Unit.selectedUnit = selectedUnit;
     }
+        
+    public void changeHealth(int change){
+        this.health += change;
+    }
+
+    public int getMDamage() {
+        return mDamage;
+    }
+
+    public int getMDefence() {
+        return mDefence;
+    }
+
+    public int getRange() {
+        return range;
+    }
+
+    public int getRDamage() {
+        return rDamage;
+    }
+
+    public int getRDefence() {
+        return rDefence;
+    }
+    
+    
+    
+    
 
     //-------Object-Methods------------- 
 

@@ -25,8 +25,10 @@ public class City {
     private int productionRemain = 0;//used for building things
     private Production productionItem = null;//the item being built
     
-    private int Health = 100;//city combat numbers, unused
-    private int Damage = 20;
+    private int health = 100;//city combat numbers, unused
+    private int rDamage = 20;
+    private int rDefence = 40;
+    private int mDefence = 40;
     
     private String name = "";//city name
     private int player;//city owner
@@ -128,6 +130,25 @@ public class City {
     public int getY() {
         return y;
     }
+
+    public int getRDamage() {
+        return rDamage;
+    }
+
+    public int getRDefence() {
+        return rDefence;
+    }
+
+    public int getMDefence() {
+        return mDefence;
+    }
+    
+    public void changeHealth(int change){
+        health += change;
+    }
+    
+    
+    
     
     //-------Object-Methods------------- 
 
