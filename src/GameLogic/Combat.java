@@ -20,18 +20,16 @@ public class Combat {
    
     public static void unitMelee(Unit attacker, City defender){
         defender.changeHealth(attacker.getMDamage() - defender.getMDefence());
-        attacker.changeHealth(defender.getMDamage() - attacker.getMDefence());
+        attacker.changeHealth(defender.getDamage() - attacker.getMDefence());
         checkUnitDeath(attacker);
-        checkUnitDeath(defender);
     }
     
     public static void unitRanged(Unit attacker, City defender){
         defender.changeHealth(attacker.getRDamage() - defender.getRDefence());
-        checkUnitDeath(defender);
     }
     
     public static void cityRanged(City attacker, Unit defender){
-        defender.changeHealth(attacker.getRDamage() - defender.getRDefence());
+        defender.changeHealth(attacker.getDamage() - defender.getRDefence());
     }
     
     private static void checkUnitDeath(Unit unit) {

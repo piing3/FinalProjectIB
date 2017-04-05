@@ -100,7 +100,9 @@ public abstract class GameVisual extends Visual{
         }
         
         else if(UserInt.isAttackingUnit()){
-            //unimplemented
+            if(cityIndex != -1){
+                
+            }
         }
         
         else if (unitIndex != -1) {

@@ -26,7 +26,7 @@ public class City {
     private Production productionItem = null;//the item being built
     
     private int health = 100;//city combat numbers, unused
-    private int rDamage = 20;
+    private int damage = 20;
     private int rDefence = 40;
     private int mDefence = 40;
     
@@ -131,8 +131,8 @@ public class City {
         return y;
     }
 
-    public int getRDamage() {
-        return rDamage;
+    public int getDamage() {
+        return damage*(health/100);
     }
 
     public int getRDefence() {
@@ -145,6 +145,10 @@ public class City {
     
     public void changeHealth(int change){
         health += change;
+    }
+
+    public int getHealth() {
+        return health;
     }
     
     

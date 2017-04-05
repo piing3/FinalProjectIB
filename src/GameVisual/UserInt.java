@@ -23,7 +23,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 /**
- *to clean
+ *divide into multiple classes?
  *handles all user interface mechanics
  * @author Davin
  */
@@ -33,7 +33,7 @@ public abstract class UserInt {
     private static JLabel playerTurn;
         
     private static GameLogic.City city;
-    private static GameLogic.Unit unit; 
+    private static GameLogic.Unit selectedUnit; 
     private static JLabel cityLeft;
     private static JLabel cityGold;
     private static JLabel cityFood;
@@ -84,14 +84,14 @@ public abstract class UserInt {
      * @param newUnit: the unit to open 
      */
     public static void showUI(GameLogic.Unit newUnit){   
-        unit = newUnit;
+        selectedUnit = newUnit;
         
         visibleCityUI(false);        
         visibleUnitUI(true);
         
-        unitName.setText(unit.getName()+"");
-        unitHealth.setText("Health: "+unit.getHealth());
-        unitMoves.setText("Moves:  "+unit.getMovementCur());
+        unitName.setText(selectedUnit.getName()+"");
+        unitHealth.setText("Health: "+selectedUnit.getHealth());
+        unitMoves.setText("Moves:  "+selectedUnit.getMovementCur());
     }
     
     /**
@@ -213,15 +213,15 @@ public abstract class UserInt {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                int index = City.findCity(unit.getPos().x, unit.getPos().y);
+                int index = City.findCity(selectedUnit.getPos().x, selectedUnit.getPos().y);
                 if (index == -1)
                 {
-                    int x = unit.getPos().x;
-                    int y = unit.getPos().y;
+                    int x = selectedUnit.getPos().x;
+                    int y = selectedUnit.getPos().y;
                     GameVisual.addCity(x, y, Turn.getTurn());
-                    int unitIndex = unit.findUnit(x, y);
-                    Globals.unitList.remove(unit);
-                    unit.kill();
+                    int unitIndex = selectedUnit.findUnit(x, y);
+                    Globals.unitList.remove(selectedUnit);
+                    selectedUnit.kill();
                     showUI(Globals.cityList.get(City.findCity(x, y)));
                 }  
             }
@@ -402,8 +402,8 @@ public abstract class UserInt {
         unitMoves.setVisible(visible);
         unitName.setVisible(visible);
         unitMove.setVisible(visible);
-        if (unit != null) {
-            if(unit.canSettle()) {
+        if (selectedUnit != null) {
+            if(selectedUnit.canSettle()) {
                 unitSettle.setVisible(visible);
                 unitAttack.setVisible(false);
             }
@@ -531,7 +531,7 @@ public abstract class UserInt {
         if (b){
             movingUnit = true;
             unitMove.setIcon(new ImageIcon("src\\Resources\\unitMoveSelected.png"));
-            Unit.setSelectedUnit(unit);
+            Unit.setSelectedUnit(selectedUnit);
         }
         else{
             movingUnit = false; 

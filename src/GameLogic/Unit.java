@@ -146,7 +146,7 @@ public class Unit {
     }
 
     public int getMDamage() {
-        return mDamage;
+        return mDamage*(health/100);
     }
 
     public int getMDefence() {
@@ -158,7 +158,7 @@ public class Unit {
     }
 
     public int getRDamage() {
-        return rDamage;
+        return rDamage*(health/100);
     }
 
     public int getRDefence() {
