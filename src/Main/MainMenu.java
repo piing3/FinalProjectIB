@@ -68,7 +68,7 @@ public abstract class MainMenu extends Visual{
             Globals.playerList.add(p);
         }
         
-        World.Map.setFocus(Globals.playerList.get(0));
+        World.MapUtil.setFocus(Globals.playerList.get(0));
         GameVisual.UserInt.updateTurn();
     }
 

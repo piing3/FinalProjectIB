@@ -3,6 +3,7 @@ package GameLogic;
 import javax.swing.JOptionPane;
 import Utill.Globals;
 import World.Map;
+import World.MapUtil;
 
 /**
  * 
@@ -32,7 +33,7 @@ public abstract class Turn {
     public static void NextTurn(){
         turn++;
         if(turn == maxSize) turn -= maxSize;
-        Map.setFocus(Globals.playerList.get(turn));
+        MapUtil.setFocus(Globals.playerList.get(turn));
         Globals.playerList.get(turn).startTurn();
     }
 

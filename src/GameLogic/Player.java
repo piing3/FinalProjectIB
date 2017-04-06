@@ -3,6 +3,7 @@ package GameLogic;
 import Utill.Globals;
 import static Utill.Globals.playerList;
 import World.Map;
+import World.MapUtil;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JOptionPane;
@@ -63,7 +64,7 @@ public class Player {
         do{
             startX = r.nextInt(Map.MAP_WIDTH);
             startY = r.nextInt(Map.MAP_HEIGHT);
-        }while (!Map.checkTileLand(startX, startY));
+        }while (!MapUtil.checkTileLand(startX, startY));
         GameVisual.GameVisual.addUnit(startX, startY, Unit.UNIT_SETTLER, index);
     }
     

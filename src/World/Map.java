@@ -1,7 +1,6 @@
 package World;
 
 import GameVisual.Tile;
-import GameLogic.Player;
 import GameVisual.GameVisual;
 import Utill.Globals;
 import java.awt.Point;
@@ -19,14 +18,14 @@ public abstract class Map {
     public static final int MAP_WIDTH = 200;
     public static final int MAP_HEIGHT = 100;
     
-    private static int displayWidth;
-    private static int displayHeight;
+    protected static int displayWidth;
+    protected static int displayHeight;
     
-    private static Tile[][] tileDisplay;
-    private static final int[][] TILE_WORLD = new int[MAP_WIDTH][MAP_HEIGHT];
+    protected static Tile[][] tileDisplay;
+    protected static final int[][] TILE_WORLD = new int[MAP_WIDTH][MAP_HEIGHT];
     
-    public static int rightOff = 0;
-    public static int downOff = 0;
+    protected static int rightOff = 0;
+    protected static int downOff = 0;
     
     
     public static void initalize(){
@@ -122,6 +121,12 @@ public abstract class Map {
         }
     }
     
+    public static int range(Point p1, Point p2){
+        int deltaX = p2.x - p1.x;
+        int deltaY = p2.y - p2.x;
+        return Math.abs(deltaX) +  Math.abs(deltaY);
+    }
+    
     //----Variables-----------
 
     public static int getDisplayHeight() {
@@ -135,22 +140,26 @@ public abstract class Map {
         TILE_WORLD[x][y] = type;
         redrawMap();
     }
-    
-    public static boolean checkTileLand(int startX, int startY) {
-        if (TILE_WORLD[startX][startY] == 0) return true;
-        if (TILE_WORLD[startX][startY] == 1) return true;
-        return false;
+
+    public static void setRightOff(int rightOff) {
+        Map.rightOff = rightOff;
     }
 
-    public static void setFocus(Player player) {
-        if(!initalized) initalize();
-        rightOff = player.getStartX()-(displayWidth/2);
-        downOff = player.getStartY()-(displayHeight/2);
-        
-        if(rightOff < 0) rightOff = MAP_WIDTH + rightOff;
-        if(downOff < 0) downOff = MAP_HEIGHT + downOff;
-        
-        redrawMap();
-        redrawUnits();
+    public static int getDownOff() {
+        return downOff;
     }
+
+    public static int getRightOff() {
+        return rightOff;
+    }
+    
+    public static void changeDownOff(int i) {
+        downOff += i;
+    }
+
+    public static void changeRightOff(int i) {
+        rightOff += i;
+    }
+
+    
 }

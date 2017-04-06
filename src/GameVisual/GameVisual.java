@@ -1,6 +1,7 @@
 package GameVisual;
 
 import GameLogic.City;
+import GameLogic.Combat;
 import GameLogic.Unit;
 import Utill.Globals;
 import Main.Visual;
@@ -55,25 +56,25 @@ public abstract class GameVisual extends Visual{
             
         }
         if (e.getKeyCode() == 38){//up
-            if (Map.downOff != 0){
-                Map.downOff--;
+            if (Map.getDownOff() != 0){
+                Map.changeDownOff(-1);
             }
         }
         if (e.getKeyCode() == 37){//left
-            Map.rightOff--;
+            Map.changeRightOff(-1);
         }
         if (e.getKeyCode() == 40){//down
 
-            if (Map.downOff != (Map.MAP_HEIGHT-Map.getDisplayHeight())){//
-                Map.downOff++;    
+            if (Map.getDownOff() != (Map.MAP_HEIGHT-Map.getDisplayHeight())){//
+                Map.changeDownOff(1);    
             }
         }
         if (e.getKeyCode() == 39){//right
-            Map.rightOff++;
+            Map.changeRightOff(1);
         }
 
-        if(Map.rightOff == -1) Map.rightOff = Map.MAP_WIDTH-1;
-        if(Map.rightOff == Map.MAP_WIDTH) Map.rightOff = 0;
+        if(Map.getRightOff() == -1) Map.setRightOff(Map.MAP_WIDTH-1);
+        if(Map.getRightOff() == Map.MAP_WIDTH) Map.setRightOff(0);
 
         Map.redrawMap();
         Map.redrawUnits();
@@ -87,8 +88,8 @@ public abstract class GameVisual extends Visual{
     public static void userInput(MouseEvent e) {
         
         Point mouse = e.getPoint();
-        int tileX = (int)(mouse.x/Tile.SIZE)+Map.rightOff;
-        int tileY = (int)((mouse.y-22)/Tile.SIZE)+Map.downOff;
+        int tileX = (int)(mouse.x/Tile.SIZE)+Map.getRightOff();
+        int tileY = (int)((mouse.y-22)/Tile.SIZE)+Map.getDownOff();
         
         int unitIndex = Unit.findUnit(tileX, tileY);
         int cityIndex = City.findCity(tileX, tileY);
@@ -100,9 +101,17 @@ public abstract class GameVisual extends Visual{
         }
         
         else if(UserInt.isAttackingUnit()){
-            if(cityIndex != -1){
-                
+            
+            int range = Map.range(Unit.getSelectedUnit().getPos(), new Point(tileX, tileY));
+            int damage, defence;
+            
+            if(range == 1 && Unit.getSelectedUnit().getMDamage() != 0){
+                Combat.unitMelee(Unit.getSelectedUnit(), Globals.unitList.get(unitIndex));
             }
+            else if(range >= 1 && Unit.getSelectedUnit().getRDamage() != 0 && range <= Unit.getSelectedUnit().getRange()){
+                Combat.unitRanged(Unit.getSelectedUnit(), Globals.unitList.get(unitIndex));
+            }
+            
         }
         
         else if (unitIndex != -1) {

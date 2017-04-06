@@ -4,6 +4,7 @@ import GameVisual.UserInt;
 import Utill.Globals;
 import World.Map;
 import GameVisual.UnitDisplay;
+import World.MapUtil;
 import java.awt.Point;
 
 /**
@@ -87,18 +88,15 @@ public class Unit {
         Unit unit = Globals.unitList.get(index);
         if(unit.x == newX && unit.y == newY) return;
         if(findUnit(newX, newY) != -1) return; 
-        if(!World.Map.checkTileLand(newX, newY) || unit.movementCur <= 0) return;
+        if(!MapUtil.checkTileLand(newX, newY) || unit.movementCur <= 0) return;
         if(Turn.getTurn() != unit.player) return;
         
-        if (unit.x + 1 == newX || unit.x -1 == newX || unit.x == newX){
-            if (unit.y + 1 == newY || unit.y -1 == newY || unit.y == newY){
-                unit.x = newX;
-                unit.y = newY;
-                unit.movementCur--;
-                UserInt.setMovingUnit(false);
-                Map.redrawUnits();
-                                                                                                                                                                                                                                                                                                                                                                                                            
-            }
+        if(Map.range(new Point(unit.x, unit.y), new Point(newX, newY))== 1){
+            unit.x = newX;
+            unit.y = newY;
+            unit.movementCur--;
+            UserInt.setMovingUnit(false);
+            Map.redrawUnits();
         }
     }
     
